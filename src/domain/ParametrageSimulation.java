@@ -24,7 +24,7 @@ public interface ParametrageSimulation {
 
     double tauxNaissanceAnimalMaximal();
 
-    double tauxMortalitéPredateur();
+    double tauxMortalitePredateur();
 
     double tauxMortaliteParPenurieAlimentaireMaximal();
 

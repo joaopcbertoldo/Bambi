@@ -19,6 +19,7 @@ public final class EcosystemeBambi extends Ecosysteme {
     private PopulationAnimale bambis;
 
     protected EcosystemeBambi(final ParametrageSimulation parametrageSimulation) {
+    	super(parametrageSimulation);
     }
 
     public void PrendreUnePhotoDeLaSimulation() {

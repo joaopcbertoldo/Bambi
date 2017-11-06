@@ -3,7 +3,7 @@ package simulation.GestionDeSimulation;
 import domain.ParametrageSimulation;
 import domain.ResultatSimulation;
 
-abstract class Ecosysteme {
+public abstract class Ecosysteme {
     private int nombreDePasExecutes = 0;
 
     protected ParametrageSimulation parametrageSimulation;

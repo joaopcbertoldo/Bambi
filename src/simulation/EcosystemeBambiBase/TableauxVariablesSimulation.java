@@ -12,11 +12,11 @@ public class TableauxVariablesSimulation implements ResultatSimulation {
     public List tableauStockVeg;
 
     public int popAnimale(final int n, final int territoire) {
-        return (int) this.tableauPopulationAnimale.get(territoire).get(n);
+        return (int) ((List) this.tableauPopulationAnimale.get(territoire)).get(n);
     }
 
     public double stockEau(final int territoire, final int n) {
-        return this.tableauStockEau.get(territoire).get(n);
+        return ((List<double>) this.tableauStockEau.get(territoire)).get(n);
     }
 
     public double stockVeg(final int territoire, final int n) {

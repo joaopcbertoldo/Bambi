@@ -1,5 +1,6 @@
 package animation;
 
+import domain.ResultatSimulation;
 
 public class AnimationControleur {
     public int vitesse;

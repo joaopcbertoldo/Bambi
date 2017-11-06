@@ -54,7 +54,7 @@ public class Parametres implements ParametrageSimulation {
         return 0;
     }
 
-    public double tauxMortalitéPredateur() {
+    public double tauxMortalitePredateur() {
         // TODO Auto-generated return
         return 0;
     }
