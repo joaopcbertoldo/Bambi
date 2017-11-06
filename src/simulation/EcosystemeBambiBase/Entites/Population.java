@@ -9,10 +9,10 @@ public abstract class Population {
 
     protected Mois mois;
 
-    public Population(final DataPopulation dataPopulation, final Localisation localisation, final Mois mois) {
+    public Population(DataPopulation dataPopulation, Localisation localisation, Mois mois) {
         this.dataPopulation = dataPopulation;
-        this.localisation = localisation;
-        this.mois = mois;
+        this.localisation   = localisation;
+        this.mois           = mois;
     }
 
     public double quantiteIndividus() {

@@ -3,7 +3,7 @@ package simulation.ecosystemeBambiBase.entites;
 public class Localisation {
     protected Territoire territoire;
 
-    public Localisation(final Territoire territoire) {
+    public Localisation(Territoire territoire) {
         this.territoire = territoire;
     }
 
@@ -11,12 +11,12 @@ public class Localisation {
         return this.territoire.index();
     }
 
-// Litre
+    // Litre
     public double balanceEau() {
         return this.territoire.balanceEau();
     }
 
-// en %
+    // en %
     public double penurieEau() {
         return this.territoire.penurieEau();
     }

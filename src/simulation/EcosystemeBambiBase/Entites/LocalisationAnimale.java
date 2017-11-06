@@ -4,7 +4,6 @@ public class LocalisationAnimale extends Localisation {
 	
 	public LocalisationAnimale(Territoire territoire) {
 		super(territoire);
-		// TODO Auto-generated constructor stub
 	}
 
 	// en %
@@ -12,16 +11,16 @@ public class LocalisationAnimale extends Localisation {
         return super.territoire.penurieVegetal();
     }
 
-// en %
+    // en %
     public double penurieAlimentaire() {
         return (this.penurieVegetale() + super.penurieEau()) / 2;
     }
 
-    public void migrerAuNord(final Population population) {
+    public void migrerAuNord(Population population) {
         super.territoire.deplacerPopulationAuNord(population);
     }
 
-    public void migrerAuSud(final Population population) {
+    public void migrerAuSud(Population population) {
         super.territoire.deplacerPopulationAuSud(population);
     }
 
