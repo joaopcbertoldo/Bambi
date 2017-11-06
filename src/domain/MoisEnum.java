@@ -44,4 +44,8 @@ public enum MoisEnum {
 			default: return Janvier;
 		}
 	}
+	
+	public static MoisEnum str2mois (String str){
+		return MoisEnum.valueOf(str);
+	}
 }
