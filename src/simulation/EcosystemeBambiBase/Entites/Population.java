@@ -1,8 +1,6 @@
-package simulation.EcosystemeBambiBase.Entites;
+package simulation.ecosystemeBambiBase.entites;
 
-import simulation.EcosystemeBambiBase.EntitesData.*;
-import simulation.EcosystemeBambiBase.EntitesData.DataPopulation;
-import simulation.EcosystemeBambiBase.Enums.*;
+import simulation.ecosystemeBambiBase.entitesData.DataPopulation;
 
 public abstract class Population {
     protected DataPopulation dataPopulation;
@@ -36,7 +34,7 @@ public abstract class Population {
     public abstract void calculerNouvelleQuantiteIndividus();
 
     public void affecterQuantiteIndividus() {
-        this.dataPopulation.quantiteIndividu = this.dataPopulation.quantiteIndividusMoisProchain ;
+        this.dataPopulation.quantiteIndividus = this.dataPopulation.quantiteIndividusMoisProchain ;
     }
 
 }

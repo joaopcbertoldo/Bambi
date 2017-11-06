@@ -1,22 +1,21 @@
-package simulation.EcosystemeBambiBase;
+package simulation.ecosystemeBambiBase;
 
 import java.util.List;
 import domain.ResultatSimulation;
-import simulation.GestionDeSimulation.*;
 
 public class TableauxVariablesSimulation implements ResultatSimulation {
-    public List tableauPopulationAnimale;
+    public List<List<Integer>> tableauPopulationAnimale;
 
-    public List tableauStockEau;
+    public List<List<Double>> tableauStockEau;
 
-    public List tableauStockVeg;
+    public List<List<Double>> tableauStockVeg;
 
     public int popAnimale(final int n, final int territoire) {
-        return (int) ((List) this.tableauPopulationAnimale.get(territoire)).get(n);
+        return this.tableauPopulationAnimale.get(territoire).get(n);
     }
 
     public double stockEau(final int territoire, final int n) {
-        return ((List<double>) this.tableauStockEau.get(territoire)).get(n);
+        return  this.tableauStockEau.get(territoire).get(n);
     }
 
     public double stockVeg(final int territoire, final int n) {

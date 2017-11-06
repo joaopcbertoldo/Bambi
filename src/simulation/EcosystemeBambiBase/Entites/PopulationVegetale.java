@@ -1,16 +1,16 @@
-package simulation.EcosystemeBambiBase.Entites;
+package simulation.ecosystemeBambiBase.entites;
 
-import simulation.EcosystemeBambiBase.EntitesData.*;
-import simulation.EcosystemeBambiBase.EntitesData.DataPopulationVegetale;
-import simulation.EcosystemeBambiBase.Enums.*;
+import simulation.ecosystemeBambiBase.entitesData.*;
+import simulation.ecosystemeBambiBase.entitesData.DataPopulationVegetale;
+import simulation.ecosystemeBambiBase.enums.*;
 
 public class PopulationVegetale extends Population {
     protected DataPopulationVegetale dataPopulationVegetale;
 
-    protected LocalisationVegetale localisationVegetal;
+    protected LocalisationVegetale localisationVegetale;
 
-    public PopulationVegetale(final DataPopulationVegetale dataPopulationVegetale, final LocalisationVegetale localisationVegetale) {
-        super(dataPopulationVegetale, localisationVegetale);
+    public PopulationVegetale(final DataPopulationVegetale dataPopulationVegetale, final LocalisationVegetale localisationVegetale, final Mois mois) {
+        super(dataPopulationVegetale, localisationVegetale, mois);
         this.dataPopulationVegetale = dataPopulationVegetale;
         this.localisationVegetale = localisationVegetale;
     }
@@ -22,7 +22,7 @@ public class PopulationVegetale extends Population {
 
 // en %
     public double tauxPerteParPenurie() {
-        return this.localisation.penurieEau() * this.dataPopulationVegetale.tauxPerteVegetaleParPenurieMax;
+        return this.localisation.penurieEau() * this.dataPopulationVegetale.tauxPerteVegetaleParPenurieEauMax;
     }
 
     public void calculerNouvelleQuantiteIndividus() {

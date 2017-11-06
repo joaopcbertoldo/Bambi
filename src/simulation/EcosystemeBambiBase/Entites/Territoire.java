@@ -1,10 +1,8 @@
-package simulation.EcosystemeBambiBase.Entites;
+package simulation.ecosystemeBambiBase.entites;
 
 import java.util.ArrayList;
 import java.util.List;
-import simulation.EcosystemeBambiBase.EntitesData.*;
-import simulation.EcosystemeBambiBase.EntitesData.DataTerritoire;
-import simulation.EcosystemeBambiBase.Enums.*;
+import simulation.ecosystemeBambiBase.entitesData.DataTerritoire;
 
 public class Territoire {
     protected DataTerritoire dataTerritoire;
@@ -21,25 +19,29 @@ public class Territoire {
         this.dataTerritoire = dataTerritoire;
     }
 
-    public static Territoire CreerTerritoire(final DataTerritoire dataTerritoire, final PopulationVegetale populationVegetale) {
+    public static Territoire CreerTerritoire(final DataTerritoire dataTerritoire, final PopulationVegetale vegetation) {
         Territoire t = new Territoire(dataTerritoire);
-        t.populationVegetale = populationVegetale;
-        t.populations.add(populationVegetale);
+        t.vegetation = vegetation;
+        t.populations.add(vegetation);
         return t;
     }
 
     public static Territoire CreerTerritoireAuNord(final Territoire origine, final DataTerritoire dataTerritoire, final PopulationVegetale populationVegetale) {
-        Territoire t = class.CreerTerritoire(dataTerritoire, populationVegetale);
+        Territoire t = Territoire.CreerTerritoire(dataTerritoire, populationVegetale);
         origine.territoireAuNord = t;
         t.territoireAuSud = origine;
         return t;
     }
 
-    public static Territoire CreerTerritoireAuSud(final Territoire origin, final DataTerritoire dataTerritoire, final PopulationVegetale populationVegetale) {
-        Territoire t = class.CreerTerritoire(dataTerritoire, populationVegetale);
+    public static Territoire CreerTerritoireAuSud(final Territoire origine, final DataTerritoire dataTerritoire, final PopulationVegetale populationVegetale) {
+        Territoire t = Territoire.CreerTerritoire(dataTerritoire, populationVegetale);
         origine.territoireAuSud = t;
         t.territoireAuNord = origine;
         return t;
+    }
+    
+    public int index() {
+    	return this.dataTerritoire.index;
     }
 
 // mm / m^2
@@ -68,35 +70,35 @@ public class Territoire {
     }
 
 // Litre
-    public double besoinEauTotal() {
+    public double besoinEau() {
         // TODO Auto-generated return
         return 0;
     }
 
 // Litre
     public double balanceEau() {
-        return disponibiliteEau() - besoinEauTotal();
+        return disponibiliteEau() - besoinEau();
     }
 
     public double penurieEau() {
-        en %
+        //en %
         double res;
         if (balanceEau() <= 0) {
         	res = 0;
         }
         else {
-        	res =  1 - disponibiliteEau() / besoinEauTotal();
+        	res =  1 - disponibiliteEau() / besoinEau();
         }
         return res;
     }
 
 // kg
-    public double diponibiliteVegetal() {
+    public double disponibiliteVegetal() {
         return this.vegetation.quantiteIndividus();
     }
 
 // kg
-    public double besoinVegetalTotal() {
+    public double besoinVegetal() {
         // TODO Auto-generated return
         return 0;
     }

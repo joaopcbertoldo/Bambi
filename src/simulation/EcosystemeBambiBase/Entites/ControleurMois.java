@@ -1,16 +1,14 @@
-package simulation.EcosystemeBambiBase.Entites;
+package simulation.ecosystemeBambiBase.entites;
 
 import domain.MoisEnum;
-import simulation.EcosystemeBambiBase.EntitesData.*;
-import simulation.EcosystemeBambiBase.Enums.*;
 
-public class ControleurMois extends Mois implements Temps {
+public class ControleurMois extends Mois  {
     public ControleurMois(final MoisEnum mois0) {
     }
 
     public void incrementer() {
         super.iteration++;
-        super.mois = super.mois == MoisEnum.Decembre ? MoisEnum.Janvier : super.mois + 1;
+        super.mois = super.mois == MoisEnum.Decembre ? MoisEnum.Janvier : super.mois.next();
     }
 
 }

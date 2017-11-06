@@ -1,6 +1,4 @@
-package simulation.EcosystemeBambiBase.EntitesData;
-
-import simulation.EcosystemeBambiBase.Enums.*;
+package simulation.ecosystemeBambiBase.entitesData;
 
 public class DataTerritoire {
 // i = 1, 2, 3, 4, 5
@@ -16,7 +14,7 @@ public class DataTerritoire {
     public double cumulEau;
 
 // Litre
-    protected double cumulEauMoisProchain;
+    public double cumulEauMoisProchain;
 
 // mm / m^2 / mois
     public double pluviometrie;

@@ -1,6 +1,6 @@
-package simulation.EcosystemeBambiBase.EntitesData;
+package simulation.ecosystemeBambiBase.entitesData;
 
-import simulation.EcosystemeBambiBase.Enums.*;
+import simulation.ecosystemeBambiBase.enums.*;
 
 public class DataPopulation {
 // UP (unité de population)

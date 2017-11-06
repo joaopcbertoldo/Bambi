@@ -1,9 +1,8 @@
 package simulation;
 
-import domain.*;
 import domain.ParametrageSimulation;
 import domain.ResultatSimulation;
-import simulation.GestionDeSimulation.Ecosysteme;
+import simulation.gestionDeSimulation.Ecosysteme;
 
 public class GestionnaireDeSimulation {
     private Ecosysteme ecosysteme;

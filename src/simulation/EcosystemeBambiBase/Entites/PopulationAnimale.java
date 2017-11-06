@@ -1,29 +1,28 @@
-package simulation.EcosystemeBambiBase.Entites;
+package simulation.ecosystemeBambiBase.entites;
 
-import simulation.EcosystemeBambiBase.EntitesData.*;
-import simulation.EcosystemeBambiBase.EntitesData.DataPopulationAnimale;
-import simulation.EcosystemeBambiBase.Enums.*;
-import simulation.EcosystemeBambiBase.Enums.StatusMigrationEnum;
+import domain.MoisEnum;
+import simulation.ecosystemeBambiBase.entitesData.DataPopulationAnimale;
+import simulation.ecosystemeBambiBase.enums.StatusMigrationEnum;
 
 public class PopulationAnimale extends Population {
     protected LocalisationAnimale localisationAnimale;
 
     protected DataPopulationAnimale dataPopulationAnimale;
 
-    public PopulationAnimale(final DataPopulationAnimale dataPopulationAnimale, final LocalisationAnimale localisationAnimale) {
-        super(dataPopulationAnimale, localisationAnimale);
+    public PopulationAnimale(final DataPopulationAnimale dataPopulationAnimale, final LocalisationAnimale localisationAnimale, final Mois mois) {
+        super(dataPopulationAnimale, localisationAnimale, mois);
         this.dataPopulationAnimale = dataPopulationAnimale;
         this.localisationAnimale = localisationAnimale;
     }
 
 // en %
-    public double penurieEauCumulee(final int k) {
+    public double penurieEauCumulee() {
         // TODO Auto-generated return
         return 0;
     }
 
 // en %
-    public double penurieVegetaleCumulee(final int k) {
+    public double penurieVegetaleCumulee() {
         // TODO Auto-generated return
         return 0;
     }
@@ -31,7 +30,7 @@ public class PopulationAnimale extends Population {
 // en %
     public double tauxNaissance() {
         double tauxMax = this.dataPopulationAnimale.tauxNaissanceMax;
-        double res = (0.1 / penurieEauCumulee()) * (0.1 / penurieVegetaleCumulee());
+        double res = (0.1 / this.penurieEauCumulee()) * (0.1 / penurieVegetaleCumulee());
         res = res > 1 ? 1 : res;
         res = res *  tauxMax;
         return res;
@@ -40,7 +39,7 @@ public class PopulationAnimale extends Population {
 // en %
     public double tauxMortalite() {
         double tauxPenMax = this.dataPopulationAnimale.tauxMortaliteParPenurieAlimentaireMax;
-        double tauxPred       = this.dataPopulationAnimale.tauxMortalitePredator;
+        double tauxPred       = this.dataPopulationAnimale.tauxMortalitePredateur;
         double penAlim       = this.localisationAnimale.penurieAlimentaire();
         
         double res = tauxPred + tauxPenMax * penAlim;
@@ -58,31 +57,32 @@ public class PopulationAnimale extends Population {
     }
 
     public void migrer() {
-        switch (this.statusMigration) {
-        	case StatusMigration.Fixe:
+        switch (this.dataPopulationAnimale.statusMigration) {
+        
+        	case Fixe:
         		if (super.indexTerritoireOccuppe() > 1 && super.mois.getMois() == MoisEnum.Septembre) {
-        			this.dataPopulationAnimale.statusMigration = StatusMigration.MigrantAuSud;
+        			this.dataPopulationAnimale.statusMigration = StatusMigrationEnum.MigrantAuSud;
         			this.localisationAnimale.migrerAuSud(this);
         		}
         		else if (this.localisationAnimale.penurieAlimentaire() > 0) {
-        			this.dataPopulationAnimale.statusMigration = StatusMigration.MigrantAuNord;
+        			this.dataPopulationAnimale.statusMigration = StatusMigrationEnum.MigrantAuNord;
         			this.localisationAnimale.migrerAuNord(this);
         		}
         		break;
         
-        	case StatusMigration.MigrantAuNord:
+        	case MigrantAuNord:
         		if (super.indexTerritoireOccuppe() > 1 && super.mois.getMois() == MoisEnum.Septembre) {
-        			this.dataPopulationAnimale.statusMigration = StatusMigration.MigrantAuSud;
+        			this.dataPopulationAnimale.statusMigration = StatusMigrationEnum.MigrantAuSud;
         			this.localisationAnimale.migrerAuSud(this);
         		}
         		else if (super.indexTerritoireOccuppe() == 5) {
-        			this.dataPopulationAnimale.statusMigration = StatusMigration.Fixe;
+        			this.dataPopulationAnimale.statusMigration = StatusMigrationEnum.Fixe;
         		}
         		break;
         
-        	case StatusMigration.MigrantAuSud:
+        	case MigrantAuSud:
         		if (super.indexTerritoireOccuppe() == 1) {
-        			this.dataPopulationAnimale.statusMigration = StatusMigration.Fixe;
+        			this.dataPopulationAnimale.statusMigration = StatusMigrationEnum.Fixe;
         		}
         		break;
         

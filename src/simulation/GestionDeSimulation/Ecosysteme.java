@@ -1,4 +1,4 @@
-package simulation.GestionDeSimulation;
+package simulation.gestionDeSimulation;
 
 import domain.ParametrageSimulation;
 import domain.ResultatSimulation;

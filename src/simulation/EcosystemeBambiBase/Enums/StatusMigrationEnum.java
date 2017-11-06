@@ -1,5 +1,4 @@
-package simulation.EcosystemeBambiBase.Enums;
-
+package simulation.ecosystemeBambiBase.enums;
 
 public enum StatusMigrationEnum {
     Fixe,

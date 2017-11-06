@@ -1,13 +1,12 @@
-package simulation.EcosystemeBambiBase;
+package simulation.ecosystemeBambiBase;
 
 import java.util.ArrayList;
 import java.util.List;
 import domain.ParametrageSimulation;
-import simulation.EcosystemeBambiBase.Entites.ControleurMois;
-import simulation.EcosystemeBambiBase.Entites.PopulationAnimale;
-import simulation.EcosystemeBambiBase.Entites.Territoire;
-import simulation.GestionDeSimulation.*;
-import simulation.GestionDeSimulation.Ecosysteme;
+import simulation.ecosystemeBambiBase.entites.ControleurMois;
+import simulation.ecosystemeBambiBase.entites.PopulationAnimale;
+import simulation.ecosystemeBambiBase.entites.Territoire;
+import simulation.gestionDeSimulation.Ecosysteme;
 
 public final class EcosystemeBambi extends Ecosysteme {
     private TableauxVariablesSimulation tableauxVariablesSimulation;

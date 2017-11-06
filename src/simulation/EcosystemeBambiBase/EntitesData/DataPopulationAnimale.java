@@ -1,7 +1,6 @@
-package simulation.EcosystemeBambiBase.EntitesData;
+package simulation.ecosystemeBambiBase.entitesData;
 
-import simulation.EcosystemeBambiBase.Enums.*;
-import simulation.EcosystemeBambiBase.Enums.StatusMigrationEnum;
+import simulation.ecosystemeBambiBase.enums.StatusMigrationEnum;
 
 // Quantite individu : UP = nombre d'individu
 // Besoin eau par individu : Litre / individu / mois
