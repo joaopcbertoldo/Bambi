@@ -17,35 +17,39 @@ public enum MoisEnum {
 	
 	public MoisEnum next() {
 		switch(this) {
-			case Janvier: return Fevrier;
+			case Janvier:   return Fevrier;
 				
-			case Fevrier: return Mars;
+			case Fevrier:   return Mars;
 				
-			case Mars: return Avril;
+			case Mars:      return Avril;
 				
-			case Avril: return Mai;
+			case Avril:     return Mai;
 				
-			case Mai: return Juin;
+			case Mai:       return Juin;
 				
-			case Juin: return Juillet;
+			case Juin:      return Juillet;
 				
-			case Juillet: return Aout;
+			case Juillet:   return Aout;
 				
-			case Aout: return Septembre;
+			case Aout:      return Septembre;
 				
 			case Septembre: return Octobre;
 				
-			case Octobre: return Novembre;
+			case Octobre:   return Novembre;
 				
-			case Novembre: return Decembre;
+			case Novembre:  return Decembre;
 				
-			case Decembre: return Janvier;
+			case Decembre:  return Janvier;
 			
-			default: return Janvier;
+			default:        return Janvier;
 		}
 	}
 	
 	public static MoisEnum str2mois (String str){
 		return MoisEnum.valueOf(str);
 	}
+	
+	public static void test(String[] args) {
+	}
+	
 }

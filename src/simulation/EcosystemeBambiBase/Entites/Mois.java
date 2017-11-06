@@ -14,5 +14,4 @@ public abstract class Mois {
     public MoisEnum getMois() {
         return this.mois;
     }
-
 }
