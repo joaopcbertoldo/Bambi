@@ -1,18 +1,16 @@
 package simulation.ecosystemeBambiBase.entitesData;
 
-import simulation.ecosystemeBambiBase.enums.*;
-
 public class DataPopulation {
-// UP (unitÃ© de population)
+	// UP (unité de population)
     public double quantiteIndividus;
 
-// UP (unitÃ© de population)
+    // UP (unité de population)
     public double quantiteIndividusMoisProchain;
 
-// Litre / UP / mois
+    // Litre / UP / mois
     public double besoinEauParIndividu;
 
-// kg / UP / mois
+    // kg / UP / mois
     public double besoinVegetalParIndividu;
 
 }

@@ -3,7 +3,7 @@ package simulation.ecosystemeBambiBase.entites;
 import domain.MoisEnum;
 
 public class ControleurMois extends Mois  {
-    public ControleurMois(final MoisEnum mois0) {
+    public ControleurMois(MoisEnum mois0) {
     	super.mois = mois0;
     	super.iteration = 0;
     }
@@ -18,8 +18,8 @@ public class ControleurMois extends Mois  {
 		Mois mois = (Mois) ctrl;
 		
 		for (int i = 0; i < 24; i++) {
-			System.out.println(ctrl.getIteration());
-			System.out.println(ctrl.getMois());
+			System.out.println(mois.getIteration());
+			System.out.println(mois.getMois());
 			System.out.println();
 			ctrl.incrementer();
 		}

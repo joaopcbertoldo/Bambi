@@ -5,29 +5,34 @@ import simulation.ecosystemeBambiBase.entitesData.DataPopulationAnimale;
 import simulation.ecosystemeBambiBase.enums.StatusMigrationEnum;
 
 public class PopulationAnimale extends Population {
+	
     protected LocalisationAnimale localisationAnimale;
 
     protected DataPopulationAnimale dataPopulationAnimale;
 
-    public PopulationAnimale(final DataPopulationAnimale dataPopulationAnimale, final LocalisationAnimale localisationAnimale, final Mois mois) {
+    public PopulationAnimale(DataPopulationAnimale dataPopulationAnimale, 
+    						 LocalisationAnimale localisationAnimale, 
+    						 Mois mois) {
         super(dataPopulationAnimale, localisationAnimale, mois);
         this.dataPopulationAnimale = dataPopulationAnimale;
         this.localisationAnimale = localisationAnimale;
     }
 
-// en %
+    // en %
     public double penurieEauCumulee() {
-        // TODO Auto-generated return
-        return 0;
+        return this.dataPopulationAnimale
+        		   .historiquePenurieEau
+        		   .stream()
+        		   .limit(6).;
     }
 
-// en %
+    // en %
     public double penurieVegetaleCumulee() {
         // TODO Auto-generated return
         return 0;
     }
 
-// en %
+    // en %
     public double tauxNaissance() {
         double tauxMax = this.dataPopulationAnimale.tauxNaissanceMax;
         double res = (0.1 / this.penurieEauCumulee()) * (0.1 / penurieVegetaleCumulee());
@@ -36,7 +41,7 @@ public class PopulationAnimale extends Population {
         return res;
     }
 
-// en %
+    // en %
     public double tauxMortalite() {
         double tauxPenMax = this.dataPopulationAnimale.tauxMortaliteParPenurieAlimentaireMax;
         double tauxPred       = this.dataPopulationAnimale.tauxMortalitePredateur;
@@ -51,8 +56,13 @@ public class PopulationAnimale extends Population {
     }
 
     public void calculerNouvelleQuantiteIndividus() {
+    	this.dataPopulationAnimale.historiquePenurieEau.add(0, this.localisationAnimale.penurieEau());
+    	this.dataPopulationAnimale.historiquePenurieNourriture.add(0, this.localisationAnimale.penurieVegetale());
+    	
         double actuel = this.dataPopulationAnimale.quantiteIndividus;
+        
         double nouvel = actuel * (1 + this.tauxNaissance() - this.tauxMortalite());
+        
         this.dataPopulationAnimale.quantiteIndividusMoisProchain = nouvel;
     }
 
