@@ -6,16 +6,25 @@ import simulation.ecosystemeBambiBase.enums.StatusMigrationEnum;
 
 public class PopulationAnimale extends Population {
 	
-    protected LocalisationAnimale localisationAnimale;
+    protected LocalisationAnimale localisationAnimale() {
+    	return (LocalisationAnimale) super.localisation;
+    }
 
     protected DataPopulationAnimale dataPopulationAnimale;
 
     public PopulationAnimale(DataPopulationAnimale dataPopulationAnimale, 
-    						 LocalisationAnimale localisationAnimale, 
+    						 LocalisationAnimale localisation,
     						 Mois mois) {
-        super(dataPopulationAnimale, localisationAnimale, mois);
+        super(dataPopulationAnimale, mois);
         this.dataPopulationAnimale = dataPopulationAnimale;
-        this.localisationAnimale = localisationAnimale;
+        
+        // bricolage
+        try {
+			super.setLocalisation(localisation);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     // en %
@@ -49,7 +58,7 @@ public class PopulationAnimale extends Population {
     public double tauxMortalite() {
         double tauxPenMax = this.dataPopulationAnimale.tauxMortaliteParPenurieAlimentaireMax;
         double tauxPred   = this.dataPopulationAnimale.tauxMortalitePredateur;
-        double penAlim    = this.localisationAnimale.penurieAlimentaire();
+        double penAlim    = this.localisationAnimale().penurieAlimentaire();
         
         double res = tauxPred + tauxPenMax * penAlim;
         return res;
@@ -60,8 +69,8 @@ public class PopulationAnimale extends Population {
     }
 
     public void calculerNouvelleQuantiteIndividus() {
-    	this.dataPopulationAnimale.historiquePenurieEau.add(0, this.localisationAnimale.penurieEau());
-    	this.dataPopulationAnimale.historiquePenurieNourriture.add(0, this.localisationAnimale.penurieVegetale());
+    	this.dataPopulationAnimale.historiquePenurieEau.add(0, this.localisationAnimale().penurieEau());
+    	this.dataPopulationAnimale.historiquePenurieNourriture.add(0, this.localisationAnimale().penurieVegetale());
     	
         double actuel = this.dataPopulationAnimale.quantiteIndividus;
         
@@ -76,27 +85,33 @@ public class PopulationAnimale extends Population {
         	case Fixe:
         		if (super.indexTerritoireOccuppe() > 1 && super.mois.getMois() == MoisEnum.Septembre) {
         			this.dataPopulationAnimale.statusMigration = StatusMigrationEnum.MigrantAuSud;
-        			this.localisationAnimale.migrerAuSud(this);
+        			this.localisationAnimale().migrerAuSud(this);
         		}
-        		else if (this.localisationAnimale.penurieAlimentaire() > 0) {
+        		else if (this.localisationAnimale().penurieAlimentaire() > 0) {
         			this.dataPopulationAnimale.statusMigration = StatusMigrationEnum.MigrantAuNord;
-        			this.localisationAnimale.migrerAuNord(this);
+        			this.localisationAnimale().migrerAuNord(this);
         		}
         		break;
         
         	case MigrantAuNord:
         		if (super.indexTerritoireOccuppe() > 1 && super.mois.getMois() == MoisEnum.Septembre) {
         			this.dataPopulationAnimale.statusMigration = StatusMigrationEnum.MigrantAuSud;
-        			this.localisationAnimale.migrerAuSud(this);
+        			this.localisationAnimale().migrerAuSud(this);
         		}
         		else if (super.indexTerritoireOccuppe() == 5) {
         			this.dataPopulationAnimale.statusMigration = StatusMigrationEnum.Fixe;
+        		}
+        		else {
+        			this.localisationAnimale().migrerAuNord(this);
         		}
         		break;
         
         	case MigrantAuSud:
         		if (super.indexTerritoireOccuppe() == 1) {
         			this.dataPopulationAnimale.statusMigration = StatusMigrationEnum.Fixe;
+        		}
+        		else {
+        			this.localisationAnimale().migrerAuSud(this);
         		}
         		break;
         

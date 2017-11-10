@@ -15,25 +15,32 @@ public class Territoire {
 
     public Territoire territoireAuSud;
 
-    private Territoire(final DataTerritoire dataTerritoire) {
+    private Territoire(DataTerritoire dataTerritoire) {
         this.dataTerritoire = dataTerritoire;
     }
 
-    public static Territoire CreerTerritoire(final DataTerritoire dataTerritoire, final PopulationVegetale vegetation) {
+    public static Territoire CreerTerritoire(DataTerritoire dataTerritoire, PopulationVegetale vegetation) {
         Territoire t = new Territoire(dataTerritoire);
         t.vegetation = vegetation;
+        LocalisationVegetale local = new LocalisationVegetale(t);
+        // bricolage
+        try {
+			t.vegetation.setLocalisation(local);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         t.populations.add(vegetation);
         return t;
     }
 
-    public static Territoire CreerTerritoireAuNord(final Territoire origine, final DataTerritoire dataTerritoire, final PopulationVegetale populationVegetale) {
+    public static Territoire CreerTerritoireAuNord(Territoire origine, DataTerritoire dataTerritoire, PopulationVegetale populationVegetale) {
         Territoire t = Territoire.CreerTerritoire(dataTerritoire, populationVegetale);
         origine.territoireAuNord = t;
         t.territoireAuSud = origine;
         return t;
     }
 
-    public static Territoire CreerTerritoireAuSud(final Territoire origine, final DataTerritoire dataTerritoire, final PopulationVegetale populationVegetale) {
+    public static Territoire CreerTerritoireAuSud(Territoire origine, DataTerritoire dataTerritoire, PopulationVegetale populationVegetale) {
         Territoire t = Territoire.CreerTerritoire(dataTerritoire, populationVegetale);
         origine.territoireAuSud = t;
         t.territoireAuNord = origine;
@@ -158,23 +165,23 @@ public class Territoire {
         this.dataTerritoire.cumulEau = this.dataTerritoire.cumulEauMoisProchain;
     }
 
-    public void mettreAJourPluviometrie(final double pluviometrie) {
+    public void mettreAJourPluviometrie(double pluviometrie) {
         this.dataTerritoire.pluviometrie = pluviometrie;
     }
 
     // Ajoute une population dans la liste de populations du territoire.
-    public void recevoirPopulation(final Population population) {
+    public void recevoirPopulation(Population population) {
         this.populations.add(population);
     }
 
     // Enlève la population donnée de sa liste et la dépose dans le territoire voisin au Nord.
-    public void deplacerPopulationAuNord(final Population population) {
+    public void deplacerPopulationAuNord(Population population) {
         this.populations.remove(population);
         this.territoireAuNord.recevoirPopulation(population);
     }
 
     // Enlève la population donnée de sa liste et la dépose dans le territoire voisin au Sud.
-    public void deplacerPopulationAuSud(final Population population) {
+    public void deplacerPopulationAuSud(Population population) {
         this.populations.remove(population);
         this.territoireAuSud.recevoirPopulation(population);
     }

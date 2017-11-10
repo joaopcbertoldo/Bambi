@@ -1,7 +1,6 @@
 package simulation.gestionDeSimulation;
 
-
-final class SimulationFinieException extends Exception {
+public class SimulationFinieException extends Exception {
 
 	/**
 	 * 

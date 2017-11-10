@@ -34,16 +34,16 @@ public abstract class Ecosysteme {
     	return null;
     }
 
+    public abstract void PrendreUnePhotoDeLaSimulation();
+
+    protected abstract void ChangerSysteme();
+
     public void AvancerUnPas() throws SimulationFinieException {
     	if (this.nombreDePasExecutes++ > this.parametrageSimulation.nombreDePas())
     		throw new SimulationFinieException();
     	else
     		this.ChangerSysteme();
     }
-
-    public abstract void PrendreUnePhotoDeLaSimulation();
-
-    protected abstract void ChangerSysteme();
 
     public ResultatSimulation getResultatSimulation() {
         return this.resultatSimulation;

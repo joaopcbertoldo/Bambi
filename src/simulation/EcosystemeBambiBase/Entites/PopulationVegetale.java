@@ -5,12 +5,14 @@ import simulation.ecosystemeBambiBase.entitesData.DataPopulationVegetale;
 public class PopulationVegetale extends Population {
     protected DataPopulationVegetale dataPopulationVegetale;
 
-    protected LocalisationVegetale localisationVegetale;
+    protected LocalisationVegetale localisationVegetale() {
+    	return (LocalisationVegetale) super.localisation;
+    }
 
-    public PopulationVegetale(final DataPopulationVegetale dataPopulationVegetale, final LocalisationVegetale localisationVegetale, final Mois mois) {
-        super(dataPopulationVegetale, localisationVegetale, mois);
+    public PopulationVegetale(DataPopulationVegetale dataPopulationVegetale, 
+    						  Mois mois) {
+        super(dataPopulationVegetale, mois);
         this.dataPopulationVegetale = dataPopulationVegetale;
-        this.localisationVegetale = localisationVegetale;
     }
 
     // en %
@@ -24,8 +26,8 @@ public class PopulationVegetale extends Population {
     }
 
     public void calculerNouvelleQuantiteIndividus() {
-        double balance        = this.localisationVegetale.balanceEau();
-        double nonMange       = this.localisationVegetale.quantiteVegetalNonMange();
+        double balance        = this.localisationVegetale().balanceEau();
+        double nonMange       = this.localisationVegetale().quantiteVegetalNonMange();
         double tauxCroissance = this.tauxCroissance();
         double tauxPerte      = this.tauxPerteParPenurie();
         double min            = this.dataPopulationVegetale.populationVegetaleMinimale;

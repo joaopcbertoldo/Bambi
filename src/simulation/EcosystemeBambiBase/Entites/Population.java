@@ -9,12 +9,18 @@ public abstract class Population {
 
     protected Mois mois;
 
-    public Population(DataPopulation dataPopulation, Localisation localisation, Mois mois) {
+    public Population(DataPopulation dataPopulation, Mois mois) {
         this.dataPopulation = dataPopulation;
-        this.localisation   = localisation;
         this.mois           = mois;
     }
 
+    public void setLocalisation(Localisation localisation) throws Exception {
+    	if (this.localisation != null)
+    		throw new Exception();
+    	else
+    		this.localisation = localisation;
+    }
+    
     public double quantiteIndividus() {
         return this.dataPopulation.quantiteIndividus;
     }
