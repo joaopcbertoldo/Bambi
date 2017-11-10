@@ -1,23 +1,26 @@
 package fichiers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import domain.MoisEnum;
 import domain.ParametrageSimulation;
 
 
 public class Parametres implements ParametrageSimulation {
 	
-	protected double[][] pluviometrie; 
-	protected int nombreDePas;
-	protected double[] surfaceTerritoire;
+	protected ArrayList<ArrayList<Double>> pluviometrie; 
+	protected int nombreDePas=0;
+	protected ArrayList<Double> surfaceTerritoire;
 	protected int nombreIndividusAnimale0;
-	protected double[] stockVegetaux; 
+	protected ArrayList<Double> stockVegetaux; 
 	protected int localisationInitiale; 
-	protected double[] stockEau; 
-	protected double[] tauxPerteEauEvaporation; 
+	protected ArrayList<Double> stockEau; 
+	protected double tauxPerteEauEvaporation; 
 	protected double stockVegetauxMinimal;
 	protected double tauxNaissanceAnimalMaximal;
 	protected double tauxMortalitePredateur; 
-	protected double auxMortaliteParPenurieAlimentaireMaximal;
+	protected double tauxMortaliteParPenurieAlimentaireMaximal;
 	protected MoisEnum mois0; 
 	protected double besoinEauVegetal;
 	protected double besoinEauAnimal; 
@@ -27,10 +30,7 @@ public class Parametres implements ParametrageSimulation {
 	
 	
 	
-    public double pluviometrie(final int territoire, final int moisN) {
-        // TODO Auto-generated return
-        return pluviometrie[territoire][moisN];
-    }
+ 
 
     public int nombreDePas() {
         // TODO Auto-generated return
@@ -39,7 +39,7 @@ public class Parametres implements ParametrageSimulation {
 
     public double surfaceTerritoire(final int territoire) {
         // TODO Auto-generated return
-        return surfaceTerritoire[territoire];
+        return surfaceTerritoire.get(territoire);
     }
 
     public int nombreIndividusAnimale0() {
@@ -49,7 +49,7 @@ public class Parametres implements ParametrageSimulation {
 
     public double stockVegetaux(final int territoire) {
         // TODO Auto-generated return
-        return stockVegetaux[territoire];
+        return stockVegetaux.get(territoire);
     }
 
     public int localisationInitiale() {
@@ -62,9 +62,9 @@ public class Parametres implements ParametrageSimulation {
         return stockEau(territoire);
     }
 
-    public double tauxPerteEauEvaporation(final int territoire) {
+    public double tauxPerteEauEvaporation() {
         // TODO Auto-generated return
-        return tauxPerteEauEvaporation[territoire];
+        return tauxPerteEauEvaporation;
     }
 
     public double stockVegetauxMinimal() {
@@ -84,7 +84,7 @@ public class Parametres implements ParametrageSimulation {
 
     public double tauxMortaliteParPenurieAlimentaireMaximal() {
         // TODO Auto-generated return
-        return auxMortaliteParPenurieAlimentaireMaximal;
+        return tauxMortaliteParPenurieAlimentaireMaximal;
     }
 
     public MoisEnum mois0() {
@@ -116,5 +116,17 @@ public class Parametres implements ParametrageSimulation {
         // TODO Auto-generated return
         return tauxPerteVegetalPenurieMax;
     }
+
+	@Override
+	public double pluviometrie(int territoire, int moisN) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double tauxPerteEauEvaporation(int territoire) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
