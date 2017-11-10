@@ -3,6 +3,7 @@ package simulation;
 import domain.ParametrageSimulation;
 import domain.ResultatSimulation;
 import simulation.gestionDeSimulation.Ecosysteme;
+import simulation.gestionDeSimulation.SimulationFinieException;
 
 public class GestionnaireDeSimulation {
     private Ecosysteme ecosysteme;
@@ -13,13 +14,27 @@ public class GestionnaireDeSimulation {
     }
 
     public static GestionnaireDeSimulation Instance() {
-        // TODO Auto-generated return
-        return null;
+        if (instance == null)
+        	instance = new GestionnaireDeSimulation();
+        return instance;
     }
 
-    public ResultatSimulation Simuler(final ParametrageSimulation parametres) {
-        // TODO Auto-generated return
-        return null;
+    public ResultatSimulation Simuler(ParametrageSimulation parametres) {
+    	this.ecosysteme = Ecosysteme.getInstanceEcosysteme(parametres);
+    	
+    	try {
+    		System.out.println("Simulation va commencer !");
+    		while(true) {
+    			this.ecosysteme.PrendreUnePhotoDeLaSimulation();
+    			this.ecosysteme.AvancerUnPas();
+    		}
+    	} 
+    	catch(SimulationFinieException ex) {
+    		// imprimer qq part ?
+    		System.out.println("Simulation finie !");
+    	}
+    	
+        return this.ecosysteme.getResultatSimulation();
     }
 
 }

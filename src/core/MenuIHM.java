@@ -56,6 +56,8 @@ public class MenuIHM extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent evt) {
 		
 		if(evt.getSource()==btChargerPluie) {
+			
+			fc.setDialogTitle("Ouvrir");
 			int returnVal = fc.showOpenDialog(this);
 
 	        if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -64,16 +66,28 @@ public class MenuIHM extends JFrame implements ActionListener {
 	        } 
 		}
 		else if(evt.getSource()==btChargerParamPasClim) {
+			
+			fc.setDialogTitle("Ouvrir");
 			int returnVal = fc.showOpenDialog(this);
 			
 			if(returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = fc.getSelectedFile();
+				fc.setDialogTitle("Ouvrir");
 				c.chargerParamPasClim(file);
 			}
 		}
 		else if(evt.getSource()==btLancer) c.lancerSimulation();
 		
-		else if(evt.getSource()==btSauvegardeCsv) c.sauvegarderCsv();
+		else if(evt.getSource()==btSauvegardeCsv) {
+			
+			fc.setDialogTitle("Sauvegarder le fichier de résultats");
+			int returnVal = fc.showOpenDialog(this);			
+			
+			if(returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				c.sauvegarderCsv(file.getAbsolutePath());
+			}			
+		}
 	
 		else if(evt.getSource()==btChargerResultat) {
 			int returnVal = fc.showOpenDialog(this);

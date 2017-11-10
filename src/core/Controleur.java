@@ -8,6 +8,7 @@ import animation.AnimationControleur;
 import fichiers.GestionnaireFichierParametrage;
 import fichiers.GestionnaireFichierResultatSimulation;
 import simulation.GestionnaireDeSimulation;
+import domain.*;
 
 public class Controleur {
 	
@@ -19,7 +20,7 @@ public class Controleur {
     
     public Controleur() {
     	
-    	gestionnaireDeSimulation = GestionnaireDeSimulation.Instance();
+   // 	gestionnaireDeSimulation = GestionnaireDeSimulation.Instance();
     	gestionnaireFichierParametrage = new GestionnaireFichierParametrage();
     	gestionnaireFichierResultatSimulation = new GestionnaireFichierResultatSimulation();
     	
@@ -46,10 +47,15 @@ public class Controleur {
     }
     
     public void lancerSimulation() {
+    	ResultatSimulation r = gestionnaireDeSimulation.Simuler(gestionnaireFichierParametrage.recupererParametrageSimulation());
+    //	gestionnaireFichierResultatSimulation.setResultat(r);
+    	
     	
     }
     
-    public void sauvegarderCsv() {
+    public void sauvegarderCsv(String adresse) {
+    	
+   // 	gestionnaireFichierResultatSimulation.sauvegarderResultatSimulation(adresse);
     	
     }
     

@@ -5,7 +5,7 @@ public class LocalisationVegetale extends Localisation {
 		super(territoire);
 	}
 
-// kg
+    // kg
     public double quantiteVegetalNonMange() {
         return this.territoire.quantiteVegetalNonMange();
     }
