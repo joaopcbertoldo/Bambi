@@ -23,13 +23,17 @@ public class PopulationAnimale extends Population {
         return this.dataPopulationAnimale
         		   .historiquePenurieEau
         		   .stream()
-        		   .limit(6).;
+        		   .limit(6)
+        		   .reduce(0.0, (a,b) -> a + b);
     }
 
     // en %
     public double penurieVegetaleCumulee() {
-        // TODO Auto-generated return
-        return 0;
+        return this.dataPopulationAnimale
+     		   .historiquePenurieNourriture
+     		   .stream()
+     		   .limit(6)
+     		   .reduce(0.0, (a,b) -> a + b);
     }
 
     // en %
@@ -44,8 +48,8 @@ public class PopulationAnimale extends Population {
     // en %
     public double tauxMortalite() {
         double tauxPenMax = this.dataPopulationAnimale.tauxMortaliteParPenurieAlimentaireMax;
-        double tauxPred       = this.dataPopulationAnimale.tauxMortalitePredateur;
-        double penAlim       = this.localisationAnimale.penurieAlimentaire();
+        double tauxPred   = this.dataPopulationAnimale.tauxMortalitePredateur;
+        double penAlim    = this.localisationAnimale.penurieAlimentaire();
         
         double res = tauxPred + tauxPenMax * penAlim;
         return res;
@@ -61,9 +65,9 @@ public class PopulationAnimale extends Population {
     	
         double actuel = this.dataPopulationAnimale.quantiteIndividus;
         
-        double nouvel = actuel * (1 + this.tauxNaissance() - this.tauxMortalite());
+        double nouvelle = actuel * (1 + this.tauxNaissance() - this.tauxMortalite());
         
-        this.dataPopulationAnimale.quantiteIndividusMoisProchain = nouvel;
+        this.dataPopulationAnimale.quantiteIndividusMoisProchain = nouvelle;
     }
 
     public void migrer() {

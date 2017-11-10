@@ -34,7 +34,7 @@ public interface ParametrageSimulation {
 
     double besoinVegetalAnimal();
 
-    double tauxCroissanteVegetalMax();
+    double tauxCroissanteVegetal();
 
     double tauxPerteVegetalPenurieMax();
 

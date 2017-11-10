@@ -7,7 +7,7 @@ import simulation.ecosystemeBambiBase.entitesData.DataTerritoire;
 public class Territoire {
     protected DataTerritoire dataTerritoire;
 
-    protected List<Population> populations = new ArrayList<Population> ();
+    protected List<Population> populations = new ArrayList<Population>();
 
     protected PopulationVegetale vegetation;
 
@@ -44,38 +44,40 @@ public class Territoire {
     	return this.dataTerritoire.index;
     }
 
-// mm / m^2
+    // mm / m^2
     public double pluviometrie() {
         return dataTerritoire.pluviometrie;
     }
 
-// km^2
+    // km^2
     public double surface() {
         return dataTerritoire.surface;
     }
 
-// Litre
+    // Litre
     public double quantiteEauDePluie() {
         return (this.pluviometrie() / 1000.0) * (this.surface() * 1000000.0) * 1000;
     }
 
-// Litre
+    // Litre
     public double cumulEau() {
         return this.dataTerritoire.cumulEau;
     }
 
-// Litre
+    // Litre
     public double disponibiliteEau() {
         return cumulEau() + quantiteEauDePluie();
     }
 
-// Litre
+    // Litre
     public double besoinEau() {
-        // TODO Auto-generated return
-        return 0;
+        return this.populations
+        		   .stream()
+        		   .map(Population::besoinEauPopulation)
+        		   .reduce(0.0,  (a,b) -> a + b);
     }
 
-// Litre
+    // Litre
     public double balanceEau() {
         return disponibiliteEau() - besoinEau();
     }
@@ -92,23 +94,26 @@ public class Territoire {
         return res;
     }
 
-// kg
+    // kg
     public double disponibiliteVegetal() {
         return this.vegetation.quantiteIndividus();
     }
 
-// kg
+    // kg
     public double besoinVegetal() {
-        // TODO Auto-generated return
-        return 0;
+        return this.populations
+        		   .stream()
+        		   .filter(p -> p instanceof PopulationAnimale)
+        		   .map(Population::besoinVegetalPopulation)
+        		   .reduce(0.0,  (a,b) -> a + b);
     }
 
-// kg
+    // kg
     public double balanceVegetal() {
         return disponibiliteVegetal() - besoinVegetal();
     }
 
-// en %
+    // en %
     public double penurieVegetal() {
         double res;
         if (balanceVegetal() <= 0) {
@@ -120,7 +125,7 @@ public class Territoire {
         return res;
     }
 
-// kg
+    // kg
     public double quantiteVegetalNonMange() {
         double res;
         if (balanceVegetal() <= 0) {
@@ -157,18 +162,18 @@ public class Territoire {
         this.dataTerritoire.pluviometrie = pluviometrie;
     }
 
-// Ajoute une population dans la liste de populations du territoire.
+    // Ajoute une population dans la liste de populations du territoire.
     public void recevoirPopulation(final Population population) {
         this.populations.add(population);
     }
 
-// Enlève la population donnée de sa liste et la dépose dans le territoire voisin au Nord.
+    // Enlève la population donnée de sa liste et la dépose dans le territoire voisin au Nord.
     public void deplacerPopulationAuNord(final Population population) {
         this.populations.remove(population);
         this.territoireAuNord.recevoirPopulation(population);
     }
 
-// Enlève la population donnée de sa liste et la dépose dans le territoire voisin au Sud.
+    // Enlève la population donnée de sa liste et la dépose dans le territoire voisin au Sud.
     public void deplacerPopulationAuSud(final Population population) {
         this.populations.remove(population);
         this.territoireAuSud.recevoirPopulation(population);
