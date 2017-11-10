@@ -1,19 +1,90 @@
 package core;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.File;
 
-public class MenuIHM extends JFrame {
-    public JButton btChargePluie;
+import javax.swing.*;
+import javax.swing.event.*;
 
-    public JButton btChargerParamPasClim;
+public class MenuIHM extends JFrame implements ActionListener {
 
-    public JButton btLancer;
+//Attributs
+	private JButton btChargerPluie;
+    private JButton btChargerParamPasClim;
+    private JButton btLancer;
+    private JButton btSauvegardeCsv;
+    private JButton btChargerResultat;
+    private JButton btAnimation;
+    
+    //Selecteur de fichiers
+    final JFileChooser fc = new JFileChooser();
+    
+    private Controleur c;
+    private GridLayout grille;
+   
+    public MenuIHM(Controleur c) {
+    	super("Menu Bambi");
+    	
+    	this.c=c;
+    	btChargerPluie = new JButton("Charger pluie");
+    	btChargerParamPasClim = new JButton("Charger paramètres");
+    	btLancer = new JButton("Lancer simulation");
+    	btSauvegardeCsv = new JButton("Sauvegarder résultats");
+    	btChargerResultat = new JButton("Charger résultats");
+    	btAnimation = new JButton("Visualiser les résultats");
+    	
+    	btChargerPluie.addActionListener(this);
+    	btChargerParamPasClim.addActionListener(this);
+    	btLancer.addActionListener(this);
+    	btSauvegardeCsv.addActionListener(this);
+    	btChargerResultat.addActionListener(this);
+    	btAnimation.addActionListener(this);
+    	
+    	grille = new GridLayout(6,1);
+    	this.setLayout(grille);
+    	this.add(btChargerPluie);
+    	this.add(btChargerParamPasClim);
+    	this.add(btLancer);
+    	this.add(btSauvegardeCsv);
+    	this.add(btChargerResultat);
+    	this.add(btAnimation);
+    	
+    	
+    }
+    
+	public void actionPerformed(ActionEvent evt) {
+		
+		if(evt.getSource()==btChargerPluie) {
+			int returnVal = fc.showOpenDialog(this);
 
-    public JButton btSauvegardeCsv;
+	        if (returnVal == JFileChooser.APPROVE_OPTION) {
+	            File file = fc.getSelectedFile();
+	            c.chargerPluie(file);
+	        } 
+		}
+		else if(evt.getSource()==btChargerParamPasClim) {
+			int returnVal = fc.showOpenDialog(this);
+			
+			if(returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				c.chargerParamPasClim(file);
+			}
+		}
+		else if(evt.getSource()==btLancer) c.lancerSimulation();
+		
+		else if(evt.getSource()==btSauvegardeCsv) c.sauvegarderCsv();
+	
+		else if(evt.getSource()==btChargerResultat) {
+			int returnVal = fc.showOpenDialog(this);
 
-    public JButton btChargerResultat;
-
-    public JButton btAnimation;
+	        if (returnVal == JFileChooser.APPROVE_OPTION) {
+	            File file = fc.getSelectedFile();
+	            c.chargerResultat(file);
+	        } 
+		}
+		else if(evt.getSource()==btAnimation) c.animation();
+		
+	}
 
 }
