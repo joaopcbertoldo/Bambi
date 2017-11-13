@@ -129,4 +129,10 @@ public class Parametres implements ParametrageSimulation {
 		return 0;
 	}
 
+	@Override
+	public double tauxCroissanteVegetal() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

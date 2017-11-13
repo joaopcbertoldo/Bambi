@@ -45,8 +45,11 @@ public class GestionnaireFichierParametrage {
     	}
     	
     
-    	
+    	lecteur.close();
+    	lect.close();
+    	paramNonClim.close(); 
 		return false;
+		
     }
     
     private static Consumer<String> getFunc(int i){
@@ -92,6 +95,9 @@ public class GestionnaireFichierParametrage {
     		Consumer<String> fun = getFunc2(i);
     		fun.accept(lecteur1.readLine());
     	}
+    	lecteur.close();
+    	lecteur1.close();
+    	pluviometrie.close(); 
     	
 		return false;
     }

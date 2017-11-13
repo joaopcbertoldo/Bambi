@@ -10,6 +10,16 @@ public class Resultat implements ResultatSimulation {
 	protected ArrayList<ArrayList<Double>> stockEau; 
 	protected ArrayList<ArrayList<Double>> stockVeg; 
 	
+	public Resultat(){
+		popAnimale= new ArrayList<>(); 
+		stockEau= new ArrayList<>(); 
+		stockVeg= new ArrayList<>();
+		for (int i=0; i<5; i++){
+			popAnimale.add(new ArrayList<>()); 
+			stockEau.add(new ArrayList<>());
+			stockVeg.add(new ArrayList<>()); 
+		}
+	}
     public int popAnimale( int n, int territoire ) {
         // TODO Auto-generated return
         return (popAnimale.get(territoire)).get(n);

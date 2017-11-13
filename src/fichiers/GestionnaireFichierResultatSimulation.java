@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
@@ -15,7 +16,9 @@ public class GestionnaireFichierResultatSimulation {
     private static Resultat resultats;
 
     public static boolean chargerResultatSimulation(final String address) throws IOException {
-
+    	
+    	resultats= new Resultat();
+    	
     	InputStream resultatsSimu= new FileInputStream(address);
     	InputStreamReader lecteur = new InputStreamReader(resultatsSimu);
     	
@@ -25,16 +28,20 @@ public class GestionnaireFichierResultatSimulation {
     		Consumer<String> fun = getFunc(i);
     		fun.accept(lect.readLine());
     	}
+    		resultatsSimu.close();
+    		lecteur.close();
+    		lect.close(); 
     		return false; 
     }
 
     	
         private static Consumer<String> getFunc(int i){
             
-            return (String line) ->  { List<String> l = Arrays.asList(line.split(",")); 
-       				for (int r=1; r<6; r++) ((resultats.popAnimale).get(r)).add(Integer.parseInt(l.get(r)));  																																																																																																																																																																																																																																																																																																																																																													      	 
-       				for (int u=6; u<11; u++) ((resultats.stockEau).get(u)).add(Double.parseDouble(l.get(u)));  																																																																																																																																																																																												
-       				for (int m=11; m<16; m++) ((resultats.stockVeg).get(m)).add(Double.parseDouble(l.get(m)));} ; 
+            return (String line) ->  { List<String> l = Arrays.asList(line.split(","));    
+            		for (int r=1; r<6; r++) ((resultats.popAnimale).get(r-1)).add(Integer.parseInt(l.get(r)));  																																																																																																																																																																																																																																																																																																																																																													      	 
+       				for (int u=6; u<11; u++) ((resultats.stockEau).get(u-6)).add(Double.parseDouble(l.get(u)));  																																																																																																																																																																																												
+       				for (int m=11; m<16; m++) ((resultats.stockVeg).get(m-11)).add(Double.parseDouble(l.get(m)));} ; 
+            	 
            			}
         
     public ResultatSimulation recupererResultatSimulation() {
@@ -50,5 +57,8 @@ public class GestionnaireFichierResultatSimulation {
     public static void main (String[] args) throws IOException{
     	chargerResultatSimulation("C:\\Repository\\Bambi\\florentin.txt");
     	System.out.println(resultats.popAnimale); 
+    	System.out.println(resultats.stockVeg);
+    	System.out.println(resultats.stockEau); 
+    	
     }
 }
