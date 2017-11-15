@@ -15,10 +15,10 @@ import domain.ResultatSimulation;
 public class GestionnaireFichierResultatSimulation {
     private static Resultat resultats;
 
-    public static boolean chargerResultatSimulation(final String address) throws IOException {
+    public static boolean chargerResultatSimulation(final String address) throws Exception {
     	
     	resultats= new Resultat();
-    	
+    	try{
     	InputStream resultatsSimu= new FileInputStream(address);
     	InputStreamReader lecteur = new InputStreamReader(resultatsSimu);
     	
@@ -32,6 +32,11 @@ public class GestionnaireFichierResultatSimulation {
     		lecteur.close();
     		lect.close(); 
     		return false; 
+    }
+    	catch(Exception e){
+    		System.out.println("Erreur");
+    		return false;
+    	}
     }
 
     	
@@ -54,7 +59,7 @@ public class GestionnaireFichierResultatSimulation {
         return false;
     }
 
-    public static void main (String[] args) throws IOException{
+    public static void main (String[] args) throws Exception{
     	chargerResultatSimulation("C:\\Repository\\Bambi\\florentin.txt");
     	System.out.println(resultats.popAnimale); 
     	System.out.println(resultats.stockVeg);

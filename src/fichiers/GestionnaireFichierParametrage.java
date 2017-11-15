@@ -25,14 +25,14 @@ public class GestionnaireFichierParametrage {
         return parametres ;
     }
 
-    public static boolean chargerParametrageSimulationNonClimatique(final String address) throws IOException {
+    public static boolean chargerParametrageSimulationNonClimatique(final String address) throws Exception {
     	if (parametres == null) {
     		parametres= new Parametres(); 
     	}
     	
     	
     	
-
+    	try {
     	
     	InputStream paramNonClim= new FileInputStream(address);
     	InputStreamReader lect= new InputStreamReader(paramNonClim);
@@ -48,7 +48,12 @@ public class GestionnaireFichierParametrage {
     	lecteur.close();
     	lect.close();
     	paramNonClim.close(); 
-		return false;
+		return true;
+    	}
+    	catch(Exception e){
+    		System.out.println("Erreur");
+    		return false;
+    	}
 		
     }
     
@@ -81,12 +86,12 @@ public class GestionnaireFichierParametrage {
     	
     
 
-    public boolean chargerPluviometrie(final String address) throws IOException {
+    public boolean chargerPluviometrie(final String address) throws Exception {
     	if (parametres!= null) {
     		parametres= new Parametres(); 
     		}
     	
-    	
+    	try{
     	InputStream pluviometrie= new FileInputStream(address);
     	InputStreamReader lecteur= new InputStreamReader(pluviometrie);
     	
@@ -100,6 +105,12 @@ public class GestionnaireFichierParametrage {
     	pluviometrie.close(); 
     	
 		return false;
+    
+    }
+    catch(Exception e){
+		System.out.println("Erreur");
+		return false;
+	}
     }
     
     private Consumer<String> getFunc2(int i){
@@ -113,7 +124,7 @@ public class GestionnaireFichierParametrage {
 
    
 
-    public static void main (String[] args) throws IOException{
+    public static void main (String[] args) throws Exception{
     	chargerParametrageSimulationNonClimatique("C:\\Repository\\Bambi\\Clara.txt");
     	System.out.println(parametres.besoinEauAnimal);
     	System.out.println(parametres.localisationInitiale);
