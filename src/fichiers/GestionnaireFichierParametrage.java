@@ -17,10 +17,8 @@ import domain.ParametrageSimulation;
 
 public class GestionnaireFichierParametrage {
     private static Parametres parametres;
-    
-   
 
-    public ParametrageSimulation recupererParametrageSimulation() {
+    public static ParametrageSimulation recupererParametrageSimulation() {
      
         return parametres ;
     }
@@ -30,10 +28,13 @@ public class GestionnaireFichierParametrage {
     		parametres= new Parametres(); 
     	}
     	
+<<<<<<< HEAD
     	
     	
     	try {
     	
+=======
+>>>>>>> 1c7064509f46bece9bab03cc78229381827143ee
     	InputStream paramNonClim= new FileInputStream(address);
     	InputStreamReader lect= new InputStreamReader(paramNonClim);
     	BufferedReader lecteur = new BufferedReader(lect); 
@@ -44,6 +45,7 @@ public class GestionnaireFichierParametrage {
     		
     	}
     	
+<<<<<<< HEAD
     
     	lecteur.close();
     	lect.close();
@@ -55,6 +57,9 @@ public class GestionnaireFichierParametrage {
     		return false;
     	}
 		
+=======
+		return false;
+>>>>>>> 1c7064509f46bece9bab03cc78229381827143ee
     }
     
     private static Consumer<String> getFunc(int i){
@@ -75,18 +80,19 @@ public class GestionnaireFichierParametrage {
     		case 12 : return (String line) -> parametres.besoinEauVegetal= Double.parseDouble(line);
     		case 13: return (String line) -> parametres.besoinEauAnimal= Double.parseDouble(line); 
     		case 14: return (String line) -> parametres.besoinVegetalAnimal= Double.parseDouble(line); 
-    		case 15: return (String line) -> parametres.tauxCroissanteVegetalMax= Double.parseDouble(line); 
+    		case 15: return (String line) -> parametres.tauxCroissanteVegetal= Double.parseDouble(line); 
     		case 16: return (String line) -> parametres.tauxPerteVegetalPenurieMax= Double.parseDouble(line);
     		default : return (String line)-> System.out.println("Erreur");
     		}    	
     		
     	}
     
-    	
-    	
-    
 
+<<<<<<< HEAD
     public boolean chargerPluviometrie(final String address) throws Exception {
+=======
+    public static boolean chargerPluviometrie(final String address) throws IOException {
+>>>>>>> 1c7064509f46bece9bab03cc78229381827143ee
     	if (parametres!= null) {
     		parametres= new Parametres(); 
     		}
@@ -113,7 +119,7 @@ public class GestionnaireFichierParametrage {
 	}
     }
     
-    private Consumer<String> getFunc2(int i){
+    private static Consumer<String> getFunc2(int i){
     
      return (String line) ->  { List<String> l = Arrays.asList(line.split(",")); 
 				l.forEach(j ->  parametres.pluviometrie.get(i).add(Double.parseDouble(j))); };      	 
