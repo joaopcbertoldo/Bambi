@@ -1,4 +1,4 @@
-package simulation.ecosystemeBambiBase.entites;
+package main.simulation.ecosystemeBambiBase.entites;
 
 public class LocalisationAnimale extends Localisation {
 	

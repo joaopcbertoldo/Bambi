@@ -1,6 +1,6 @@
-package simulation.ecosystemeBambiBase.entites;
+package main.simulation.ecosystemeBambiBase.entites;
 
-import simulation.ecosystemeBambiBase.entitesData.DataPopulationVegetale;
+import main.simulation.ecosystemeBambiBase.entitesData.DataPopulationVegetale;
 
 public class PopulationVegetale extends Population {
     protected DataPopulationVegetale dataPopulationVegetale;

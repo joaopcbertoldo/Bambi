@@ -1,18 +1,19 @@
-package simulation.ecosystemeBambiBase;
+package main.simulation.ecosystemeBambiBase;
 
 import java.util.ArrayList;
 import java.util.List;
-import domain.ParametrageSimulation;
-import simulation.ecosystemeBambiBase.entites.ControleurMois;
-import simulation.ecosystemeBambiBase.entites.LocalisationAnimale;
-import simulation.ecosystemeBambiBase.entites.PopulationAnimale;
-import simulation.ecosystemeBambiBase.entites.PopulationVegetale;
-import simulation.ecosystemeBambiBase.entites.Territoire;
-import simulation.ecosystemeBambiBase.entitesData.DataPopulationAnimale;
-import simulation.ecosystemeBambiBase.entitesData.DataPopulationVegetale;
-import simulation.ecosystemeBambiBase.entitesData.DataTerritoire;
-import simulation.ecosystemeBambiBase.enums.StatusMigrationEnum;
-import simulation.gestionDeSimulation.Ecosysteme;
+
+import main.domain.ParametrageSimulation;
+import main.simulation.ecosystemeBambiBase.entites.ControleurMois;
+import main.simulation.ecosystemeBambiBase.entites.LocalisationAnimale;
+import main.simulation.ecosystemeBambiBase.entites.PopulationAnimale;
+import main.simulation.ecosystemeBambiBase.entites.PopulationVegetale;
+import main.simulation.ecosystemeBambiBase.entites.Territoire;
+import main.simulation.ecosystemeBambiBase.entitesData.DataPopulationAnimale;
+import main.simulation.ecosystemeBambiBase.entitesData.DataPopulationVegetale;
+import main.simulation.ecosystemeBambiBase.entitesData.DataTerritoire;
+import main.simulation.ecosystemeBambiBase.enums.StatusMigrationEnum;
+import main.simulation.gestionDeSimulation.Ecosysteme;
 
 public final class EcosystemeBambi extends Ecosysteme {
     private TableauxVariablesSimulation tableauxVariablesSimulation;

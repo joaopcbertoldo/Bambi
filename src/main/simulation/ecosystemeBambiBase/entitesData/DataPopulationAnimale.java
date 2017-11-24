@@ -1,9 +1,9 @@
-package simulation.ecosystemeBambiBase.entitesData;
+package main.simulation.ecosystemeBambiBase.entitesData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import simulation.ecosystemeBambiBase.enums.StatusMigrationEnum;
+import main.simulation.ecosystemeBambiBase.enums.StatusMigrationEnum;
 
 // Quantite individu : UP = nombre d'individu
 // Besoin eau par individu : Litre / individu / mois

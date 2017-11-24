@@ -1,4 +1,4 @@
-package simulation.ecosystemeBambiBase.enums;
+package main.simulation.ecosystemeBambiBase.enums;
 
 public enum StatusMigrationEnum {
     Fixe,

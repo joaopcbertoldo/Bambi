@@ -1,10 +1,10 @@
-package fichiers;
+package main.fichiers;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.MoisEnum;
-import domain.ParametrageSimulation;
+import main.domain.MoisEnum;
+import main.domain.ParametrageSimulation;
 
 
 public class Parametres implements ParametrageSimulation {

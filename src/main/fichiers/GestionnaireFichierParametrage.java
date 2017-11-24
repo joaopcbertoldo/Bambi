@@ -1,4 +1,4 @@
-package fichiers;
+package main.fichiers;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,8 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
-import domain.MoisEnum;
-import domain.ParametrageSimulation;
+import main.domain.MoisEnum;
+import main.domain.ParametrageSimulation;
 
 public class GestionnaireFichierParametrage {
     private static Parametres parametres;

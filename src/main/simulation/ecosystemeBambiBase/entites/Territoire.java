@@ -1,8 +1,9 @@
-package simulation.ecosystemeBambiBase.entites;
+package main.simulation.ecosystemeBambiBase.entites;
 
 import java.util.ArrayList;
 import java.util.List;
-import simulation.ecosystemeBambiBase.entitesData.DataTerritoire;
+
+import main.simulation.ecosystemeBambiBase.entitesData.DataTerritoire;
 
 public class Territoire {
     protected DataTerritoire dataTerritoire;

@@ -1,6 +1,6 @@
-package simulation.ecosystemeBambiBase.entites;
+package main.simulation.ecosystemeBambiBase.entites;
 
-import simulation.ecosystemeBambiBase.entitesData.DataPopulation;
+import main.simulation.ecosystemeBambiBase.entitesData.DataPopulation;
 
 public abstract class Population {
     protected DataPopulation dataPopulation;

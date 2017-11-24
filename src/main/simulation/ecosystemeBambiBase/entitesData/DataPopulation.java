@@ -1,4 +1,4 @@
-package simulation.ecosystemeBambiBase.entitesData;
+package main.simulation.ecosystemeBambiBase.entitesData;
 
 public class DataPopulation {
 	// UP (unité de population)

@@ -1,8 +1,9 @@
-package simulation.ecosystemeBambiBase;
+package main.simulation.ecosystemeBambiBase;
 
 import java.util.ArrayList;
 import java.util.List;
-import domain.ResultatSimulation;
+
+import main.domain.ResultatSimulation;
 
 public class TableauxVariablesSimulation implements ResultatSimulation {
     public List<List<Integer>> tableauPopulationAnimale;

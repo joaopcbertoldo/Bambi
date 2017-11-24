@@ -1,12 +1,12 @@
-package simulation;
+package main.simulation;
 
 import java.io.IOException;
 
-import domain.ParametrageSimulation;
-import domain.ResultatSimulation;
-import fichiers.GestionnaireFichierParametrage;
-import simulation.gestionDeSimulation.Ecosysteme;
-import simulation.gestionDeSimulation.SimulationFinieException;
+import main.domain.ParametrageSimulation;
+import main.domain.ResultatSimulation;
+import main.fichiers.GestionnaireFichierParametrage;
+import main.simulation.gestionDeSimulation.Ecosysteme;
+import main.simulation.gestionDeSimulation.SimulationFinieException;
 
 public class GestionnaireDeSimulation {
     private Ecosysteme ecosysteme;

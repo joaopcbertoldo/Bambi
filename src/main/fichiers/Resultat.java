@@ -1,8 +1,8 @@
-package fichiers;
+package main.fichiers;
 
 import java.util.ArrayList;
 
-import domain.ResultatSimulation;
+import main.domain.ResultatSimulation;
 
 public class Resultat implements ResultatSimulation {
 	

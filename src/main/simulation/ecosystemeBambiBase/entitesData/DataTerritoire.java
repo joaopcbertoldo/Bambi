@@ -1,4 +1,4 @@
-package simulation.ecosystemeBambiBase.entitesData;
+package main.simulation.ecosystemeBambiBase.entitesData;
 
 public class DataTerritoire {
 	// i = 1, 2, 3, 4, 5

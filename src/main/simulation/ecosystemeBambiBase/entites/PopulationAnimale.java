@@ -1,8 +1,8 @@
-package simulation.ecosystemeBambiBase.entites;
+package main.simulation.ecosystemeBambiBase.entites;
 
-import domain.MoisEnum;
-import simulation.ecosystemeBambiBase.entitesData.DataPopulationAnimale;
-import simulation.ecosystemeBambiBase.enums.StatusMigrationEnum;
+import main.domain.MoisEnum;
+import main.simulation.ecosystemeBambiBase.entitesData.DataPopulationAnimale;
+import main.simulation.ecosystemeBambiBase.enums.StatusMigrationEnum;
 
 public class PopulationAnimale extends Population {
 	

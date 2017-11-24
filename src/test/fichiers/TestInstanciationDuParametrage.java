@@ -1,8 +1,8 @@
-package TestFichiers;
+package test.fichiers;
 
-import fichiers.Parametres;
-import domain.ParametrageSimulation;
-import fichiers.GestionnaireFichierParametrage;
+import main.domain.ParametrageSimulation;
+import main.fichiers.GestionnaireFichierParametrage;
+import main.fichiers.Parametres;
 
 
 public class TestInstanciationDuParametrage {
@@ -12,7 +12,7 @@ public class TestInstanciationDuParametrage {
 		GestionnaireFichierParametrage gestionnaire = new GestionnaireFichierParametrage(); 
 		GestionnaireFichierParametrage.chargerParametrageSimulationNonClimatique(adresse);
 		Parametres  param=(Parametres) GestionnaireFichierParametrage.recupererParametrageSimulation();
-		Parametres.afficheSaufPluviometrie(param);
+		//Parametres.afficheSaufPluviometrie(param);
 		
 	}
 	
@@ -21,7 +21,7 @@ public static void testParametresPluviometrie(String adresse) throws Exception{
 		GestionnaireFichierParametrage gestionnaire = new GestionnaireFichierParametrage(); 
 		GestionnaireFichierParametrage.chargerPluviometrie(adresse);
 		Parametres  param=(Parametres) GestionnaireFichierParametrage.recupererParametrageSimulation();
-		Parametres.affichePluviometrie(param);
+		//Parametres.affichePluviometrie(param);
 		
 	}
 

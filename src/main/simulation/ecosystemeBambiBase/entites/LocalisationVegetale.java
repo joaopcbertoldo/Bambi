@@ -1,4 +1,4 @@
-package simulation.ecosystemeBambiBase.entites;
+package main.simulation.ecosystemeBambiBase.entites;
 
 public class LocalisationVegetale extends Localisation {
 	public LocalisationVegetale(Territoire territoire) {

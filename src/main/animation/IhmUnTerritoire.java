@@ -1,4 +1,4 @@
-package animation;
+package main.animation;
 import java.awt.Color;
 import java.awt.Graphics;
 

@@ -1,6 +1,6 @@
-package simulation.ecosystemeBambiBase.entites;
+package main.simulation.ecosystemeBambiBase.entites;
 
-import domain.MoisEnum;
+import main.domain.MoisEnum;
 
 public abstract class Mois {
     protected int iteration = 0;

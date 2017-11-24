@@ -1,4 +1,4 @@
-package simulation.ecosystemeBambiBase.entitesData;
+package main.simulation.ecosystemeBambiBase.entitesData;
 
 // Quantite individu : UP = kg
 // Besoin eau par individu : Litre / kg / mois

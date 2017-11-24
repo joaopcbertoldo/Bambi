@@ -1,9 +1,9 @@
-package animation;
+package main.animation;
 
 import java.util.concurrent.TimeUnit;
 
-import core.Controleur;
-import domain.ResultatSimulation;
+import main.core.Controleur;
+import main.domain.ResultatSimulation;
 
 
 public class AnimationControleur {

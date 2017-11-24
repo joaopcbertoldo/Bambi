@@ -1,4 +1,4 @@
-package TestFichiers;
+package test.fichiers;
 
 public class TestParametres {
 

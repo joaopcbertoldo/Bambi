@@ -1,4 +1,4 @@
-package fichiers;
+package main.fichiers;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
-import domain.ResultatSimulation;
+import main.domain.ResultatSimulation;
 
 public class GestionnaireFichierResultatSimulation {
     private static Resultat resultats;

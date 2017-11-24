@@ -1,14 +1,14 @@
-package core;
+package main.core;
 
 import java.io.File;
 
 import javax.swing.JButton;
 
-import animation.AnimationControleur;
-import fichiers.GestionnaireFichierParametrage;
-import fichiers.GestionnaireFichierResultatSimulation;
-import simulation.GestionnaireDeSimulation;
-import domain.*;
+import main.animation.AnimationControleur;
+import main.domain.*;
+import main.fichiers.GestionnaireFichierParametrage;
+import main.fichiers.GestionnaireFichierResultatSimulation;
+import main.simulation.GestionnaireDeSimulation;
 
 public class Controleur {
 	

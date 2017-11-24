@@ -1,4 +1,4 @@
-package simulation.gestionDeSimulation;
+package main.simulation.gestionDeSimulation;
 
 public class SimulationFinieException extends Exception {
 
