@@ -39,16 +39,5 @@ public class GestionnaireDeSimulation {
     	
         return this.ecosysteme.getResultatSimulation();
     }
-    
-    public static void main(String[] args) {
-    	// supprimer
-    	try {
-			GestionnaireFichierParametrage.chargerParametrageSimulationNonClimatique("C:\\Repository\\Bambi\\parametres.txt");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	GestionnaireDeSimulation.Instance().Simuler(GestionnaireFichierParametrage.recupererParametrageSimulation());
-    }
 
 }

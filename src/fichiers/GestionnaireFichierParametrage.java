@@ -19,7 +19,6 @@ public class GestionnaireFichierParametrage {
     private static Parametres parametres;
 
     public static ParametrageSimulation recupererParametrageSimulation() {
-     
         return parametres ;
     }
 
@@ -28,38 +27,26 @@ public class GestionnaireFichierParametrage {
     		parametres= new Parametres(); 
     	}
     	
-<<<<<<< HEAD
-    	
-    	
     	try {
-    	
-=======
->>>>>>> 1c7064509f46bece9bab03cc78229381827143ee
-    	InputStream paramNonClim= new FileInputStream(address);
-    	InputStreamReader lect= new InputStreamReader(paramNonClim);
-    	BufferedReader lecteur = new BufferedReader(lect); 
+    		InputStream paramNonClim= new FileInputStream(address);
+    		InputStreamReader lect= new InputStreamReader(paramNonClim);
+    		BufferedReader lecteur = new BufferedReader(lect); 
  
-    	for(int i = 0; i < 17; i++){
-    		Consumer<String> fun = getFunc(i);
-    		fun.accept(lecteur.readLine());
-    		
-    	}
-    	
-<<<<<<< HEAD
+	    	for(int i = 0; i < 17; i++){
+	    		Consumer<String> fun = getFunc(i);
+	    		fun.accept(lecteur.readLine());
+	    	}
     
-    	lecteur.close();
-    	lect.close();
-    	paramNonClim.close(); 
-		return true;
+	    	lecteur.close();
+	    	lect.close();
+	    	paramNonClim.close(); 
+			return true;
     	}
     	catch(Exception e){
     		System.out.println("Erreur");
-    		return false;
     	}
-		
-=======
+	
 		return false;
->>>>>>> 1c7064509f46bece9bab03cc78229381827143ee
     }
     
     private static Consumer<String> getFunc(int i){
@@ -88,44 +75,37 @@ public class GestionnaireFichierParametrage {
     	}
     
 
-<<<<<<< HEAD
-    public boolean chargerPluviometrie(final String address) throws Exception {
-=======
     public static boolean chargerPluviometrie(final String address) throws IOException {
->>>>>>> 1c7064509f46bece9bab03cc78229381827143ee
     	if (parametres!= null) {
     		parametres= new Parametres(); 
-    		}
+    	}
     	
     	try{
-    	InputStream pluviometrie= new FileInputStream(address);
-    	InputStreamReader lecteur= new InputStreamReader(pluviometrie);
-    	
-    	BufferedReader lecteur1 = new BufferedReader(lecteur); 
-    	for(int i = 0; i < 17; i++){
-    		Consumer<String> fun = getFunc2(i);
-    		fun.accept(lecteur1.readLine());
-    	}
-    	lecteur.close();
-    	lecteur1.close();
-    	pluviometrie.close(); 
-    	
-		return false;
-    
-    }
-    catch(Exception e){
-		System.out.println("Erreur");
-		return false;
-	}
+	    	InputStream pluviometrie= new FileInputStream(address);
+	    	InputStreamReader lecteur= new InputStreamReader(pluviometrie);
+	    	BufferedReader lecteur1 = new BufferedReader(lecteur); 
+	    	for(int i = 0; i < 17; i++){
+	    		Consumer<String> fun = getFunc2(i);
+	    		fun.accept(lecteur1.readLine());
+	    	}
+	    	lecteur.close();
+	    	lecteur1.close();
+	    	pluviometrie.close(); 
+	    	
+			return false;
+	    }
+	    catch(Exception e){
+			System.out.println("Erreur");
+			return false;
+		}
     }
     
     private static Consumer<String> getFunc2(int i){
     
-     return (String line) ->  { List<String> l = Arrays.asList(line.split(",")); 
-				l.forEach(j ->  parametres.pluviometrie.get(i).add(Double.parseDouble(j))); };      	 
-    		
-    			
-    	}
+     return (String line) ->  { 
+    	 List<String> l = Arrays.asList(line.split(",")); 
+    	 l.forEach(j ->  parametres.pluviometrie.get(i).add(Double.parseDouble(j))); };      	 
+    }
       
 
    

@@ -109,11 +109,4 @@ public class Parametres implements ParametrageSimulation {
 	public double tauxPerteEauEvaporation(int territoire) {
 		return 0;
 	}
-
-	@Override
-	public double tauxCroissanteVegetal() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }
