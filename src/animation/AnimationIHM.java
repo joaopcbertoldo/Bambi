@@ -1,16 +1,14 @@
 package animation;
 
-import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.*;
-
-import java.awt.event.ActionListener;
-
 import javax.swing.*;
+import javax.swing.event.*;
+
 import java.util.List;
 import java.util.ArrayList;
 
-public class AnimationIHM extends JFrame implements ActionListener {
+public class AnimationIHM extends JFrame implements ActionListener, ChangeListener {
     
 	/**
 	 * 
@@ -52,7 +50,7 @@ public class AnimationIHM extends JFrame implements ActionListener {
 		stop = new JButton("stop");
 		pause = new JButton("pause");
 		go = new JButton("go");
-		slideVitesse = new JSlider(0,100);
+		slideVitesse = new JSlider(1,100);
 		barreVitesse = new JPanel();
 		barreVitesse.add(stop);
 		barreVitesse.add(pause);
@@ -62,6 +60,7 @@ public class AnimationIHM extends JFrame implements ActionListener {
 		stop.addActionListener(this);
 		pause.addActionListener(this);
 		go.addActionListener(this);
+		slideVitesse.addChangeListener(this);
 		
 		this.add(barreVitesse);
 		
@@ -82,31 +81,37 @@ public class AnimationIHM extends JFrame implements ActionListener {
 		
 	}
 	
-	public void setEau(final double eau, final int territoire) {
+	public void setEauEtVegEtPop(final double eau, final double veg, final int popAnimale, final int territoire) {
+		ihmTerritoires.get(territoire).setEauEtVegEtPop(eau, veg, popAnimale);	
     }
 
-    public void setVegetal(final double veg, final int territoire) {
-    }
-
-    public void positionnerAnimaux(final int position, final int nombre) {
-    }
     
     public void actionPerformed(ActionEvent evt) {
     	
-    	if(evt.getSource()==stop) {
+    	Object source = evt.getSource();
+    	
+    	if(source==stop) {
     		ctrl.arreter();
     	}
     	
-    	if(evt.getSource()==pause) {
+    	if(source==pause) {
     		ctrl.pause();
     	}
     	
-    	if(evt.getSource()==go) {
+    	if(source==go) {
     		ctrl.lancer();
-    	}
-    	
-    
+    	}    	    
 	}
+    
+    public void stateChanged(ChangeEvent evt) {
+    	Object source = evt.getSource();
+    	
+    	if(source==slideVitesse) {
+			int v = ((JSlider) source).getValue();
+			ctrl.setVitesse(v);
+		}
+    	
+    }
     
 
 

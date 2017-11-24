@@ -36,13 +36,23 @@ public class Controleur {
     //Méthodes appelées après réaction de l'ihm
     public void chargerPluie(File f) {
     	String adresse = f.getAbsolutePath();
-    	gestionnaireFichierParametrage.chargerPluviometrie(adresse);
+    	try {
+			gestionnaireFichierParametrage.chargerPluviometrie(adresse);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
     }
     
     public void chargerParamPasClim(File f) {
     	String adresse = f.getAbsolutePath();
-    	gestionnaireFichierParametrage.chargerParametrageSimulationNonClimatique(adresse);
+    	try {
+			gestionnaireFichierParametrage.chargerParametrageSimulationNonClimatique(adresse);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     }
     
@@ -61,11 +71,19 @@ public class Controleur {
     
     public void chargerResultat(File f) {
     	String adresse = f.getAbsolutePath();
-    	gestionnaireFichierResultatSimulation.chargerResultatSimulation(adresse);
+    	try {
+			gestionnaireFichierResultatSimulation.chargerResultatSimulation(adresse);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     }
     
     public void animation() {
+    	
+    	animationControleur = new AnimationControleur(gestionnaireFichierResultatSimulation.recupererResultatSimulation());
+    	animationControleur.creerIHM();
     	
     }
     

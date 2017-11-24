@@ -5,37 +5,43 @@ import java.awt.Graphics;
 import javax.swing.*;
 
 public class IhmUnTerritoire extends JPanel {
+		
+	private double eau;
+	private double veg;
 	
-	JProgressBar jaugeEau;
-	int minEau;
-	int maxEau;
+	private JLabel labEau;
+	private JLabel labVeg;
 	
-	JProgressBar jaugeVeg;
-	int minVeg;
-	int maxVeg;
+	private int popAnimale;
 	
-	private int eau;
-	private int veg;
-	
-	public void setEauEtVeg(int eau, int veg) {
+	public void setEauEtVegEtPop(final double eau, final double veg, final int popAnimale) {
 		this.eau=eau;
 		this.veg=veg;
+		this.popAnimale=popAnimale;
+		labEau.setText(String.valueOf(eau));
+		labVeg.setText(String.valueOf(veg));
+		
+		repaint();
 	}
 	
+	
 	public IhmUnTerritoire() {
+		labEau = new JLabel("labEau");
+		labVeg = new JLabel("labVeg");
+		
+		this.add(labEau);
+		this.add(labVeg);
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		 g.setColor(Color.black);
-		 g.fillRect(0, 0, 100, 100);
-		 
+		
+		if(popAnimale!=0) {
+			g.setColor(Color.red);
+		}
 		 g.setColor(Color.blue);
-		 g.fillRect(200,0, 200,50);
-		 
-		 g.setColor(Color.green);
-		 g.fillRect(200,100, 200,50);
+		 g.fillRect(0, 0, 100, 100);
 		
 	}
 	
