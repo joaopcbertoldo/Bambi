@@ -100,4 +100,61 @@ public class ControleurMoisTest {
 		assertEquals(MoisEnum.Janvier, this.mois.getMois());
 		assertEquals(MoisEnum.Janvier, this.ctrlMois.getMois());
 	}
+	
+	@Test
+	public void testTousLesMois() {
+		// Janvier
+		assertEquals(MoisEnum.Janvier, this.mois.getMois());
+		
+		// Fevrier
+		this.ctrlMois.incrementer();  // icrementer
+		assertEquals(MoisEnum.Fevrier, this.mois.getMois());
+
+		// Mars
+		this.ctrlMois.incrementer();  // icrementer
+		assertEquals(MoisEnum.Mars, this.mois.getMois());
+
+		// Avril
+		this.ctrlMois.incrementer();  // icrementer
+		assertEquals(MoisEnum.Avril, this.mois.getMois());
+
+		// Mai
+		this.ctrlMois.incrementer();  // icrementer
+		assertEquals(MoisEnum.Mai, this.mois.getMois());
+
+		// Juin
+		this.ctrlMois.incrementer();  // icrementer
+		assertEquals(MoisEnum.Juin, this.mois.getMois());
+
+		// Juillet
+		this.ctrlMois.incrementer();  // icrementer
+		assertEquals(MoisEnum.Juillet, this.mois.getMois());
+
+		// Aout
+		this.ctrlMois.incrementer();  // icrementer
+		assertEquals(MoisEnum.Aout, this.mois.getMois());
+
+		// Septembre
+		this.ctrlMois.incrementer();  // icrementer
+		assertEquals(MoisEnum.Septembre, this.mois.getMois());
+
+		// Octobre
+		this.ctrlMois.incrementer();  // icrementer
+		assertEquals(MoisEnum.Octobre, this.mois.getMois());
+
+		// Novembre
+		this.ctrlMois.incrementer();  // icrementer
+		assertEquals(MoisEnum.Novembre, this.mois.getMois());
+
+		// Decembre
+		this.ctrlMois.incrementer();  // icrementer
+		assertEquals(MoisEnum.Decembre, this.mois.getMois());
+
+		// Janvier
+		this.ctrlMois.incrementer();  // icrementer
+		assertEquals(MoisEnum.Janvier, this.mois.getMois());
+
+		
+	
+	}
 }
