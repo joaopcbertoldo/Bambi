@@ -1,10 +1,16 @@
 package main.fichiers;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,10 +19,10 @@ import java.util.function.Consumer;
 import main.domain.ResultatSimulation;
 
 public class GestionnaireFichierResultatSimulation {
-    private static Resultat resultats;
+    private static Resultat resultats; // Le gestionnaire a pour un atribut un objet de type Resultat dont les méthodes permettent d'avoir accès aux résultats voulus
 
     public static boolean chargerResultatSimulation(final String address) throws Exception {
-    	
+    	// permet de créer un objet de type résultat pour lancer une visualisation à partir de résultats précedement enregistrés
     	resultats= new Resultat();
     	try{
     	InputStream resultatsSimu= new FileInputStream(address);
@@ -24,6 +30,7 @@ public class GestionnaireFichierResultatSimulation {
     	
     	BufferedReader lect = new BufferedReader(lecteur); 
     	int nmDePas= Integer.parseInt(lect.readLine());
+    	resultats.NbdePas= nmDePas; 
     	for(int i = 0; i < nmDePas; i++){
     		Consumer<String> fun = getFunc(i);
     		fun.accept(lect.readLine());
@@ -50,20 +57,66 @@ public class GestionnaireFichierResultatSimulation {
            			}
         
     public ResultatSimulation recupererResultatSimulation() {
-        // TODO Auto-generated return
+        // Retourne l'objet de résultat
         return resultats;
     }
 
-    public boolean sauvegarderResultatSimulation(final String address) {
-        // TODO Auto-generated return
-        return false;
-    }
+    public static boolean sauvegarderResultatSimulation(ResultatSimulation r, final String address) throws IOException {
+    //écrit les résultats de simulation dans un fichier texte afin de les sauvegarder 
+    	try{
+        	FileOutputStream aut = new FileOutputStream(new File(address));
+        	OutputStreamWriter auteur = new OutputStreamWriter(aut);
+        
+        	
+        	BufferedWriter auto = new BufferedWriter(auteur); 
+        	
+        	auto.write(Integer.toString(r.NbdePas()));
+        	auto.newLine();
+      
+       
+         
+        	
+        	for(int i = 0; i < r.NbdePas(); i++){
+        	auto.write(Integer.toString(i+1));
+        	auto.write(",");
+        		for (int s=0; s<5; s++){
+        			auto.write(Integer.toString(r.popAnimale(i,s)));
+        			auto.write(",");
+        		}
+        		for (int k=0; k<5;k++){
+        			auto.write(Double.toString(r.stockEau(k,i)));
+        			auto.write(",");
+        		}
+        		for (int l=0; l<5;l++){
+        			auto.write(Double.toString(r.stockVeg(l, i)));
+        			auto.write(",");
+        		}
+        		auto.newLine();
+        	}
+        		
+        	auto.close();
+        	auteur.close(); 
+        	aut.close();
+        	return true; 
+        }
+        	catch(Exception e){
+        		System.out.println("Erreur");
+        		return false;
+        	}
+        }
+
+   
+    
 
     public static void main (String[] args) throws Exception{
+    	GestionnaireFichierResultatSimulation g = new GestionnaireFichierResultatSimulation();
     	chargerResultatSimulation("C:\\Repository\\Bambi\\florentin.txt");
     	System.out.println(resultats.popAnimale); 
     	System.out.println(resultats.stockVeg);
     	System.out.println(resultats.stockEau); 
+    	ResultatSimulation r= g.recupererResultatSimulation();
+    	System.out.println(r.NbdePas());
+    	sauvegarderResultatSimulation(r,"C:\\Repository\\Bambi\\parametres.txt" );
     	
     }
 }

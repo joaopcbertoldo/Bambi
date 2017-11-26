@@ -8,4 +8,5 @@ public interface ResultatSimulation {
 
     double stockVeg(final int territoire, final int n);
 
+    int NbdePas(); 
 }
