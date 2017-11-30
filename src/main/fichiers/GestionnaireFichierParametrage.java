@@ -18,7 +18,7 @@ import main.domain.ParametrageSimulation;
 public class GestionnaireFichierParametrage {
     private Parametres parametres;
 
-    public static ParametrageSimulation recupererParametrageSimulation() throws Exception {
+    public  ParametrageSimulation recupererParametrageSimulation() throws Exception {
     	if (parametres.pluviometrie== null){
     	
     		throw new Exception("Pluviom�trie non charg�e") ;
