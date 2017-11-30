@@ -16,13 +16,20 @@ import main.domain.MoisEnum;
 import main.domain.ParametrageSimulation;
 
 public class GestionnaireFichierParametrage {
-    private static Parametres parametres;
+    private Parametres parametres;
 
-    public static ParametrageSimulation recupererParametrageSimulation() {
+    public  ParametrageSimulation recupererParametrageSimulation() throws Exception {
+    	if (parametres.pluviometrie== null){
+    	
+    		throw new Exception("Pluviom�trie non charg�e") ;
+    	}
+    	if (parametres.surfaceTerritoire==null){
+    		throw new Exception("Parametres non climatiques non charg�s "); 
+    	}
         return parametres ;
     }
 
-    public static boolean chargerParametrageSimulationNonClimatique(final String address) throws Exception {
+    public boolean chargerParametrageSimulationNonClimatique(final String address) throws Exception {
     	if (parametres == null) {
     		parametres= new Parametres(); 
     	}
@@ -49,7 +56,7 @@ public class GestionnaireFichierParametrage {
 		return false;
     }
     
-    private static Consumer<String> getFunc(int i){
+    private Consumer<String> getFunc(int i){
     	switch (i){
     		case 0 : return (String line) -> parametres.nombreDePas=Integer.parseInt(line); 
     		case 1 : return (String line) ->  { List<String> l = Arrays.asList(line.split(",")); parametres.surfaceTerritoire= new ArrayList<>(); 
@@ -59,7 +66,7 @@ public class GestionnaireFichierParametrage {
     		case 4 : return (String line)-> {parametres.stockVegetaux= new ArrayList<>(); Arrays.asList(line.split(",")).forEach(j -> parametres.stockVegetaux.add(Double.parseDouble(j)));} ; 
     		case 5 : return (String line) -> parametres.localisationInitiale= Integer.parseInt(line);
     		case 6 : return (String line) -> {parametres.stockEau= new ArrayList<>(); Arrays.asList(line.split(",")).forEach(j-> parametres.stockEau.add(Double.parseDouble(j))) ; } ; 
-    		case 7 : return (String line) -> parametres.tauxPerteEauEvaporation= Double.parseDouble(line); 
+    		case 7 : return (String line) ->{parametres.tauxPerteEauEvaporation= new ArrayList<>(); Arrays.asList(line.split(",")).forEach(j -> parametres.tauxPerteEauEvaporation.add(Double.parseDouble(j)));}; 
     		case 8 : return (String line) -> parametres.stockVegetauxMinimal= Double.parseDouble(line);
     		case 9 : return (String line) -> parametres.tauxNaissanceAnimalMaximal= Double.parseDouble(line);
     		case 10: return (String line) -> parametres.tauxMortalitePredateur= Double.parseDouble(line);
@@ -75,7 +82,7 @@ public class GestionnaireFichierParametrage {
     	}
     
 
-    public static boolean chargerPluviometrie(final String address) throws IOException {
+    public boolean chargerPluviometrie(final String address) throws IOException {
     	if (parametres!= null) {
     		parametres= new Parametres(); 
     	}
@@ -100,7 +107,7 @@ public class GestionnaireFichierParametrage {
 		}
     }
     
-    private static Consumer<String> getFunc2(int i){
+    private Consumer<String> getFunc2(int i){
     
      return (String line) ->  { 
     	 List<String> l = Arrays.asList(line.split(",")); 
@@ -111,10 +118,10 @@ public class GestionnaireFichierParametrage {
    
 
     public static void main (String[] args) throws Exception{
-    	chargerParametrageSimulationNonClimatique("C:\\Repository\\Bambi\\Clara.txt");
-    	System.out.println(parametres.besoinEauAnimal);
-    	System.out.println(parametres.localisationInitiale);
-    	System.out.println(parametres.nombreDePas);
-    	System.out.println(parametres.tauxMortaliteParPenurieAlimentaireMaximal);
+    	//chargerParametrageSimulationNonClimatique("C:\\Repository\\Bambi\\Clara.txt");
+    	//System.out.println(parametres.besoinEauAnimal);
+    	//System.out.println(parametres.localisationInitiale);
+    	//System.out.println(parametres.nombreDePas);
+    	//System.out.println(parametres.tauxMortaliteParPenurieAlimentaireMaximal);
     }
 }
