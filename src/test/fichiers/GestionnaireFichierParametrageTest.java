@@ -33,7 +33,7 @@ public class GestionnaireFichierParametrageTest {
 			message = e.getMessage();
 		}
 		
-		assertEquals();
+		assertEquals("asdfasdf", message);
 	}
 	
 	@Test

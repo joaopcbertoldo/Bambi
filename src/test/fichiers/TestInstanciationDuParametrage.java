@@ -26,18 +26,9 @@ public static void testParametresPluviometrie(String adresse) throws Exception{
 	}
 
 public static void TestInstanciation(String adresse) throws Exception{
-	GestionnaireFichierParametrage gestionnaire = new GestionnaireFichierParametrage(); 
-	GestionnaireFichierParametrage.chargerPluviometrie(adresse);
-	GestionnaireFichierParametrage.chargerParametrageSimulationNonClimatique(adresse);
-	Parametres param= new Parametres();
-	
+
 	
 	
 }
 
-	public static void main (String[] args) throws Exception{
-		testParametresNonClimatiques("C:\\Repository\\Bambi\\Clara.txt");
-		testParametresPluviometrie("C:\\Repository\\Bambi\\joao.txt");
-	}
-	
 }
