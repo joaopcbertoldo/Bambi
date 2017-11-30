@@ -16,13 +16,13 @@ import main.domain.MoisEnum;
 import main.domain.ParametrageSimulation;
 
 public class GestionnaireFichierParametrage {
-    private static Parametres parametres;
+    private Parametres parametres;
 
-    public static ParametrageSimulation recupererParametrageSimulation() {
+    public ParametrageSimulation recupererParametrageSimulation() {
         return parametres ;
     }
 
-    public static boolean chargerParametrageSimulationNonClimatique(final String address) throws Exception {
+    public boolean chargerParametrageSimulationNonClimatique(final String address) throws Exception {
     	if (parametres == null) {
     		parametres= new Parametres(); 
     	}
@@ -49,7 +49,7 @@ public class GestionnaireFichierParametrage {
 		return false;
     }
     
-    private static Consumer<String> getFunc(int i){
+    private Consumer<String> getFunc(int i){
     	switch (i){
     		case 0 : return (String line) -> parametres.nombreDePas=Integer.parseInt(line); 
     		case 1 : return (String line) ->  { List<String> l = Arrays.asList(line.split(",")); parametres.surfaceTerritoire= new ArrayList<>(); 
@@ -75,7 +75,7 @@ public class GestionnaireFichierParametrage {
     	}
     
 
-    public static boolean chargerPluviometrie(final String address) throws IOException {
+    public boolean chargerPluviometrie(final String address) throws IOException {
     	if (parametres!= null) {
     		parametres= new Parametres(); 
     	}
@@ -100,7 +100,7 @@ public class GestionnaireFichierParametrage {
 		}
     }
     
-    private static Consumer<String> getFunc2(int i){
+    private Consumer<String> getFunc2(int i){
     
      return (String line) ->  { 
     	 List<String> l = Arrays.asList(line.split(",")); 
@@ -111,10 +111,10 @@ public class GestionnaireFichierParametrage {
    
 
     public static void main (String[] args) throws Exception{
-    	chargerParametrageSimulationNonClimatique("C:\\Repository\\Bambi\\Clara.txt");
-    	System.out.println(parametres.besoinEauAnimal);
-    	System.out.println(parametres.localisationInitiale);
-    	System.out.println(parametres.nombreDePas);
-    	System.out.println(parametres.tauxMortaliteParPenurieAlimentaireMaximal);
+    	//chargerParametrageSimulationNonClimatique("C:\\Repository\\Bambi\\Clara.txt");
+    	//System.out.println(parametres.besoinEauAnimal);
+    	//System.out.println(parametres.localisationInitiale);
+    	//System.out.println(parametres.nombreDePas);
+    	//System.out.println(parametres.tauxMortaliteParPenurieAlimentaireMaximal);
     }
 }
