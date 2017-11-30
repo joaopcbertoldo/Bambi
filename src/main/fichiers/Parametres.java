@@ -162,8 +162,6 @@ public class Parametres implements ParametrageSimulation {
 		
 		
 	}
-<<<<<<< Updated upstream:src/main/fichiers/Parametres.java
-=======
 
 
 	public static void affichePluviometrie (Parametres param ){
@@ -173,6 +171,5 @@ public class Parametres implements ParametrageSimulation {
 		}
 	}
 
->>>>>>> Stashed changes:src/fichiers/Parametres.java
 }
 //Les méthodes affiche nous permettent de voir si on a bien créé l'objet qu'on voulait 
