@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import main.domain.ResultatSimulation;
 
 public class Resultat implements ResultatSimulation {
-	
+	protected int NbdePas ; 
 	protected ArrayList<ArrayList<Integer>> popAnimale; 
 	protected ArrayList<ArrayList<Double>> stockEau; 
 	protected ArrayList<ArrayList<Double>> stockVeg; 
@@ -34,5 +34,12 @@ public class Resultat implements ResultatSimulation {
         // TODO Auto-generated return
         return (stockVeg.get(territoire)).get(n);
     }
+    
+    public int NbdePas (){
+    	return this.NbdePas; 
+    	
+    }
+    
+   
 
 }
