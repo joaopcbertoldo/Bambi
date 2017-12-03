@@ -9,8 +9,10 @@ public class IhmUnTerritoire extends JPanel {
 	private double eau;
 	private double veg;
 	
-	private JLabel labEau;
-	private JLabel labVeg;
+	private JLabel labLegendeEau;
+	private JLabel labQEau;
+	private JLabel labLegendeVeg;
+	private JLabel labQVeg;
 	
 	private int popAnimale;
 	
@@ -18,19 +20,27 @@ public class IhmUnTerritoire extends JPanel {
 		this.eau=eau;
 		this.veg=veg;
 		this.popAnimale=popAnimale;
-		labEau.setText(String.valueOf(eau));
-		labVeg.setText(String.valueOf(veg));
 		
-		repaint();
+		labQEau.setText(String.valueOf(eau));
+		labQVeg.setText(String.valueOf(veg));
+
 	}
 	
 	
 	public IhmUnTerritoire() {
-		labEau = new JLabel("labEau");
-		labVeg = new JLabel("labVeg");
 		
-		this.add(labEau);
-		this.add(labVeg);
+		labLegendeEau = new JLabel("Quantité eau : ");
+		this.add(labLegendeEau);
+		
+		labQEau = new JLabel();
+		this.add(labQEau);
+		
+		labLegendeVeg = new JLabel("Quantités végétaux : ");
+		this.add(labLegendeVeg);
+		
+		labQVeg = new JLabel();
+		this.add(labQVeg);		
+		
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -41,7 +51,7 @@ public class IhmUnTerritoire extends JPanel {
 			g.setColor(Color.red);
 		}
 		 g.setColor(Color.blue);
-		 g.fillRect(0, 0, 100, 100);
+		 g.fillRect(0, 0, 80, 80);
 		
 	}
 	

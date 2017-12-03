@@ -57,15 +57,21 @@ public class Controleur {
     }
     
     public void lancerSimulation() {
-    	ResultatSimulation r = gestionnaireDeSimulation.Simuler(gestionnaireFichierParametrage.recupererParametrageSimulation());
+    	try {
+			ResultatSimulation r = gestionnaireDeSimulation.Simuler(gestionnaireFichierParametrage.recupererParametrageSimulation());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.err.println("erreur lors du lancement de la simulation");
+		}
     //	gestionnaireFichierResultatSimulation.setResultat(r);
     	
     	
     }
     
     public void sauvegarderCsv(String adresse) {
-    	
-   // 	gestionnaireFichierResultatSimulation.sauvegarderResultatSimulation(adresse);
+    	ResultatSimulation r = gestionnaireFichierResultatSimulation.recupererResultatSimulation();
+    //	gestionnaireFichierResultatSimulation.sauvegarderResultatSimulation(r,adresse);
     	
     }
     
@@ -73,6 +79,7 @@ public class Controleur {
     	String adresse = f.getAbsolutePath();
     	try {
 			gestionnaireFichierResultatSimulation.chargerResultatSimulation(adresse);
+			System.out.println("Resultats chargés");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

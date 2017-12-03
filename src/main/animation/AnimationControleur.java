@@ -9,7 +9,7 @@ import main.domain.ResultatSimulation;
 public class AnimationControleur {
    
 	private int vitesse=1;
-    private int moisActuel;
+    private int moisActuel=0;
     private int dureeSimulation;
     private AnimationIHM animationIHM;
     private ctrlThread ctrlT;
@@ -23,8 +23,8 @@ public class AnimationControleur {
     	ctrlT.start();
     	
     	resultats = resultatSimulation;
-    	//dureeSimulation = resultats.getDureeSim();
-    	dureeSimulation=20;
+    	dureeSimulation=resultats.NbdePas();
+    	System.out.println("duree de la simulation : " + dureeSimulation);
     	
     }
     
@@ -47,6 +47,8 @@ public class AnimationControleur {
     }
 
     public void setMois(final int mois) {
+    	moisActuel=mois;
+    	actualiserDonneesIHM();
     }
 
     public void setVitesse(final int vitesse) {
@@ -54,13 +56,30 @@ public class AnimationControleur {
     }
 
     public void moisSuivant() {
-    	if(moisActuel<dureeSimulation) moisActuel++;
+    	if(moisActuel<dureeSimulation-1) moisActuel++;
+    	animationIHM.actualiserSliderMois(moisActuel);
+    	actualiserDonneesIHM();
     }
 
     public void moisPrecedent() {
-    	if(moisActuel!=0) {
-    		moisActuel--;
+    	if(moisActuel!=0) moisActuel--;
+    	animationIHM.actualiserSliderMois(moisActuel);
+    	actualiserDonneesIHM();
+    }
+    
+    public int getDureeSimulation() {
+    	return dureeSimulation;
+    }
+    
+    public void actualiserDonneesIHM() {
+    	for(int i=0; i<5;i++) {
+    		animationIHM.setEauEtVegEtPop(
+    				resultats.stockEau(i, moisActuel), 
+    				resultats.stockVeg(i, moisActuel), 
+    				resultats.popAnimale(moisActuel, i), 
+    				i);    		
     	}
+    	
     }
     
     class ctrlThread extends Thread {
@@ -79,13 +98,9 @@ public class AnimationControleur {
     				}
     	    		
     	    		System.out.println("syst fonctionne");
-    	    		
-    	    		for(int i=0; i<4; i++) {
-    	    			double eau = resultats.stockEau(i, moisActuel);
-    	    			double veg = resultats.stockVeg(i, moisActuel);
-    	    			int popAnimale = resultats.popAnimale(moisActuel, i);
-    	    			animationIHM.setEauEtVegEtPop(eau, veg, popAnimale, i);
-    	    			
+    	    		actualiserDonneesIHM();
+    	    		moisActuel++;
+    	    		animationIHM.actualiserSliderMois(moisActuel);
     	    		}
     	    		
     			} // fin du while enMarche
@@ -98,7 +113,7 @@ public class AnimationControleur {
 			    	e.printStackTrace();
 			   }
     	   }
-    	}    		
+    	  		
     }
    
     
