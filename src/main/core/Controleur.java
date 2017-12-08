@@ -21,7 +21,7 @@ public class Controleur {
     
     public Controleur() {
     	
-   // 	gestionnaireDeSimulation = GestionnaireDeSimulation.Instance();
+     	gestionnaireDeSimulation = GestionnaireDeSimulation.Instance();
     	gestionnaireFichierParametrage = new GestionnaireFichierParametrage();
     	gestionnaireFichierResultatSimulation = new GestionnaireFichierResultatSimulation();
     	

@@ -50,8 +50,28 @@ public class IhmUnTerritoire extends JPanel {
 		if(popAnimale!=0) {
 			g.setColor(Color.red);
 		}
-		 g.setColor(Color.blue);
-		 g.fillRect(0, 0, 80, 80);
+		
+		else g.setColor(Color.blue);
+		
+		//On trace le territoire
+		g.fillRect(0, 0, 80, 80);
+		
+		// On trace les jauges 
+		int epaisseur =  3;
+		int largeur = 30;
+		int longueur = 300;
+		int xVeg = 50;
+		int yVeg = 50;
+		//Jauge de vegetaux
+		g.setColor(Color.black);
+		g.fillRect(xVeg-epaisseur,yVeg-epaisseur,longueur+2*epaisseur,2*epaisseur + largeur);
+		g.setColor(Color.green);
+		g.fillRect(xVeg, yVeg,100, largeur);
+		
+		g.setColor(Color.black);
+	//	g.fillRect(x-epaisseur,y-epaisseur,longueur+2*epaisseur,2*epaisseur + largeur);
+		g.setColor(Color.green);
+	//	g.fillRect(x, y,100, largeur);
 		
 	}
 }
