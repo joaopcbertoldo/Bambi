@@ -6,6 +6,7 @@ import java.util.List;
 import main.domain.ResultatSimulation;
 
 public class TableauxVariablesSimulation implements ResultatSimulation {
+	
     public List<List<Integer>> tableauPopulationAnimale;
 
     public List<List<Double>> tableauStockEau;
@@ -52,5 +53,11 @@ public class TableauxVariablesSimulation implements ResultatSimulation {
     public void ajouterStockVeg(int territoire, double valeur) {
         this.tableauStockVeg.get(territoire).add(valeur);
     }
+
+	@Override
+	public int NbdePas() {
+		// un peu hotfix
+		return this.tableauPopulationAnimale.size();
+	}
 
 }
