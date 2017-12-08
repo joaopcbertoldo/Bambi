@@ -21,10 +21,6 @@ import main.domain.ResultatSimulation;
 public class GestionnaireFichierResultatSimulation {
     private static Resultat resultats; // Le gestionnaire a pour un atribut un objet de type Resultat dont les méthodes permettent d'avoir accès aux résultats voulus
 
-    public void setResultats(ResultatSimulation r){
-    	resultats= (Resultat) r; 
-     }
-    
     public  boolean chargerResultatSimulation(final String address) throws Exception {
     	// permet de créer un objet de type résultat pour lancer une visualisation à partir de résultats précedement enregistrés
     	resultats= new Resultat();
