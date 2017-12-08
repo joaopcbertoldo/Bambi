@@ -19,6 +19,8 @@ public class Controleur {
     private MenuIHM menuIHM;
     private AnimationControleur animationControleur;
     
+    private ResultatSimulation resultats;
+    
     public Controleur() {
     	
      	gestionnaireDeSimulation = GestionnaireDeSimulation.Instance();
@@ -62,9 +64,8 @@ public class Controleur {
     	try {
     		ParametrageSimulation p = gestionnaireFichierParametrage.recupererParametrageSimulation();
     		System.out.print("premiere ligne bien executee");
-    		ResultatSimulation r = gestionnaireDeSimulation.Simuler(p);
-			System.out.print("deuxieme ligne bien executee");
-			gestionnaireFichierResultatSimulation.setResultats(r);
+    		resultats = gestionnaireDeSimulation.Simuler(p);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println(e);
@@ -73,9 +74,9 @@ public class Controleur {
     }
     
     public void sauvegarderCsv(String adresse) {
-    	ResultatSimulation r = gestionnaireFichierResultatSimulation.recupererResultatSimulation();
+    	resultats = gestionnaireFichierResultatSimulation.recupererResultatSimulation();
     	try {
-			gestionnaireFichierResultatSimulation.sauvegarderResultatSimulation(r,adresse);
+			gestionnaireFichierResultatSimulation.sauvegarderResultatSimulation(resultats,adresse);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.err.println("Sauvegarde échouée");
@@ -96,8 +97,8 @@ public class Controleur {
     }
     
     public void animation() {
-    	
-    	animationControleur = new AnimationControleur(gestionnaireFichierResultatSimulation.recupererResultatSimulation());
+    	resultats= gestionnaireFichierResultatSimulation.recupererResultatSimulation();
+    	animationControleur = new AnimationControleur(resultats);
     	animationControleur.creerIHM();
     	
     }

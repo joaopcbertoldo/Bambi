@@ -9,6 +9,18 @@ public class IhmUnTerritoire extends JPanel {
 	private double eau;
 	private double veg;
 	
+	private double maxEau;
+	private double maxVeg;
+	
+	//attributs pour les dimensions des jauges
+	int epaisseur =  3;
+	int largeur = 25;
+	int longueurMax = 300;
+	int xVeg = 120;
+	int yVeg = 50;
+	int xEau = 120;
+	int yEau = 100;
+	
 	private JLabel labLegendeEau;
 	private JLabel labQEau;
 	private JLabel labLegendeVeg;
@@ -23,11 +35,15 @@ public class IhmUnTerritoire extends JPanel {
 		
 		labQEau.setText(String.valueOf(eau));
 		labQVeg.setText(String.valueOf(veg));
+		repaint();
 
 	}
 	
 	
-	public IhmUnTerritoire() {
+	public IhmUnTerritoire(double maxEau, double maxVeg) {
+		
+		this.maxEau = maxEau;
+		this.maxVeg = maxVeg;
 		
 		labLegendeEau = new JLabel("Quantité eau : ");
 		this.add(labLegendeEau);
@@ -54,26 +70,24 @@ public class IhmUnTerritoire extends JPanel {
 		else g.setColor(Color.blue);
 		
 		//On trace le territoire
-		g.fillRect(0, 0, 80, 80);
+		g.fillRect(20, yVeg, 80, (yEau-yVeg) + 2*largeur);
 		
 		// On trace les jauges 
-		int epaisseur =  3;
-		int largeur = ;
-		int longueur = 300;
-		int xVeg = 50;
-		int yVeg = 50;
-		int xEau = 50;
-		int yEau = 100;
+
+		int longueurEau = (int) ((eau/maxEau)*longueurMax);
+		int longueurVeg = (int) ((veg/maxVeg)*longueurMax);
+		System.out.println("longueurEau : " + longueurEau);
 		//Jauge de vegetaux
 		g.setColor(Color.black);
-		g.fillRect(xVeg-epaisseur,yVeg-epaisseur,longueur+2*epaisseur,2*epaisseur + largeur);
+		g.fillRect(xVeg-epaisseur,yVeg-epaisseur,longueurMax+2*epaisseur,2*epaisseur + largeur);
 		g.setColor(Color.green);
-		g.fillRect(xVeg, yVeg,100, largeur);
+
+		g.fillRect(xVeg, yVeg,longueurEau, largeur);
 		
 		g.setColor(Color.black);
-		g.fillRect(xEau-epaisseur,yEau-epaisseur,longueur+2*epaisseur,2*epaisseur + largeur);
+		g.fillRect(xEau-epaisseur,yEau-epaisseur,longueurMax+2*epaisseur,2*epaisseur + largeur);
 		g.setColor(Color.blue);
-		g.fillRect(xEau, yEau,100, largeur);
+		g.fillRect(xEau, yEau,longueurVeg, largeur);
 		
 	}
 }

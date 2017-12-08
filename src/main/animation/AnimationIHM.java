@@ -31,14 +31,16 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
 	private AnimationControleur ctrl;
 	
 	//Constructeur
-	public AnimationIHM(AnimationControleur ctrl) {
+	public AnimationIHM(AnimationControleur ctrl, double maxEau, double maxVeg) {
 		
 		super("Visualiseur de résultats");	
 		
 		this.ctrl=ctrl;	
 		ihmTerritoires = new ArrayList();
 		for(int i=0 ; i<=4; i++) {
-			ihmTerritoires.add(new IhmUnTerritoire());			
+			IhmUnTerritoire t = new IhmUnTerritoire(maxEau, maxVeg);
+			t.setMinimumSize(new Dimension(400,80));
+			ihmTerritoires.add(t);			
 		}
 		
 		//ajout des territoires

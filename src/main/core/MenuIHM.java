@@ -50,6 +50,9 @@ public class MenuIHM extends JFrame implements ActionListener {
     	this.add(btChargerResultat);
     	this.add(btAnimation);
     	
+    	//Le file chooser s'ouvrira automatiquement dans le dossier de travail
+    	File workingDirectory = new File(System.getProperty("user.dir"));
+    	fc.setCurrentDirectory(workingDirectory);
     	
     }
     
@@ -61,6 +64,7 @@ public class MenuIHM extends JFrame implements ActionListener {
 			int returnVal = fc.showOpenDialog(this);
 
 	        if (returnVal == JFileChooser.APPROVE_OPTION) {
+	        	
 	            File file = fc.getSelectedFile();
 	            c.chargerPluie(file);
 	        } 

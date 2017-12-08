@@ -25,18 +25,41 @@ public class AnimationControleur {
     	
     	resultats = resultatSimulation;
     	dureeSimulation=resultats.NbdePas();
+    	
+    	
     	System.out.println("duree de la simulation : " + dureeSimulation);
     	
     }
     
 
     public void creerIHM() {
-    	animationIHM = new AnimationIHM(this);
-    	animationIHM.setSize(500,500);
+    	
+    	double maxEau=0;
+    	double maxVeg=0;
+    	double eau;
+    	double veg;
+    	for(int n=0; n<4; n++) {
+    		for(int j=0; j<dureeSimulation-1; j++) {
+    			eau=resultats.stockEau(n, j);
+    			veg=resultats.stockVeg(n, j);
+    			
+    			if(maxEau<eau) {
+    				maxEau=eau;
+    			}
+    			if(maxVeg<veg) {
+    				maxVeg=veg;
+    			}    			
+    		}
+    	}
+    	
+    	animationIHM = new AnimationIHM(this, maxEau, maxVeg);
+    	animationIHM.setSize(500,900);
     	animationIHM.setVisible(true);
     }
     public void arreter() {
     	enMarche=false;
+    	setMois(0);
+    	
     }
 
     public void pause() {
@@ -44,11 +67,13 @@ public class AnimationControleur {
     }
 
     public void lancer() {
+    	
     	enMarche=true;
     }
 
     public void setMois(final int mois) {
     	moisActuel=mois;
+    	animationIHM.actualiserSliderMois(moisActuel);
     	actualiserDonneesIHM();
     }
 
@@ -58,9 +83,8 @@ public class AnimationControleur {
 
     public void moisSuivant() {
     	if(moisActuel<dureeSimulation-1) {
-    		moisActuel++;
-        	animationIHM.actualiserSliderMois(moisActuel);
-        	actualiserDonneesIHM();
+    		setMois(moisActuel+1);
+        	
     	}
     	
     	else {
@@ -93,39 +117,42 @@ public class AnimationControleur {
     class ctrlThread extends Thread {
     	boolean stop = false;
     	
+    	public void setStop(boolean stop) {
+    		this.stop = stop;
+    	}
     	public void run() {
-    		
-    		while(!stop) {    		 
-    		//	System.out.println(enMarche);
-    			while(enMarche) {
-    	    		try {
-    	    			System.out.println("vitesse : " + vitesse);
-    					TimeUnit.MILLISECONDS.sleep(1/vitesse*1000);
-    					System.out.print("attend 1/v");
+    			
+    			while(stop == false) {
+		   		 
+        		//	System.out.println(enMarche);
+        			while(enMarche) {
+        	    		try {
+        	    			System.out.println("vitesse : " + vitesse);
+        					TimeUnit.MILLISECONDS.sleep(1/vitesse*1000);
+        					System.out.print("attend 1/v");
+        				} catch (InterruptedException e) {
+        					// TODO Auto-generated catch block
+        					e.printStackTrace();
+        				}
+        	    		
+        	    		System.out.println("syst fonctionne");
+        	    		actualiserDonneesIHM();
+        	    		moisSuivant();
+        	    		System.out.println("mois actuel : " + moisActuel);
+        	    		}// fin du while
+        			try {
+    					TimeUnit.SECONDS.sleep(1);
     				} catch (InterruptedException e) {
     					// TODO Auto-generated catch block
     					e.printStackTrace();
     				}
-    	    		
-    	    		System.out.println("syst fonctionne");
-    	    		actualiserDonneesIHM();
-    	    		moisSuivant();
-    	    		System.out.println("mois actuel : " + moisActuel);
-    	    		}
-    	    		
-    			} // fin du while enMarche
-    	    	
-    	    	try {
-    	    		//pour pas que le thread tourne tout le temps alors qu'il n'a rien à faire
-			    	TimeUnit.SECONDS.sleep(5);
-		    	} catch (InterruptedException e) {
-			    	// TODO Auto-generated catch block
-			    	e.printStackTrace();
-			   }
-    	   }
-    	  		
+        	    		
+        			}  //fin de run
+    			
+    			
+    		
+    		}
     }
-   
     
     public static void main (String[] args) {
     	AnimationControleur ac = new AnimationControleur(null);
