@@ -30,33 +30,6 @@ public class Parametres implements ParametrageSimulation {
 	protected double tauxCroissanteVegetal;
 	protected double tauxPerteVegetalPenurieMax; 
 	
-	/*public Parametres(int a, ArrayList<Double> sur, int b, ArrayList<Double> stockV, int c, ArrayList<Double> stockE, ArrayList<Double> tauxP,double d, double e, double f, double h, MoisEnum i, double j, double k, double l,double m){
-		 	nombreDePas= a;
-			for (int i=0; i<5 ; i++){
-			surfaceTerritoire.add(sur.get(i));
-			stockVegetaux.add(stockV.get(i));
-			stockEau.add(stockE.get(i));
-			tauxPerteEauEvaporation.add(tauxP.get(i));
-
-			}
-			nombreIndividusAnimale0=b;
-			tauxNaissanceAnimalMaximal=m;
-			tauxMortalitePredateur=d;
-			tauxMortaliteParPenurieAlimentaireMaximal=e;
-			mois0=f;
-			tauxPerteVegetalPenurieMax=g;
-			besoinEauAnimal=h;
-			besoinEauVegetal=i;
-			besoinVegetalAnimal=j;
-			tauxCroissanteVegetal=k;
-			tauxPerteVegetalPenurieMax=l; 
-			localisationInitiale = c; 
-			
-			
-			
-		}
-
-	}*/
 
 	
 	

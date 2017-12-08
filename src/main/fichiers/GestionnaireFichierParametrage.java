@@ -28,6 +28,7 @@ public class GestionnaireFichierParametrage {
     		throw new Exception("Pluviometrie non charge") ;
     	}
     	if (parametres.surfaceTerritoire==null){
+    		System.out.println(parametres.surfaceTerritoire);
     		throw new Exception("Parametres non climatiques non charges"); 
     	}
         return parametres ;
@@ -129,11 +130,6 @@ public class GestionnaireFichierParametrage {
     public static void main (String[] args) throws Exception{
     	GestionnaireFichierParametrage g = new GestionnaireFichierParametrage();
     	g.chargerPluviometrie("C:\\Repository\\Bambi\\joao.txt");
-    	System.out.println(g.parametres.pluviometrie.get(0));
-    	System.out.println(g.parametres.pluviometrie.get(1));
-    	System.out.println(g.parametres.pluviometrie.get(2));
-    	System.out.println(g.parametres.pluviometrie.get(3));
-    	System.out.println(g.parametres.pluviometrie.get(4));
-    	
+    	System.out.println(g.parametres.pluviometrie);
     }
 }
