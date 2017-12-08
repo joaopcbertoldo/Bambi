@@ -21,10 +21,10 @@ public class GestionnaireFichierParametrage {
     public  ParametrageSimulation recupererParametrageSimulation() throws Exception {
     	if (parametres.pluviometrie== null){
     	
-    		throw new Exception("Pluviom�trie non charg�e") ;
+    		throw new Exception("Pluviometrie non charge") ;
     	}
     	if (parametres.surfaceTerritoire==null){
-    		throw new Exception("Parametres non climatiques non charg�s "); 
+    		throw new Exception("Parametres non climatiques non charges"); 
     	}
         return parametres ;
     }

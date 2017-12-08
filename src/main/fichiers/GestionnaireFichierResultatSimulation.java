@@ -21,7 +21,7 @@ import main.domain.ResultatSimulation;
 public class GestionnaireFichierResultatSimulation {
     private static Resultat resultats; // Le gestionnaire a pour un atribut un objet de type Resultat dont les méthodes permettent d'avoir accès aux résultats voulus
 
-    public static boolean chargerResultatSimulation(final String address) throws Exception {
+    public  boolean chargerResultatSimulation(final String address) throws Exception {
     	// permet de créer un objet de type résultat pour lancer une visualisation à partir de résultats précedement enregistrés
     	resultats= new Resultat();
     	try{
@@ -61,7 +61,7 @@ public class GestionnaireFichierResultatSimulation {
         return resultats;
     }
 
-    public static boolean sauvegarderResultatSimulation(ResultatSimulation r, final String address) throws IOException {
+    public  boolean sauvegarderResultatSimulation(ResultatSimulation r, final String address) throws IOException {
     //écrit les résultats de simulation dans un fichier texte afin de les sauvegarder 
     	try{
         	FileOutputStream aut = new FileOutputStream(new File(address));
@@ -110,13 +110,13 @@ public class GestionnaireFichierResultatSimulation {
 
     public static void main (String[] args) throws Exception{
     	GestionnaireFichierResultatSimulation g = new GestionnaireFichierResultatSimulation();
-    	chargerResultatSimulation("C:\\Repository\\Bambi\\florentin.txt");
+    	g.chargerResultatSimulation("C:\\Repository\\Bambi\\florentin.txt");
     	System.out.println(resultats.popAnimale); 
     	System.out.println(resultats.stockVeg);
     	System.out.println(resultats.stockEau); 
     	ResultatSimulation r= g.recupererResultatSimulation();
     	System.out.println(r.NbdePas());
-    	sauvegarderResultatSimulation(r,"C:\\Repository\\Bambi\\parametres.txt" );
+    	g.sauvegarderResultatSimulation(r,"C:\\Repository\\Bambi\\parametres.txt" );
     	
     }
 }
