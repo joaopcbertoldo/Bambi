@@ -88,6 +88,7 @@ public class GestionnaireFichierParametrageTest {
 
 	@Test
 	public void testChargerParametrageSimulationNonClimatique() throws Exception {
+		
 		gestionnaire.chargerPluviometrie (addressePluviometrie);
 		gestionnaire.chargerParametrageSimulationNonClimatique(addresseNonClimatiques);
 		ParametrageSimulation param = gestionnaire.recupererParametrageSimulation();
@@ -123,14 +124,23 @@ public class GestionnaireFichierParametrageTest {
 		assertEquals(89, param.besoinEauAnimal(),0.01);
 		assertEquals(54, param.besoinVegetalAnimal(),0.01);
 		assertEquals(32, param.tauxCroissanteVegetal(),0.01);
-		assertEquals(90, param.tau(),0.01);
+		assertEquals(90, param.tauxPerteVegetalPenurieMax(),0.01);
 
 		
 	}
 
 	@Test
-	public void testChargerPluviometrie() {
-		fail("Not yet implemented");
+	public void testChargerPluviometrie() throws Exception {
+		gestionnaire.chargerPluviometrie (addressePluviometrie);
+		gestionnaire.chargerParametrageSimulationNonClimatique(addresseNonClimatiques);
+		ParametrageSimulation param = gestionnaire.recupererParametrageSimulation();
+		assertEquals(25, param.tauxPerteVegetalPenurieMax(),0.01);
+		assertEquals(45, param.tauxPerteVegetalPenurieMax(),0.01);
+		assertEquals(65, param.tauxPerteVegetalPenurieMax(),0.01);
+		assertEquals(97, param.tauxPerteVegetalPenurieMax(),0.01);
+		assertEquals(12, param.tauxPerteVegetalPenurieMax(),0.01);
+		assertEquals(10, param.tauxPerteVegetalPenurieMax(),0.01);
+		
 	}
 
 }

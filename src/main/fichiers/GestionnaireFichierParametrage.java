@@ -17,8 +17,12 @@ import main.domain.ParametrageSimulation;
 
 public class GestionnaireFichierParametrage {
     private Parametres parametres;
-
+    
+ 
     public  ParametrageSimulation recupererParametrageSimulation() throws Exception {
+    	if (parametres== null){
+    		throw new Exception ("Chargement incomplet");
+    	}
     	if (parametres.pluviometrie== null){
     	
     		throw new Exception("Pluviometrie non charge") ;
@@ -83,15 +87,20 @@ public class GestionnaireFichierParametrage {
     
 
     public boolean chargerPluviometrie(final String address) throws IOException {
-    	if (parametres!= null) {
+    	if (parametres== null) {
     		parametres= new Parametres(); 
     	}
     	
-    	try{
+    	//try{
+    		parametres.pluviometrie= new  ArrayList(); 
+    		for (int g=0; g<5; g++){
+    			parametres.pluviometrie.add(new ArrayList<Double>());
+    			
+    		}
 	    	InputStream pluviometrie= new FileInputStream(address);
 	    	InputStreamReader lecteur= new InputStreamReader(pluviometrie);
 	    	BufferedReader lecteur1 = new BufferedReader(lecteur); 
-	    	for(int i = 0; i < 17; i++){
+	    	for(int i = 0; i < 5; i++){
 	    		Consumer<String> fun = getFunc2(i);
 	    		fun.accept(lecteur1.readLine());
 	    	}
@@ -100,11 +109,11 @@ public class GestionnaireFichierParametrage {
 	    	pluviometrie.close(); 
 	    	
 			return false;
-	    }
+	  /*  }
 	    catch(Exception e){
 			System.out.println("Erreur");
 			return false;
-		}
+		}*/
     }
     
     private Consumer<String> getFunc2(int i){
@@ -118,10 +127,13 @@ public class GestionnaireFichierParametrage {
    
 
     public static void main (String[] args) throws Exception{
-    	//chargerParametrageSimulationNonClimatique("C:\\Repository\\Bambi\\Clara.txt");
-    	//System.out.println(parametres.besoinEauAnimal);
-    	//System.out.println(parametres.localisationInitiale);
-    	//System.out.println(parametres.nombreDePas);
-    	//System.out.println(parametres.tauxMortaliteParPenurieAlimentaireMaximal);
+    	GestionnaireFichierParametrage g = new GestionnaireFichierParametrage();
+    	g.chargerPluviometrie("C:\\Repository\\Bambi\\joao.txt");
+    	System.out.println(g.parametres.pluviometrie.get(0));
+    	System.out.println(g.parametres.pluviometrie.get(1));
+    	System.out.println(g.parametres.pluviometrie.get(2));
+    	System.out.println(g.parametres.pluviometrie.get(3));
+    	System.out.println(g.parametres.pluviometrie.get(4));
+    	
     }
 }
