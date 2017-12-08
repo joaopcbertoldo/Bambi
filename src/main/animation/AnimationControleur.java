@@ -15,10 +15,11 @@ public class AnimationControleur {
     private ctrlThread ctrlT;
     private ResultatSimulation resultats;
     
-    private boolean enMarche;
+    private boolean enMarche=false;
     
     
     public AnimationControleur(final ResultatSimulation resultatSimulation) {
+    	
     	ctrlT = new ctrlThread();
     	ctrlT.start();
     	
@@ -56,9 +57,16 @@ public class AnimationControleur {
     }
 
     public void moisSuivant() {
-    	if(moisActuel<dureeSimulation-1) moisActuel++;
-    	animationIHM.actualiserSliderMois(moisActuel);
-    	actualiserDonneesIHM();
+    	if(moisActuel<dureeSimulation-1) {
+    		moisActuel++;
+        	animationIHM.actualiserSliderMois(moisActuel);
+        	actualiserDonneesIHM();
+    	}
+    	
+    	else {
+    		enMarche=false;
+    	}
+
     }
 
     public void moisPrecedent() {
@@ -88,10 +96,12 @@ public class AnimationControleur {
     	public void run() {
     		
     		while(!stop) {    		 
-    	    	
+    		//	System.out.println(enMarche);
     			while(enMarche) {
     	    		try {
-    					TimeUnit.SECONDS.sleep(1/vitesse);
+    	    			System.out.println("vitesse : " + vitesse);
+    					TimeUnit.MILLISECONDS.sleep(1/vitesse*1000);
+    					System.out.print("attend 1/v");
     				} catch (InterruptedException e) {
     					// TODO Auto-generated catch block
     					e.printStackTrace();
@@ -99,15 +109,15 @@ public class AnimationControleur {
     	    		
     	    		System.out.println("syst fonctionne");
     	    		actualiserDonneesIHM();
-    	    		moisActuel++;
-    	    		animationIHM.actualiserSliderMois(moisActuel);
+    	    		moisSuivant();
+    	    		System.out.println("mois actuel : " + moisActuel);
     	    		}
     	    		
     			} // fin du while enMarche
     	    	
     	    	try {
     	    		//pour pas que le thread tourne tout le temps alors qu'il n'a rien à faire
-			    	TimeUnit.SECONDS.sleep(1);
+			    	TimeUnit.SECONDS.sleep(5);
 		    	} catch (InterruptedException e) {
 			    	// TODO Auto-generated catch block
 			    	e.printStackTrace();

@@ -1,6 +1,7 @@
 package main.core;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JButton;
 
@@ -57,21 +58,28 @@ public class Controleur {
     }
     
     public void lancerSimulation() {
+    	System.out.print("0e ligne bien executee");
     	try {
-			ResultatSimulation r = gestionnaireDeSimulation.Simuler(gestionnaireFichierParametrage.recupererParametrageSimulation());
+    		ParametrageSimulation p = gestionnaireFichierParametrage.recupererParametrageSimulation();
+    		System.out.print("premiere ligne bien executee");
+    		ResultatSimulation r = gestionnaireDeSimulation.Simuler(p);
+			System.out.print("deuxieme ligne bien executee");
+			gestionnaireFichierResultatSimulation.setResultats(r);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.err.println("erreur lors du lancement de la simulation");
+			System.out.println(e);
+			System.err.println(e.getMessage());
 		}
-    //	gestionnaireFichierResultatSimulation.setResultat(r);
-    	
-    	
     }
     
     public void sauvegarderCsv(String adresse) {
     	ResultatSimulation r = gestionnaireFichierResultatSimulation.recupererResultatSimulation();
-    //	gestionnaireFichierResultatSimulation.sauvegarderResultatSimulation(r,adresse);
+    	try {
+			gestionnaireFichierResultatSimulation.sauvegarderResultatSimulation(r,adresse);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.err.println("Sauvegarde échouée");
+		}
     	
     }
     

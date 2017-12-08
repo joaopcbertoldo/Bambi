@@ -51,6 +51,7 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
 		pause = new JButton("pause");
 		go = new JButton("go");
 		slideVitesse = new JSlider(1,100);
+		slideVitesse.setValue(1);
 		barreVitesse = new JPanel();
 		barreVitesse.add(stop);
 		barreVitesse.add(pause);
