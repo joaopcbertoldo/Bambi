@@ -58,10 +58,12 @@ public class IhmUnTerritoire extends JPanel {
 		
 		// On trace les jauges 
 		int epaisseur =  3;
-		int largeur = 30;
+		int largeur = ;
 		int longueur = 300;
 		int xVeg = 50;
 		int yVeg = 50;
+		int xEau = 50;
+		int yEau = 100;
 		//Jauge de vegetaux
 		g.setColor(Color.black);
 		g.fillRect(xVeg-epaisseur,yVeg-epaisseur,longueur+2*epaisseur,2*epaisseur + largeur);
@@ -69,9 +71,9 @@ public class IhmUnTerritoire extends JPanel {
 		g.fillRect(xVeg, yVeg,100, largeur);
 		
 		g.setColor(Color.black);
-	//	g.fillRect(x-epaisseur,y-epaisseur,longueur+2*epaisseur,2*epaisseur + largeur);
-		g.setColor(Color.green);
-	//	g.fillRect(x, y,100, largeur);
+		g.fillRect(xEau-epaisseur,yEau-epaisseur,longueur+2*epaisseur,2*epaisseur + largeur);
+		g.setColor(Color.blue);
+		g.fillRect(xEau, yEau,100, largeur);
 		
 	}
 }
