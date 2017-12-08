@@ -5,6 +5,7 @@ import java.io.IOException;
 import main.domain.ParametrageSimulation;
 import main.domain.ResultatSimulation;
 import main.fichiers.GestionnaireFichierParametrage;
+import main.simulation.ecosystemeBambiBase.EcosystemeBambi;
 import main.simulation.gestionDeSimulation.Ecosysteme;
 import main.simulation.gestionDeSimulation.SimulationFinieException;
 
@@ -23,7 +24,8 @@ public class GestionnaireDeSimulation {
     }
 
     public ResultatSimulation Simuler(ParametrageSimulation parametres) {
-    	this.ecosysteme = Ecosysteme.getInstanceEcosysteme(parametres);
+    	//this.ecosysteme = Ecosysteme.getInstanceEcosysteme(parametres);
+    	this.ecosysteme = new EcosystemeBambi(parametres);
     	
     	try {
     		System.out.println("Simulation va commencer !");
