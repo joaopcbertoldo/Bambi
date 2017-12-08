@@ -16,7 +16,7 @@ public class Territoire {
 
     public Territoire territoireAuSud;
 
-    private Territoire(DataTerritoire dataTerritoire) {
+    public Territoire(DataTerritoire dataTerritoire) {
         this.dataTerritoire = dataTerritoire;
     }
 

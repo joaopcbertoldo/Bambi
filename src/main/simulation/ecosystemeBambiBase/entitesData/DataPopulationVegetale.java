@@ -4,6 +4,7 @@ package main.simulation.ecosystemeBambiBase.entitesData;
 // Besoin eau par individu : Litre / kg / mois
 // Besoin vegetal par individu : kg / kg / mois = 0
 public class DataPopulationVegetale extends DataPopulation {
+	
 	// en %
     public double tauxCroissanceVegetale;
 
@@ -12,5 +13,4 @@ public class DataPopulationVegetale extends DataPopulation {
 
     // en tonne
     public double populationVegetaleMinimale;
-
 }

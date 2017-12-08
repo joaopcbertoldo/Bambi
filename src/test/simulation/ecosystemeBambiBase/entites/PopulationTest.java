@@ -24,7 +24,7 @@ class PopulationVide extends Population {
 
 public class PopulationTest {
 
-	private DataPopulation dp;
+	private DataPopulation dataPopulation;
 	private Mois ctrl;
 	private MoisEnum mois0;
 	private PopulationVide p;
@@ -36,59 +36,52 @@ public class PopulationTest {
 		ctrl = new ControleurMois(mois0);
 		
 		// data population
-		dp = new DataPopulation();
-		dp.besoinEauParIndividu     = 180;  // 6 * 30
-		dp.besoinVegetalParIndividu = 150;  // 5 * 30
-		dp.quantiteIndividus        = 100;
-		// dataPopulation.quantiteIndividusMoisProchain...
+		dataPopulation = new DataPopulation();
+		dataPopulation.besoinEauParIndividu     = 180;  // 6 * 30
+		dataPopulation.besoinVegetalParIndividu = 150;  // 5 * 30
+		dataPopulation.quantiteIndividus        = 100;  
+		dataPopulation.quantiteIndividusMoisProchain = 0;
 		
 		// population
-		p = new PopulationVide(dp, ctrl);
+		p = new PopulationVide(dataPopulation, ctrl);
 	}
 
 	@Test
 	public void testInitialisation() {
+		// teste si l'objet a été construit
 		assertNotNull(p);
-	}
-	
-	@Test
-	public void testSetLocalisation() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testBesoinEauPopulation() {
+		// récupère la valeur de la population
 		double actual = p.besoinEauPopulation();
+		
+		// comparaison
 		assertEquals(180.0 * 100.0, actual, 0.5);
 	}
 
 	@Test
 	public void testBesoinVegetalPopulation() {
+		// récupère la valeur de la population
 		double actual = p.besoinVegetalPopulation();
+
+		// comparaison
 		assertEquals(150.0 * 100.0, actual, 0.5);
-	}
-
-	@Test
-	public void testIndexTerritoireOccuppe() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCalculerNouvelleQuantiteIndividus() {
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testProchainePopulation0() {
 		double actual;
 		
+		// 
 		actual = p.quantiteIndividus();
-		assertEquals(100.0, actual, 0.0);
+		assertEquals(100, (int)actual);
 		
 		p.affecterQuantiteIndividus();
 		
 		actual = p.quantiteIndividus();
-		assertEquals(0.0, actual, 0.0);
+		assertEquals(0, (int)actual);
 	}
 
 }
