@@ -96,10 +96,10 @@ public class Controleur {
     
     public void animation() {
     	//resultats= gestionnaireFichierResultatSimulation.recupererResultatSimulation();
-     	animationControleur = new AnimationControleur(resultats);
-    	animationControleur.creerIHM();
+      	animationControleur = new AnimationControleur(resultats);
+     	animationControleur.creerIHM();
     	
-    }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         }
     
     public static void main(String[] args) {
     	Controleur control = new Controleur();

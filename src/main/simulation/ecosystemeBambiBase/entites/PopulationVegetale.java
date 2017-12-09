@@ -34,7 +34,7 @@ public class PopulationVegetale extends Population {
     }
 
     public void calculerNouvelleQuantiteIndividus() {
-        double balance        = this.localisationVegetale().balanceEau();
+         double balance        = this.localisationVegetale().balanceEau();
         double nonMange       = this.localisationVegetale().quantiteVegetalNonMange();
         double tauxCroissance = this.tauxCroissance();
         double tauxPerte      = this.tauxPerteParPenurie();
