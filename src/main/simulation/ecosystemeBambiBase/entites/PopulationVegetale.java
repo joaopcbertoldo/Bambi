@@ -40,7 +40,7 @@ public class PopulationVegetale extends Population {
         double tauxPerte      = this.tauxPerteParPenurie();
         double min            = this.dataPopulationVegetale.populationVegetaleMinimale;
         
-        double nouvellePopulation = balance > 0 ? (1 + tauxCroissance) * nonMange : (1 - tauxPerte) * nonMange;
+        double nouvellePopulation = balance > 0 ? (1 + tauxCroissance/100) * nonMange : (1 - tauxPerte/100) * nonMange;
         
         if (nouvellePopulation < min)
         	nouvellePopulation = min;

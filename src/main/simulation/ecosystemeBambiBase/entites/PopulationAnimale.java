@@ -12,19 +12,9 @@ public class PopulationAnimale extends Population {
 
     protected DataPopulationAnimale dataPopulationAnimale;
 
-    public PopulationAnimale(DataPopulationAnimale dataPopulationAnimale, 
-    						 LocalisationAnimale localisation,
-    						 Mois mois) {
+    public PopulationAnimale(DataPopulationAnimale dataPopulationAnimale, Mois mois) {
         super(dataPopulationAnimale, mois);
         this.dataPopulationAnimale = dataPopulationAnimale;
-        
-        // bricolage
-        try {
-			super.setLocalisation(localisation);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     }
 
     // en %

@@ -3,8 +3,6 @@ package main.core;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JButton;
-
 import main.animation.AnimationControleur;
 import main.domain.*;
 import main.fichiers.GestionnaireFichierParametrage;
@@ -74,7 +72,7 @@ public class Controleur {
     }
     
     public void sauvegarderCsv(String adresse) {
-    	resultats = gestionnaireFichierResultatSimulation.recupererResultatSimulation();
+    	//resultats = gestionnaireFichierResultatSimulation.recupererResultatSimulation();
     	try {
 			gestionnaireFichierResultatSimulation.sauvegarderResultatSimulation(resultats,adresse);
 		} catch (IOException e) {
@@ -97,8 +95,8 @@ public class Controleur {
     }
     
     public void animation() {
-    	resultats= gestionnaireFichierResultatSimulation.recupererResultatSimulation();
-    	animationControleur = new AnimationControleur(resultats);
+    	//resultats= gestionnaireFichierResultatSimulation.recupererResultatSimulation();
+     	animationControleur = new AnimationControleur(resultats);
     	animationControleur.creerIHM();
     	
     }

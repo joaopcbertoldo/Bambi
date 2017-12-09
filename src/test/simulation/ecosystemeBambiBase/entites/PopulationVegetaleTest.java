@@ -9,52 +9,11 @@ import main.domain.MoisEnum;
 import main.simulation.ecosystemeBambiBase.entites.ControleurMois;
 import main.simulation.ecosystemeBambiBase.entites.LocalisationVegetale;
 import main.simulation.ecosystemeBambiBase.entites.Mois;
+import main.simulation.ecosystemeBambiBase.entites.Population;
 import main.simulation.ecosystemeBambiBase.entites.PopulationVegetale;
 import main.simulation.ecosystemeBambiBase.entites.Territoire;
 import main.simulation.ecosystemeBambiBase.entitesData.DataPopulationVegetale;
 import main.simulation.ecosystemeBambiBase.entitesData.DataTerritoire;
-
-// Classe qui simule un fonctionnement idéal et controlé de localisation
-class FausseLocalisationVegetale extends LocalisationVegetale {
-	
-	public int index = 0;
-	public double balanceEau = 0;
-	public double penurieEau = 0;
-	public double quantiteVegetalNonMange = 0;
-	
-	// Constructeur
-	public FausseLocalisationVegetale() {
-		// ça ne sert à rien, cest juste pour respecter le super
-		super(new Territoire(new DataTerritoire()));
-	}
-	
-	// index
-	@Override
-    public int indexTerritoire() {
-        return index;
-    }
-
-	// balanceEau
-    // Litre
-	@Override
-    public double balanceEau() {
-        return balanceEau;
-    }
-
-	// penurieEau
-    // en %
-    @Override
-    public double penurieEau() {
-        return penurieEau;
-    }
-
-    // quantiteVegetalNonMange
-    // kg
-    @Override
-    public double quantiteVegetalNonMange() {
-        return quantiteVegetalNonMange;
-    }
-}
 
 // Tests
 public class PopulationVegetaleTest {
@@ -71,6 +30,7 @@ public class PopulationVegetaleTest {
 	// mois 0
 	private MoisEnum mois0 = MoisEnum.Janvier;
 	
+	// population
 	private PopulationVegetale population;
 	
 	@Before
@@ -259,18 +219,16 @@ public class PopulationVegetaleTest {
 	}
 	
 	@Test
-	public void testcalculerNouvelleQuantiteIndividus1() {
+	public void testcalculerNouvelleQuantiteIndividusCroissance() {
 		/* calcul théorique
 		 * 
 		*/
 		
 		// population original = 100 kg
 		// besoinEauParIndividu = 10 L/kg
-		
-		// particularités de la data population végétale
-		data.tauxCroissanceVegetale            = 50.0;  // 50 %
-		data.tauxPerteVegetaleParPenurieEauMax = 50.0;  // 50 %
-		data.populationVegetaleMinimale        = 2.0;   // 2kg
+		// tauxCroissanceVegetale = 50 %
+		// tauxPerteVegetaleParPenurieEauMax = 50 %
+		// populationVegetaleMinimale = 2kg
 		
 		// valeur attendue
 		double expected;
@@ -280,9 +238,12 @@ public class PopulationVegetaleTest {
 		
 		// controle des valeurs de la localisation
 		fausseLocVeg.balanceEau = 1.0;  // balance > 0, donc croissance
+
+		// le calcul doit se baser sur la qtt non mangé
+		fausseLocVeg.quantiteVegetalNonMange = 100.0;  // 100 kg
 		
 		// expected
-		expected = 0; // 
+		expected = 150.0;  
 		
 		// recupère la vraie valeur
 		population.calculerNouvelleQuantiteIndividus();  // calcul
@@ -290,6 +251,161 @@ public class PopulationVegetaleTest {
 		actual = population.quantiteIndividus();		 // recupère
 		
 		// assert
-		assertEquals(expected, actual, 0.0);
+		assertEquals(expected, actual, 0.01);
+		
+		// -------------------------------------------------
+		
+		// le calcul doit se baser sur la qtt non mangé
+		fausseLocVeg.quantiteVegetalNonMange = 200.0;  // 200 kg
+		
+		// expected
+		expected = 300.0; 
+		
+		// recupère la vraie valeur
+		population.calculerNouvelleQuantiteIndividus();  // calcul
+		population.affecterQuantiteIndividus();          // affectation
+		actual = population.quantiteIndividus();		 // recupère
+		
+		// assert
+		assertEquals(expected, actual, 0.01);
 	}
+	
+	@Test
+	public void testcalculerNouvelleQuantiteIndividusDecroissance() {
+		/* calcul théorique
+		 * 
+		*/
+		
+		// population original = 100 kg
+		// besoinEauParIndividu = 10 L/kg
+		// tauxCroissanceVegetale = 50 %
+		// tauxPerteVegetaleParPenurieEauMax = 50 % !!!!!!!!!!
+		// populationVegetaleMinimale = 2kg
+		
+		// valeur attendue
+		double expected;
+		
+		// vraie valeur 
+		double actual;
+		
+		// controle des valeurs de la localisation
+		fausseLocVeg.balanceEau = - 1.0;  // balance < 0, donc decroissance
+
+		// le calcul doit se baser sur la qtt non mangé
+		fausseLocVeg.quantiteVegetalNonMange = 100.0;  // 100 kg
+		
+		// penurie de 10% donc perte de 5% (10% * 50%)
+		fausseLocVeg.penurieEau = 10;  
+		
+		// expected
+		expected = 95.0;  
+		
+		// recupère la vraie valeur
+		population.calculerNouvelleQuantiteIndividus();  // calcul
+		population.affecterQuantiteIndividus();          // affectation
+		actual = population.quantiteIndividus();		 // recupère
+		
+		// assert
+		assertEquals(expected, actual, 0.01);
+		
+		// -------------------------------------------------
+
+		// le calcul doit se baser sur la qtt non mangé
+		fausseLocVeg.quantiteVegetalNonMange = 100.0;  // 100 kg
+		
+		// penurie de 50% donc perte de 25% (50% * 50%)
+		fausseLocVeg.penurieEau = 50;  // 
+		
+		// expected
+		expected = 75.0; 
+		
+		// recupère la vraie valeur
+		population.calculerNouvelleQuantiteIndividus();  // calcul
+		population.affecterQuantiteIndividus();          // affectation
+		actual = population.quantiteIndividus();		 // recupère
+		
+		// assert
+		assertEquals(expected, actual, 0.01);
+
+		// -------------------------------------------------
+
+		// le calcul doit se baser sur la qtt non mangé
+		fausseLocVeg.quantiteVegetalNonMange = 2.0;  // 2 kg (le minimum!!!!)
+		
+		// penurie de 100% donc perte de 50% (100% * 50%)
+		fausseLocVeg.penurieEau = 100;  // 
+		
+		// expected
+		expected = 2.0;  // car ça réduit à 1 mais le minimum est 2
+		
+		// recupère la vraie valeur
+		population.calculerNouvelleQuantiteIndividus();  // calcul
+		population.affecterQuantiteIndividus();          // affectation
+		actual = population.quantiteIndividus();		 // recupère
+		
+		// assert
+		assertEquals(expected, actual, 0.01);
+	}
+	
 }
+
+//Classe qui simule un fonctionnement idéal et controlé de localisation
+class FausseLocalisationVegetale extends LocalisationVegetale {
+	
+	public int index = 0;
+	public double balanceEau = 0;
+	public double penurieEau = 0;
+	public double quantiteVegetalNonMange = 0;
+	
+	// Constructeur
+	public FausseLocalisationVegetale() {
+		// ça ne sert à rien, cest juste pour respecter le super
+		super(new Territoire(new DataTerritoire()));
+	}
+	
+	// index
+	@Override
+ public int indexTerritoire() {
+     return index;
+ }
+
+	// balanceEau
+ // Litre
+	@Override
+ public double balanceEau() {
+     return balanceEau;
+ }
+
+	// penurieEau
+ // en %
+ @Override
+ public double penurieEau() {
+     return penurieEau;
+ }
+
+ // quantiteVegetalNonMange
+ // kg
+ @Override
+ public double quantiteVegetalNonMange() {
+     return quantiteVegetalNonMange;
+ }
+ 
+//en %
+ public double penurieVegetale() {
+     return super.territoire.penurieVegetal();
+ }
+
+ // en %
+ public double penurieAlimentaire() {
+     return (this.penurieVegetale() + super.penurieEau()) / 2;
+ }
+
+ public void migrerAuNord(Population population) {
+     super.territoire.deplacerPopulationAuNord(population);
+ }
+
+ public void migrerAuSud(Population population) {
+     super.territoire.deplacerPopulationAuSud(population);
+ }
+}
+

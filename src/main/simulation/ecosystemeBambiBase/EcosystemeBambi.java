@@ -5,7 +5,9 @@ import java.util.List;
 
 import main.domain.ParametrageSimulation;
 import main.simulation.ecosystemeBambiBase.entites.ControleurMois;
+import main.simulation.ecosystemeBambiBase.entites.Localisation;
 import main.simulation.ecosystemeBambiBase.entites.LocalisationAnimale;
+import main.simulation.ecosystemeBambiBase.entites.LocalisationVegetale;
 import main.simulation.ecosystemeBambiBase.entites.PopulationAnimale;
 import main.simulation.ecosystemeBambiBase.entites.PopulationVegetale;
 import main.simulation.ecosystemeBambiBase.entites.Territoire;
@@ -24,7 +26,7 @@ public final class EcosystemeBambi extends Ecosysteme {
 
     private PopulationAnimale bambis;
 
-    public EcosystemeBambi(ParametrageSimulation parametrageSimulation) {
+    public EcosystemeBambi(ParametrageSimulation parametrageSimulation) throws Exception {
     	super(parametrageSimulation);
     	
     	this.tableauxVariablesSimulation = new TableauxVariablesSimulation(5);
@@ -63,7 +65,9 @@ public final class EcosystemeBambi extends Ecosysteme {
     				
 			this.territoires.add(t);
 			
-			
+			// la création du territoire fait le set de la localisation végétale
+			//LocalisationVegetale localVeg = new LocalisationVegetale(t);
+			//veg.setLocalisation(localVeg);
     	}
     	
     	// Data Bambis
@@ -78,11 +82,12 @@ public final class EcosystemeBambi extends Ecosysteme {
     	
     	// Localisation des bambis
     	int t0 = parametrageSimulation.localisationInitiale();
-    	LocalisationAnimale local = new LocalisationAnimale(this.territoires.get(t0));
+    	Territoire territoireBambi0 = this.territoires.get(t0);
+    	LocalisationAnimale local = new LocalisationAnimale(territoireBambi0);
     	
     	// Bambis
-    	this.bambis = new PopulationAnimale(databambis, local, this.controleurMois);
-    	
+    	this.bambis = new PopulationAnimale(databambis, this.controleurMois);
+    	this.bambis.setLocalisation(local);
     }
 
     public void PrendreUnePhotoDeLaSimulation() {

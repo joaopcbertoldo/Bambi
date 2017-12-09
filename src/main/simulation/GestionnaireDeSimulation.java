@@ -23,7 +23,7 @@ public class GestionnaireDeSimulation {
         return instance;
     }
 
-    public ResultatSimulation Simuler(ParametrageSimulation parametres) {
+    public ResultatSimulation Simuler(ParametrageSimulation parametres) throws Exception {
     	//this.ecosysteme = Ecosysteme.getInstanceEcosysteme(parametres);
     	this.ecosysteme = new EcosystemeBambi(parametres);
     	

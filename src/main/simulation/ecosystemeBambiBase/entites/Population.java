@@ -16,7 +16,7 @@ public abstract class Population {
 
     public void setLocalisation(Localisation localisation) throws Exception {
     	if (this.localisation != null)
-    		throw new Exception();
+    		throw new Exception("Localisation already set.");
     	else
     		this.localisation = localisation;
     }
