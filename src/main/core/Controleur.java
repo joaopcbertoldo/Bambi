@@ -95,7 +95,7 @@ public class Controleur {
     }
     
     public void animation() {
-    	//resultats= gestionnaireFichierResultatSimulation.recupererResultatSimulation();
+    	resultats= gestionnaireFichierResultatSimulation.recupererResultatSimulation();
       	animationControleur = new AnimationControleur(resultats);
      	animationControleur.creerIHM();
     	

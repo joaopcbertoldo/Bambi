@@ -1,8 +1,11 @@
 package main.animation;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import javax.swing.*;
+import java.awt.Font;
+import java.awt.FontMetrics;
 
 public class IhmUnTerritoire extends JPanel {
 		
@@ -73,22 +76,40 @@ public class IhmUnTerritoire extends JPanel {
 		//On trace le territoire
 		g.fillRect(20, yVeg, 80, (yEau-yVeg) + 2*largeur);
 		
-		// On trace les jauges 
-
+		// On calcule la longueur des jauges
 		int longueurEau = (int) ((eau/maxEau)*longueurMax);
 		int longueurVeg = (int) ((veg/maxVeg)*longueurMax);
-		System.out.println("longueurEau : " + longueurEau);
-		//Jauge de vegetaux
+		
+		//On dessine les jauges de végétaux
 		g.setColor(Color.black);
 		g.fillRect(xVeg-epaisseur,yVeg-epaisseur,longueurMax+2*epaisseur,2*epaisseur + largeur);
 		g.setColor(Color.green);
-
-		g.fillRect(xVeg, yVeg,longueurEau, largeur);
-		
+		g.fillRect(xVeg, yVeg,longueurEau, largeur);		
 		g.setColor(Color.black);
 		g.fillRect(xEau-epaisseur,yEau-epaisseur,longueurMax+2*epaisseur,2*epaisseur + largeur);
 		g.setColor(Color.blue);
 		g.fillRect(xEau, yEau,longueurVeg, largeur);
 		
+		//On dessine le texte qui indique les quantités
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 12)); 
+		g.drawString(String.valueOf(popAnimale), 60, 90);
+		g.setColor(Color.white);
+		g.drawString(String.valueOf(eau),xVeg + longueurMax-50, yEau+15);
+		g.drawString(String.valueOf(veg),xVeg + longueurMax-50, yVeg+15);
+		
+	}
+	
+	public void drawCenteredString(Graphics g, String text, Rectangle rect, Font font) {
+	    // Get the FontMetrics
+	    FontMetrics metrics = g.getFontMetrics(font);
+	    // Determine the X coordinate for the text
+	    int x = rect.x + (rect.width - metrics.stringWidth(text)) / 2;
+	    // Determine the Y coordinate for the text (note we add the ascent, as in java 2d 0 is top of the screen)
+	    int y = rect.y + ((rect.height - metrics.getHeight()) / 2) + metrics.getAscent();
+	    // Set the font
+	    g.setFont(font);
+	    // Draw the String
+	    g.drawString(text, x, y);
 	}
 }

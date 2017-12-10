@@ -59,8 +59,8 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
 		barreVitesse.add(pause);
 		barreVitesse.add(go);
 		barreVitesse.add(slideVitesse);
-		barreVitesse.setMinimumSize(new Dimension(200,100));
-		barreVitesse.setPreferredSize(new Dimension(300,100));
+		barreVitesse.setMinimumSize(new Dimension(200,50));
+		barreVitesse.setMaximumSize(new Dimension(200,50));
 		
 		stop.addActionListener(this);
 		pause.addActionListener(this);
@@ -80,8 +80,8 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
 		barreMois.add(slideMois);
 		barreMois.add(suivant);
 		
-		barreMois.setMinimumSize(new Dimension(200,100));
-		barreMois.setPreferredSize(new Dimension(300,100));	
+		barreMois.setMinimumSize(new Dimension(200,50));
+		barreMois.setMaximumSize(new Dimension(200,100));	
 		this.add(barreMois);
 		
 		suivant.addActionListener(this);
@@ -89,8 +89,7 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
 		slideMois.addChangeListener(this);
 		
 		//Mise en forme globale
-		GridLayout g = new GridLayout(7,1);
-		this.setLayout(g);
+		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
 		
 	}
 	

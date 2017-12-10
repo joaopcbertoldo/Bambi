@@ -39,7 +39,7 @@ public class AnimationControleur {
     	double eau;
     	double veg;
     	for(int n=0; n<4; n++) {
-    		for(int j=0; j<dureeSimulation-1; j++) {
+    		for(int j=0; j<dureeSimulation; j++) {
     			eau=resultats.stockEau(n, j);
     			veg=resultats.stockVeg(n, j);
     			
