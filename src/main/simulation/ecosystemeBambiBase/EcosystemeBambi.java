@@ -5,9 +5,7 @@ import java.util.List;
 
 import main.domain.ParametrageSimulation;
 import main.simulation.ecosystemeBambiBase.entites.ControleurMois;
-import main.simulation.ecosystemeBambiBase.entites.Localisation;
 import main.simulation.ecosystemeBambiBase.entites.LocalisationAnimale;
-import main.simulation.ecosystemeBambiBase.entites.LocalisationVegetale;
 import main.simulation.ecosystemeBambiBase.entites.PopulationAnimale;
 import main.simulation.ecosystemeBambiBase.entites.PopulationVegetale;
 import main.simulation.ecosystemeBambiBase.entites.Territoire;
@@ -65,7 +63,7 @@ public final class EcosystemeBambi extends Ecosysteme {
     				
 			this.territoires.add(t);
 			
-			// la création du territoire fait le set de la localisation végétale
+			// la crï¿½ation du territoire fait le set de la localisation vï¿½gï¿½tale
 			//LocalisationVegetale localVeg = new LocalisationVegetale(t);
 			//veg.setLocalisation(localVeg);
     	}

@@ -38,7 +38,12 @@ public class PopulationAnimale extends Population {
     // en %
     public double tauxNaissance() {
         double tauxMax = this.dataPopulationAnimale.tauxNaissanceMax;
-        double res = (0.1 / this.penurieEauCumulee()) * (0.1 / penurieVegetaleCumulee());
+        
+        // pour compenser le %
+        double penurieEauCumu = this.penurieEauCumulee() / 100;
+        double penurieVegCumu = this.penurieVegetaleCumulee() / 100;
+        
+        double res = (0.1 / penurieEauCumu) * (0.1 / penurieVegCumu);
         res = res > 1 ? 1 : res;
         res = res *  tauxMax;
         return res;
@@ -46,11 +51,18 @@ public class PopulationAnimale extends Population {
 
     // en %
     public double tauxMortalite() {
-        double tauxPenMax = this.dataPopulationAnimale.tauxMortaliteParPenurieAlimentaireMax;
+        // récolte des valeurs 
+    	double tauxPenMax = this.dataPopulationAnimale.tauxMortaliteParPenurieAlimentaireMax;
         double tauxPred   = this.dataPopulationAnimale.tauxMortalitePredateur;
-        double penAlim    = this.localisationAnimale().penurieAlimentaire();
+        double penAlim    = this.localisationAnimale().penurieAlimentaire() / 100;
         
+        // calcul
         double res = tauxPred + tauxPenMax * penAlim;
+        
+        // saturation à 100%
+        if (res > 100.0)
+        	res = 100.0;
+        
         return res;
     }
 
