@@ -41,7 +41,7 @@ public class IhmUnTerritoire extends JPanel {
 	
 	
 	public IhmUnTerritoire(double maxEau, double maxVeg) {
-		
+		this.setLayout(null);
 		this.maxEau = maxEau;
 		this.maxVeg = maxVeg;
 		
@@ -50,6 +50,7 @@ public class IhmUnTerritoire extends JPanel {
 		
 		labQEau = new JLabel();
 		this.add(labQEau);
+		labQEau.setLocation(500, 50);
 		
 		labLegendeVeg = new JLabel("Quantités végétaux : ");
 		this.add(labLegendeVeg);
