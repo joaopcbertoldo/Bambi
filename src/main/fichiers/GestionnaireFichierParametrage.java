@@ -127,9 +127,4 @@ public class GestionnaireFichierParametrage {
 
    
 
-    public static void main (String[] args) throws Exception{
-    	GestionnaireFichierParametrage g = new GestionnaireFichierParametrage();
-    	g.chargerPluviometrie("C:\\Repository\\Bambi\\joao.txt");
-    	System.out.println(g.parametres.pluviometrie);
-    }
 }

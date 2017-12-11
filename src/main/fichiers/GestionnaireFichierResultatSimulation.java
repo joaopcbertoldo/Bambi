@@ -16,11 +16,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
+import main.domain.MoisEnum;
 import main.domain.ResultatSimulation;
+import main.simulation.ecosystemeBambiBase.entites.ControleurMois;
 
 public class GestionnaireFichierResultatSimulation {
     private static Resultat resultats; // Le gestionnaire a pour un atribut un objet de type Resultat dont les méthodes permettent d'avoir accès aux résultats voulus
 
+    
+    
     public  boolean chargerResultatSimulation(final String address) throws Exception {
     	// permet de créer un objet de type résultat pour lancer une visualisation à partir de résultats précedement enregistrés
     	resultats= new Resultat();
@@ -108,15 +112,5 @@ public class GestionnaireFichierResultatSimulation {
    
     
 
-    public static void main (String[] args) throws Exception{
-    	GestionnaireFichierResultatSimulation g = new GestionnaireFichierResultatSimulation();
-    	g.chargerResultatSimulation("C:\\Repository\\Bambi\\florentin.txt");
-    	System.out.println(resultats.popAnimale); 
-    	System.out.println(resultats.stockVeg);
-    	System.out.println(resultats.stockEau); 
-    	ResultatSimulation r= g.recupererResultatSimulation();
-    	System.out.println(r.NbdePas());
-    	g.sauvegarderResultatSimulation(r,"C:\\Repository\\Bambi\\parametres.txt" );
-    	
-    }
+   
 }

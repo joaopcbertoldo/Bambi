@@ -13,8 +13,8 @@ import main.fichiers.Parametres;
 
 public class GestionnaireFichierParametrageTest {
 	
-	private String addresseNonClimatiques = "C:\\Repository\\Bambi\\Clara.txt";
-	private String addressePluviometrie = "C:\\Repository\\Bambi\\joao.txt";
+	private String addresseNonClimatiques = "C:\\Repository\\Bambi\\exempleNonClim.txt";
+	private String addressePluviometrie = "C:\\Repository\\Bambi\\exemplePluie.txt";
 	private GestionnaireFichierParametrage gestionnaire = new GestionnaireFichierParametrage();
 	private GestionnaireFichierParametrage gestionnaire2 = new GestionnaireFichierParametrage();
 	private GestionnaireFichierParametrage gestionnaire3 = new GestionnaireFichierParametrage();
