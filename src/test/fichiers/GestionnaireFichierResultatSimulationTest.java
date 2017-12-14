@@ -117,7 +117,7 @@ public class GestionnaireFichierResultatSimulationTest {
 		 resu= new Resultat(4,popA, stockEa, stockVe);
 		}
 	
-	
+	// On compare si les valeurs stockées sont bien celles voulues 
 	
 	public void chargerResultatsSimulationTest() throws Exception {
 		gestionnaire.chargerResultatSimulation(adresseResultats);
@@ -125,7 +125,7 @@ public class GestionnaireFichierResultatSimulationTest {
 		assertEquals(r, resu);
 		
 	}
-	
+	// on test la fonction de sauvegarde grâce à la fonction de chargement qu'on a testé avant
 	public void sauvegarderResultatSimulationTest( ) throws Exception{
 		gestionnaire1.sauvegarderResultatSimulation(resu, adresseSauv); 
 		gestionnaire1.chargerResultatSimulation(adresseSauv);

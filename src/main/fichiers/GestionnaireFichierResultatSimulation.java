@@ -8,25 +8,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
-
-import main.domain.MoisEnum;
 import main.domain.ResultatSimulation;
-import main.simulation.ecosystemeBambiBase.entites.ControleurMois;
 
 public class GestionnaireFichierResultatSimulation {
-    private static Resultat resultats; // Le gestionnaire a pour un atribut un objet de type Resultat dont les méthodes permettent d'avoir accès aux résultats voulus
+    private static Resultat resultats; // Le gestionnaire a pour un atribut un objet de type Resultat dont les méthodes permettent d'avoir accès aux résultats de simulation pour la visualisation
 
     
     
     public  boolean chargerResultatSimulation(final String address) throws Exception {
-    	// permet de créer un objet de type résultat pour lancer une visualisation à partir de résultats précedement enregistrés
+    	// permet de créer un objet de type résultat à partir d'un fichier txt de résultats pour lancer une visualisation à partir de résultats précedement enregistrés
+    	// lit le fichier txt et met dans les attributs de resultats les données correspondantes
     	resultats= new Resultat();
     	try{
     	InputStream resultatsSimu= new FileInputStream(address);
@@ -77,9 +72,6 @@ public class GestionnaireFichierResultatSimulation {
         	auto.write(Integer.toString(r.NbdePas()));
         	auto.newLine();
       
-       
-         
-        	
         	for(int i = 0; i < r.NbdePas(); i++){
         	auto.write(Integer.toString(i+1));
         	auto.write(",");
@@ -103,11 +95,11 @@ public class GestionnaireFichierResultatSimulation {
         	aut.close();
         	return true; 
         }
-        	catch(Exception e){
-        		System.out.println("Erreur");
-        		return false;
-        	}
-        }
+		catch (Exception e) {
+			System.out.println("Erreur");
+			return false;
+		}
+	}
 
    
     

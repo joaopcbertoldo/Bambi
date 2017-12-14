@@ -85,12 +85,7 @@ public class GestionnaireFichierParametrageTest {
 		assertEquals("", message);
 	}
 
-
-	@Test
-	public void testRecupererParametrageSimulation() throws Exception {
-		
-	}
-
+// Pour les tests suivants on compare les valeurs attendues de notre fichier avec celles qui sont effectvement stockées
 	@Test
 	public void testChargerParametrageSimulationNonClimatique() throws Exception {
 		

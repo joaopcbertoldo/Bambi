@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import main.domain.ResultatSimulation;
 
-public class Resultat implements ResultatSimulation {
+public class Resultat implements ResultatSimulation { // les attributs de Resultat permettent de stocker les données résultant de la simulation et d'y avoir facilement accès 
 	protected int NbdePas ; 
 	protected ArrayList<ArrayList<Integer>> popAnimale; 
 	protected ArrayList<ArrayList<Double>> stockEau; 
@@ -33,7 +33,6 @@ public class Resultat implements ResultatSimulation {
 		return popAnimale.get(territoire);
 	}
     public int popAnimale( int n, int territoire ) {
-        // TODO Auto-generated return
         return (popAnimale.get(territoire)).get(n);
     }
 
@@ -41,7 +40,6 @@ public class Resultat implements ResultatSimulation {
     	return stockEau.get(territoire);
     }
     public double stockEau( int territoire, int n) {
-        // TODO Auto-generated return
      return (stockEau.get(territoire)).get(n);
     }
     
@@ -50,7 +48,6 @@ public class Resultat implements ResultatSimulation {
     }
 
     public double stockVeg(final int territoire, final int n) {
-        // TODO Auto-generated return
         return (stockVeg.get(territoire)).get(n);
     }
     
