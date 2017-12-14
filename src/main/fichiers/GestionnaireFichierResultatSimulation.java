@@ -51,8 +51,7 @@ public class GestionnaireFichierResultatSimulation {
             return (String line) ->  { List<String> l = Arrays.asList(line.split(","));    
             		for (int r=1; r<6; r++) ((resultats.popAnimale).get(r-1)).add(Integer.parseInt(l.get(r)));  																																																																																																																																																																																																																																																																																																																																																													      	 
        				for (int u=6; u<11; u++) ((resultats.stockEau).get(u-6)).add(Double.parseDouble(l.get(u)));  																																																																																																																																																																																												
-       				for (int m=11; m<16; m++) ((resultats.stockVeg).get(m-11)).add(Double.parseDouble(l.get(m)));} ; 
-            	 
+       				for (int m=11; m<16; m++) ((resultats.stockVeg).get(m-11)).add(Double.parseDouble(l.get(m)));} ;  
            			}
         
     public ResultatSimulation recupererResultatSimulation() {
@@ -90,6 +89,7 @@ public class GestionnaireFichierResultatSimulation {
         		auto.newLine();
         	}
         		
+        	auto.write(r.mois);
         	auto.close();
         	auteur.close(); 
         	aut.close();

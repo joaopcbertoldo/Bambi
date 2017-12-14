@@ -2,10 +2,12 @@ package main.fichiers;
 
 import java.util.ArrayList;
 
+import main.domain.MoisEnum;
 import main.domain.ResultatSimulation;
 
 public class Resultat implements ResultatSimulation { // les attributs de Resultat permettent de stocker les données résultant de la simulation et d'y avoir facilement accès 
 	protected int NbdePas ; 
+	protected MoisEnum mois; 
 	protected ArrayList<ArrayList<Integer>> popAnimale; 
 	protected ArrayList<ArrayList<Double>> stockEau; 
 	protected ArrayList<ArrayList<Double>> stockVeg; 
@@ -14,6 +16,7 @@ public class Resultat implements ResultatSimulation { // les attributs de Result
 		popAnimale= new ArrayList<>(); 
 		stockEau= new ArrayList<>(); 
 		stockVeg= new ArrayList<>();
+	
 		for (int i=0; i<5; i++){
 			popAnimale.add(new ArrayList<>()); 
 			stockEau.add(new ArrayList<>());
@@ -27,6 +30,11 @@ public class Resultat implements ResultatSimulation { // les attributs de Result
 		stockVeg= stockVe;
 		NbdePas= n; 
 		
+		
+	}
+	
+	public MoisEnum mois0(){
+		return mois ;
 	}
 	
 	public ArrayList<Integer> popAnimale(int territoire){
