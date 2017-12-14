@@ -1,5 +1,6 @@
 package main.animation;
 
+import java.awt.event.WindowEvent;
 import java.util.concurrent.TimeUnit;
 
 import main.core.Controleur;
@@ -24,8 +25,7 @@ public class AnimationControleur {
     	ctrlT.start();
     	
     	resultats = resultatSimulation;
-    	dureeSimulation=resultats.NbdePas();
-    	
+    	dureeSimulation=resultats.NbdePas();    	
     	
     	System.out.println("duree de la simulation : " + dureeSimulation);
     	
@@ -55,11 +55,12 @@ public class AnimationControleur {
     	animationIHM = new AnimationIHM(this, maxEau, maxVeg);
     	animationIHM.setSize(500,900);
     	animationIHM.setVisible(true);
+    	actualiserDonneesIHM();
     }
+    
     public void arreter() {
     	enMarche=false;
     	setMois(0);
-    	
     }
 
     public void pause() {
@@ -111,7 +112,12 @@ public class AnimationControleur {
     				resultats.popAnimale(moisActuel, i), 
     				i);    		
     	}
+    	animationIHM.actualiserLabMois(moisActuel);
     	
+    }
+    
+    public void quitterAnimation() {
+    	ctrlT.setStop(true);
     }
     
     class ctrlThread extends Thread {
@@ -124,21 +130,17 @@ public class AnimationControleur {
     			
     			while(stop == false) {
 		   		 
-        		//	System.out.println(enMarche);
         			while(enMarche) {
         	    		try {
-        	    			System.out.println("vitesse : " + vitesse);
-        					TimeUnit.MILLISECONDS.sleep(1/vitesse*1000);
-        					System.out.print("attend 1/v");
+        	    			//attente inversement proportionnelle à la vitesse
+        					TimeUnit.MILLISECONDS.sleep((6000/vitesse));
         				} catch (InterruptedException e) {
         					// TODO Auto-generated catch block
         					e.printStackTrace();
         				}
         	    		
-        	    		System.out.println("syst fonctionne");
         	    		actualiserDonneesIHM();
         	    		moisSuivant();
-        	    		System.out.println("mois actuel : " + moisActuel);
         	    		}// fin du while
         			try {
     					TimeUnit.SECONDS.sleep(1);
@@ -147,10 +149,7 @@ public class AnimationControleur {
     					e.printStackTrace();
     				}
         	    		
-        			}  //fin de run
-    			
-    			
-    		
+        			}  //fin de run   			
     		}
     }
     
@@ -159,6 +158,9 @@ public class AnimationControleur {
     	ac.creerIHM();
     	
     }
+    
+
+	
     
             
 

@@ -57,8 +57,8 @@ public class Controleur {
     	
     }
     
+    //Lance la simulation
     public void lancerSimulation() {
-    	System.out.print("0e ligne bien executee");
     	try {
     		ParametrageSimulation p = gestionnaireFichierParametrage.recupererParametrageSimulation();
     		System.out.print("premiere ligne bien executee");
@@ -71,6 +71,7 @@ public class Controleur {
 		}
     }
     
+    //Sauvegarde les résultats dans un fichier à l'adresse donnée    
     public void sauvegarderCsv(String adresse) {
     	//resultats = gestionnaireFichierResultatSimulation.recupererResultatSimulation();
     	try {
@@ -82,10 +83,12 @@ public class Controleur {
     	
     }
     
+    //Permet de charger un fichier de résultat
     public void chargerResultat(File f) {
     	String adresse = f.getAbsolutePath();
     	try {
 			gestionnaireFichierResultatSimulation.chargerResultatSimulation(adresse);
+			resultats = gestionnaireFichierResultatSimulation.recupererResultatSimulation();
 			System.out.println("Resultats chargés");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -94,13 +97,14 @@ public class Controleur {
     	
     }
     
+    //Lance l'animation
     public void animation() {
-    	resultats= gestionnaireFichierResultatSimulation.recupererResultatSimulation();
-      	animationControleur = new AnimationControleur(resultats);
-     	animationControleur.creerIHM();
-    	
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         }
+    	if(resultats!=null) {
+          	animationControleur = new AnimationControleur(resultats);
+         	animationControleur.creerIHM();
+    	}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
     
+    //C'est le main principal
     public static void main(String[] args) {
     	Controleur control = new Controleur();
     	control.creerMenuIHM();

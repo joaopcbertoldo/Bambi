@@ -8,7 +8,7 @@ import javax.swing.event.*;
 import java.util.List;
 import java.util.ArrayList;
 
-public class AnimationIHM extends JFrame implements ActionListener, ChangeListener {
+public class AnimationIHM extends JFrame implements ActionListener, ChangeListener, WindowListener{
     
 	/**
 	 * 
@@ -25,42 +25,42 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
 	private JButton suivant;
 	private JSlider slideMois;	
 	private JPanel barreMois;
+	private JLabel labMoisActuel;
 	
 	private List<IhmUnTerritoire> ihmTerritoires;
 	
 	private AnimationControleur ctrl;
 	
-	//Constructeur
 	public AnimationIHM(AnimationControleur ctrl, double maxEau, double maxVeg) {
 		
 		super("Visualiseur de résultats");	
 		
 		this.ctrl=ctrl;	
-		ihmTerritoires = new ArrayList();
+		ihmTerritoires = new ArrayList<IhmUnTerritoire>();
 		for(int i=0 ; i<=4; i++) {
 			IhmUnTerritoire t = new IhmUnTerritoire(maxEau, maxVeg);
 			t.setMinimumSize(new Dimension(400,80));
 			ihmTerritoires.add(t);			
 		}
 		
-		//ajout des territoires
+		//Ajout des territoires
 		for(int i=0 ; i<=4; i++) {
 			this.add(ihmTerritoires.get(i));
 		}
 		
-		//création de la barre d'outils pour la vitesse
+		//Création de la barre d'outils pour la vitesse
 		stop = new JButton("stop");
 		pause = new JButton("pause");
 		go = new JButton("go");
-		slideVitesse = new JSlider(1,100);
+		slideVitesse = new JSlider(1,10);
 		slideVitesse.setValue(1);
 		barreVitesse = new JPanel();
 		barreVitesse.add(stop);
 		barreVitesse.add(pause);
 		barreVitesse.add(go);
 		barreVitesse.add(slideVitesse);
-		barreVitesse.setMinimumSize(new Dimension(200,50));
-		barreVitesse.setMaximumSize(new Dimension(200,50));
+	//	barreVitesse.setMinimumSize(new Dimension(200,50));
+		barreVitesse.setMaximumSize(new Dimension(500,50));
 		
 		stop.addActionListener(this);
 		pause.addActionListener(this);
@@ -69,7 +69,7 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
 		
 		this.add(barreVitesse);
 		
-		//création du JPanel de sélecteur du mois
+		//Création du JPanel de sélecteur du mois
 		precedent = new JButton("P");
 		slideMois = new JSlider(0,ctrl.getDureeSimulation()-1); //durée à changer
 		slideMois.setValue(0);
@@ -80,16 +80,21 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
 		barreMois.add(slideMois);
 		barreMois.add(suivant);
 		
-		barreMois.setMinimumSize(new Dimension(200,50));
-		barreMois.setMaximumSize(new Dimension(200,100));	
+	//	barreMois.setMinimumSize(new Dimension(200,50));
+		barreMois.setMaximumSize(new Dimension(500,100));	
 		this.add(barreMois);
+		
+		labMoisActuel = new JLabel("Mois 1 de la simulation");
+		this.add(labMoisActuel);
+		labMoisActuel.setAlignmentX(CENTER_ALIGNMENT);
 		
 		suivant.addActionListener(this);
 		precedent.addActionListener(this);
 		slideMois.addChangeListener(this);
 		
 		//Mise en forme globale
-		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
+		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+		this.setVisible(true);
 		
 	}
 	
@@ -108,7 +113,10 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
 	public void actualiserSliderVitesse(int v) {
 		slideVitesse.setValue(v);
 	}
-
+	
+	public void actualiserLabMois(int n) {
+		labMoisActuel.setText("Mois " + (n+1) + " de la simulation");
+	}
     
     public void actionPerformed(ActionEvent evt) {
     	
@@ -151,6 +159,18 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
     	
     }
     
+    //Permet de gérer la fermeture du thread de vitesse avant de quitter la visualisation
+	public void windowClosing(WindowEvent evt) {
+		ctrl.quitterAnimation();
+		System.exit(0);
+	}
+	
+	public void windowOpened(WindowEvent evt) {}
+	public void windowClosed(WindowEvent evt) {}
+	public void windowIconified(WindowEvent evt) {}
+    public void windowDeiconified(WindowEvent evt) {}
+	public void windowActivated(WindowEvent evt) {}
+	public void windowDeactivated(WindowEvent evt) {}
 
 
 }

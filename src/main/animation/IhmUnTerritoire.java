@@ -11,6 +11,7 @@ public class IhmUnTerritoire extends JPanel {
 		
 	private double eau;
 	private double veg;
+	private int popAnimale;
 	
 	private double maxEau;
 	private double maxVeg;
@@ -24,45 +25,24 @@ public class IhmUnTerritoire extends JPanel {
 	int xEau = 120;
 	int yEau = 100;
 	
-	private JLabel labLegendeEau;
-	private JLabel labQEau;
-	private JLabel labLegendeVeg;
-	private JLabel labQVeg;
 	
-	private int popAnimale;
+	public IhmUnTerritoire(double maxEau, double maxVeg) {
+		this.setLayout(null);
+		this.maxEau = maxEau;
+		this.maxVeg = maxVeg;	
+		
+	}
 	
 	public void setEauEtVegEtPop(final double eau, final double veg, final int popAnimale) {
 		this.eau=eau;
 		this.veg=veg;
 		this.popAnimale=popAnimale;
 		
-		labQEau.setText(String.valueOf(eau));
-		labQVeg.setText(String.valueOf(veg));
 		repaint();
 
 	}
 	
-	
-	public IhmUnTerritoire(double maxEau, double maxVeg) {
-		this.setLayout(null);
-		this.maxEau = maxEau;
-		this.maxVeg = maxVeg;
-		
-		labLegendeEau = new JLabel("Quantité eau : ");
-		this.add(labLegendeEau);
-		
-		labQEau = new JLabel();
-		this.add(labQEau);
-		labQEau.setLocation(500, 50);
-		
-		labLegendeVeg = new JLabel("Quantités végétaux : ");
-		this.add(labLegendeVeg);
-		
-		labQVeg = new JLabel();
-		this.add(labQVeg);		
-		
-	}
-	
+	//Méthode de dessin appelée à chaque actualisation des valeurs
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
@@ -74,7 +54,7 @@ public class IhmUnTerritoire extends JPanel {
 		else g.setColor(Color.blue);
 		
 		//On trace le territoire
-		g.fillRect(20, yVeg, 80, (yEau-yVeg) + 2*largeur);
+		g.fillRect(20, yVeg-epaisseur, 80, (yEau-yVeg) + largeur);
 		
 		// On calcule la longueur des jauges
 		int longueurEau = (int) ((eau/maxEau)*longueurMax);
@@ -95,21 +75,12 @@ public class IhmUnTerritoire extends JPanel {
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 12)); 
 		g.drawString(String.valueOf(popAnimale), 60, 90);
 		g.setColor(Color.white);
-		g.drawString(String.valueOf(eau),xVeg + longueurMax-50, yEau+15);
-		g.drawString(String.valueOf(veg),xVeg + longueurMax-50, yVeg+15);
 		
-	}
-	
-	public void drawCenteredString(Graphics g, String text, Rectangle rect, Font font) {
-	    // Get the FontMetrics
-	    FontMetrics metrics = g.getFontMetrics(font);
-	    // Determine the X coordinate for the text
-	    int x = rect.x + (rect.width - metrics.stringWidth(text)) / 2;
-	    // Determine the Y coordinate for the text (note we add the ascent, as in java 2d 0 is top of the screen)
-	    int y = rect.y + ((rect.height - metrics.getHeight()) / 2) + metrics.getAscent();
-	    // Set the font
-	    g.setFont(font);
-	    // Draw the String
-	    g.drawString(text, x, y);
+		//On affiche dans les barres la quantité numérique correspondante
+		double eauArrondi = ((int) eau*100)/100;
+		double vegArrondi = ((int) veg*100)/100;
+		g.drawString(String.valueOf(eauArrondi),xVeg + longueurMax-120, yEau+15);
+		g.drawString(String.valueOf(vegArrondi),xVeg + longueurMax-120, yVeg+15);
+		
 	}
 }
