@@ -12,6 +12,8 @@ import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+
+import main.domain.MoisEnum;
 import main.domain.ResultatSimulation;
 
 public class GestionnaireFichierResultatSimulation {
@@ -34,10 +36,12 @@ public class GestionnaireFichierResultatSimulation {
     		Consumer<String> fun = getFunc(i);
     		fun.accept(lect.readLine());
     	}
-    		resultatsSimu.close();
-    		lecteur.close();
-    		lect.close(); 
-    		return false; 
+    	String mois=(lect.readLine());
+    	resultats.mois0= MoisEnum.valueOf(mois);
+    	resultatsSimu.close();
+    	lecteur.close();
+    	lect.close(); 
+    	return false; 
     }
     	catch(Exception e){
     		System.out.println("Erreur");
@@ -88,13 +92,13 @@ public class GestionnaireFichierResultatSimulation {
         		}
         		auto.newLine();
         	}
-        		
-        	auto.write(r.mois);
+        	System.out.println(r.mois0());
+        	auto.write(r.mois0().toString());
         	auto.close();
         	auteur.close(); 
         	aut.close();
         	return true; 
-        }
+       }
 		catch (Exception e) {
 			System.out.println("Erreur");
 			return false;
@@ -102,7 +106,6 @@ public class GestionnaireFichierResultatSimulation {
 	}
 
    
-    
 
    
 }

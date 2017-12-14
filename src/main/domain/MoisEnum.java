@@ -52,4 +52,30 @@ public enum MoisEnum {
 	public static void test(String[] args) {
 	}
 	
+	/*public static MoisEnum fromString(String s ){
+		switch(s) {
+		case "Janvier":   return Janvier;
+			
+		case "Fevrier":   return Fevrier;
+			
+		case "Mars":      return Mars;
+			
+		case "Avril":     return Avril;
+			
+		case "Mai":       return Mai;
+			
+		case "Juin":      return Juin;
+			
+		case "Juillet":   return Juillet;
+			
+		case "Aout":      return Aout;
+			
+		case "Septembre": return Septembre;
+			
+		case "Octobre":   return Octobre;
+			
+		case "Novembre":  return Novembre;
+			
+		case" Decembre":  return Decembre;
+	}*/
 }

@@ -7,7 +7,7 @@ import main.domain.ResultatSimulation;
 
 public class Resultat implements ResultatSimulation { // les attributs de Resultat permettent de stocker les données résultant de la simulation et d'y avoir facilement accès 
 	protected int NbdePas ; 
-	protected MoisEnum mois; 
+	protected MoisEnum mois0; 
 	protected ArrayList<ArrayList<Integer>> popAnimale; 
 	protected ArrayList<ArrayList<Double>> stockEau; 
 	protected ArrayList<ArrayList<Double>> stockVeg; 
@@ -24,17 +24,18 @@ public class Resultat implements ResultatSimulation { // les attributs de Result
 		}
 	}
 	
-	public Resultat (int n ,ArrayList<ArrayList<Integer>> popA, ArrayList<ArrayList<Double>> stockEa, ArrayList<ArrayList<Double>> stockVe){
+	public Resultat (int n ,ArrayList<ArrayList<Integer>> popA, ArrayList<ArrayList<Double>> stockEa, ArrayList<ArrayList<Double>> stockVe, String s){//constructeur utile pour les tests
 		popAnimale= popA;
 		stockEau= stockEa; 
 		stockVeg= stockVe;
 		NbdePas= n; 
+		mois0= MoisEnum.valueOf(s); 
 		
 		
 	}
 	
 	public MoisEnum mois0(){
-		return mois ;
+		return mois0 ;
 	}
 	
 	public ArrayList<Integer> popAnimale(int territoire){

@@ -2,7 +2,10 @@ package main.domain;
 
 
 public interface ResultatSimulation {
-    int popAnimale(final int n, final int territoire);
+  
+	MoisEnum mois0(); 
+
+	int popAnimale(final int n, final int territoire);
 
     double stockEau(final int territoire, final int n);
 
@@ -10,5 +13,5 @@ public interface ResultatSimulation {
 
     int NbdePas(); 
     
-    MoisEnum mois0();
+ 
 }

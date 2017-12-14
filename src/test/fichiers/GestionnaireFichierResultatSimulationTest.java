@@ -114,7 +114,8 @@ public class GestionnaireFichierResultatSimulationTest {
 		stockVe.add(stockVeg2);
 		stockVe.add(stockVeg3);
 		stockVe.add(stockVeg4);
-		 resu= new Resultat(4,popA, stockEa, stockVe);
+		String mois="Janvier";
+		 resu= new Resultat(4,popA, stockEa, stockVe, mois);
 		}
 	
 	// On compare si les valeurs stockées sont bien celles voulues 
