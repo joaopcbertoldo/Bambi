@@ -12,6 +12,7 @@ import java.util.function.Consumer;
 
 import main.domain.MoisEnum;
 import main.domain.ParametrageSimulation;
+import main.domain.ResultatSimulation;
 
 public class GestionnaireFichierParametrage {
 	private Parametres parametres; // attribut de type Parametres qui permet de
@@ -36,11 +37,13 @@ public class GestionnaireFichierParametrage {
 	}
 
 	public boolean chargerParametrageSimulationNonClimatique(final String address) throws Exception { // lit le fichier de parametres non climatiques et assigne aux attributs de parametres les valeurs correspondantes
-
+		int nb=0;
 		if (parametres == null) {
 			parametres = new Parametres();
 		}
-
+		else {
+			nb = parametres.nombreDePas();
+		}
 		try {
 			InputStream paramNonClim = new FileInputStream(address);
 			InputStreamReader lect = new InputStreamReader(paramNonClim);
@@ -54,6 +57,9 @@ public class GestionnaireFichierParametrage {
 			lecteur.close();
 			lect.close();
 			paramNonClim.close();
+			if ((nb!= 0)& (nb !=parametres.nombreDePas())){
+				parametres.surfaceTerritoire.get(-1);
+			}
 			return true;
 		} catch (Exception e) {
 			System.out.println("Erreur");
@@ -121,11 +127,13 @@ public class GestionnaireFichierParametrage {
 	}
 
 	public boolean chargerPluviometrie(final String address) throws IOException {// lit le fichier de pluviométrie et remplit la liste de pliuviométrie de parametres.
-			
+		int n=0;
 		if (parametres == null) {
 			parametres = new Parametres();
 		}
-
+		else{
+			n=parametres.nombreDePas;
+		}
 		try {
 			parametres.pluviometrie = new ArrayList<ArrayList<Double>>();
 			for (int g = 0; g < 5; g++) {
@@ -135,6 +143,13 @@ public class GestionnaireFichierParametrage {
 			InputStream pluviometrie = new FileInputStream(address);
 			InputStreamReader lecteur = new InputStreamReader(pluviometrie);
 			BufferedReader lecteur1 = new BufferedReader(lecteur);
+			
+			parametres.nombreDePas= Integer.parseInt(lecteur1.readLine());
+			
+			if( (n!= 0)& (n!= parametres.nombreDePas)){
+				parametres.pluviometrie.get(-1);
+			}
+			
 			for (int i = 0; i < 5; i++) {
 				Consumer<String> fun = getFunc2(i);
 				fun.accept(lecteur1.readLine());
@@ -142,6 +157,8 @@ public class GestionnaireFichierParametrage {
 			lecteur.close();
 			lecteur1.close();
 			pluviometrie.close();
+			
+			
 
 			return true;
 
@@ -159,5 +176,5 @@ public class GestionnaireFichierParametrage {
 			l.forEach(j -> parametres.pluviometrie.get(i).add(Double.parseDouble(j)));
 		};
 	}
-
+	
 }
