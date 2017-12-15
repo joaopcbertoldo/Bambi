@@ -4,7 +4,6 @@ import java.lang.reflect.*;
 
 import main.domain.ParametrageSimulation;
 import main.domain.ResultatSimulation;
-import main.simulation.ecosystemeBambiBase.TableauxVariablesSimulation;
 
 public abstract class Ecosysteme {
     private int nombreDePasExecutes = 0;

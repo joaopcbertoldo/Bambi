@@ -1,29 +1,52 @@
 package main.simulation.ecosystemeBambiBase.entitesData;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import main.simulation.ecosystemeBambiBase.enums.StatusMigrationEnum;
 
-// Quantite individu : UP = nombre d'individu
-// Besoin eau par individu : Litre / individu / mois
-// Besoin vegetal par individu : kg / individu / mois
+/**
+ * Spécification de la data de population pour les animaux (sousclasse de DataPopulation).
+ * 
+ * Quantite individu : UP = nombre d'individu
+ * Besoin eau par individu : Litre / individu / mois
+ * Besoin vegetal par individu : kg / individu / mois
+ * 
+ * @author João Paulo
+ */
 public class DataPopulationAnimale extends DataPopulation {
-	// en %
+	
+	/**
+	 * Taux de mortalité par prédateur.
+	 */
     public double tauxMortalitePredateur;
+    
 
-    // en %
+    /**
+     * Taux de mortalité par pénurie alimentaire maximale.
+     */
     public double tauxMortaliteParPenurieAlimentaireMax;
 
-    // en %
+    
+    /**
+     * Taux de naissance maximale d'une population animale pendant un mois.
+     */
     public double tauxNaissanceMax;
 
-    // liste en %
+    
+    /**
+     * Historique de pénurie en nourriture. Liste de %.
+     */
     public List<Double> historiquePenurieEau = new ArrayList<>();
 
-    // liste en %
+    
+    /**
+     * Historique de pénurie en nourriture. Liste de %.
+     */
     public List<Double> historiquePenurieNourriture = new ArrayList<>();
-
+    
+    /**
+     * Status de migration des animaux.
+     */
     public StatusMigrationEnum statusMigration;
 
 }

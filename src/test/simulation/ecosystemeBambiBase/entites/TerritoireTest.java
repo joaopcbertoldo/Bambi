@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.simulation.ecosystemeBambiBase.entites.Territoire;
+import main.simulation.ecosystemeBambiBase.entites.*;
 
 public class TerritoireTest {
 

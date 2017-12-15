@@ -1,7 +1,13 @@
 package main.domain;
 
-
+/**
+ * Enum�ration des mois en fran�ais.
+ * 
+ * @author Jo�o Paulo
+ *
+ */
 public enum MoisEnum {
+	/** Valeurs en s�quence. */
     Janvier,
     Fevrier,
     Mars,
@@ -15,7 +21,14 @@ public enum MoisEnum {
     Novembre,
     Decembre;
 	
+	
+	/**
+	 * M�thode qui donne le mois suivant en terme del'�num�ration.
+	 * @return Enum du mois suivant.
+	 */
 	public MoisEnum next() {
+		
+		// switch de la valeur m�me
 		switch(this) {
 			case Janvier:   return Fevrier;
 				
@@ -45,37 +58,13 @@ public enum MoisEnum {
 		}
 	}
 	
-	public static MoisEnum str2mois (String str){
+	
+	/**
+	 * Caster de string vers valeur de l'�numeration.
+	 * @param str Nom du mois en String (premi�re lettre en majuscule)
+	 * @return Mois en objet d'�num�ration.
+	 */
+	public static MoisEnum str2mois(String str) {
 		return MoisEnum.valueOf(str);
 	}
-	
-	public static void test(String[] args) {
-	}
-	
-	/*public static MoisEnum fromString(String s ){
-		switch(s) {
-		case "Janvier":   return Janvier;
-			
-		case "Fevrier":   return Fevrier;
-			
-		case "Mars":      return Mars;
-			
-		case "Avril":     return Avril;
-			
-		case "Mai":       return Mai;
-			
-		case "Juin":      return Juin;
-			
-		case "Juillet":   return Juillet;
-			
-		case "Aout":      return Aout;
-			
-		case "Septembre": return Septembre;
-			
-		case "Octobre":   return Octobre;
-			
-		case "Novembre":  return Novembre;
-			
-		case" Decembre":  return Decembre;
-	}*/
 }

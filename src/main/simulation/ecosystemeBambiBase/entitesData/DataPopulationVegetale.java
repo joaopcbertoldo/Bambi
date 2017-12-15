@@ -1,16 +1,39 @@
 package main.simulation.ecosystemeBambiBase.entitesData;
 
-// Quantite individu : UP = kg
-// Besoin eau par individu : Litre / kg / mois
-// Besoin vegetal par individu : kg / kg / mois = 0
+/**
+ * Spécification de la data de population pour les végétaux (sousclasse de DataPopulation).
+ * 
+ * Quantite individu : UP = kg
+ * Besoin eau par individu : Litre / kg / mois
+ * Besoin vegetal par individu :-
+ * 
+ * @author João Paulo
+ */
 public class DataPopulationVegetale extends DataPopulation {
 	
-	// en %
+	/**
+	 * Taux de croissance de la population végétal dans un mois. En %.
+	 */
     public double tauxCroissanceVegetale;
 
-    // en %
+
+    /**
+     * Taux de perte de végétal par pénurie en eau maximale. En %.
+     */
     public double tauxPerteVegetaleParPenurieEauMax;
 
-    // en tonne
+
+    /**
+     * Population végétale minimale dans un territoire. En tonne.
+     */
     public double populationVegetaleMinimale;
+    
+    /**
+     * Population végétale maximale dans un territoire. En tonne.
+     * 1000 fois la quantité minimale.
+     * @return Population végétale maximale en tonne.
+     */
+    public double populationVegetaleMaximale() {
+    	return 1000 * populationVegetaleMinimale;
+    };
 }

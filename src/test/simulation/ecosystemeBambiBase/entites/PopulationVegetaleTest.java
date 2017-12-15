@@ -6,13 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.domain.MoisEnum;
-import main.simulation.ecosystemeBambiBase.entites.ControleurMois;
-import main.simulation.ecosystemeBambiBase.entites.LocalisationVegetale;
-import main.simulation.ecosystemeBambiBase.entites.Mois;
-import main.simulation.ecosystemeBambiBase.entites.PopulationVegetale;
-import main.simulation.ecosystemeBambiBase.entites.Territoire;
-import main.simulation.ecosystemeBambiBase.entitesData.DataPopulationVegetale;
-import main.simulation.ecosystemeBambiBase.entitesData.DataTerritoire;
+import main.simulation.ecosystemeBambiBase.entites.*;
+import main.simulation.ecosystemeBambiBase.entitesData.*;
 
 // Tests
 public class PopulationVegetaleTest {
@@ -219,10 +214,6 @@ public class PopulationVegetaleTest {
 	
 	@Test
 	public void testcalculerNouvelleQuantiteIndividusCroissance() {
-		/* calcul th�orique
-		 * 
-		*/
-		
 		// population original = 100 kg
 		// besoinEauParIndividu = 10 L/kg
 		// tauxCroissanceVegetale = 50 %

@@ -6,26 +6,57 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.domain.MoisEnum;
-import main.simulation.ecosystemeBambiBase.entites.ControleurMois;
-import main.simulation.ecosystemeBambiBase.entites.Mois;
+import main.simulation.ecosystemeBambiBase.entites.*;
 
+/**
+ * Classe de teste du controleur de mois et mois.
+ * 
+ * Cette classe teste au même temps la classe qui contrôle l'avancement des mois
+ * et celle qui sert seulement comme référence de temps (pour récupérer le mois actuel).
+ */
 public class ControleurMoisTest {
 
+	/**
+	 * controleur de mois
+	 */
 	private ControleurMois ctrlMois;
+	
+	/**
+	 * mois - objet de référence de temps
+	 */
 	private Mois mois;
-
+	
+	
+	/**
+	 * crée un controleur et fait l'objet de mois pointer vers le même objet
+	 */
 	@Before
 	public void setUp() throws Exception {
+		// controleur
 		this.ctrlMois = new ControleurMois(MoisEnum.Janvier);
+		
+		// mois
 		this.mois = this.ctrlMois;
 	}
 	
+	
+	/**
+	 * Fonction auxiliaire qui incrément le mois N fois.
+	 * 
+	 * @param N Nombre de mois à incrémenter
+	 */
 	private void incrementer(int N) {
-		// appelle la méthode "incrementer dans le controleur N fois"
+		// compteur
 		for (int i = 0; i < N; i++)
+			
+			// appel à la méthode d'incrément
 			this.ctrlMois.incrementer();	
 	}
 
+	
+	/**
+	 * méthode de test des getters dans les 2 classes
+	 */
 	@Test
 	public void testGetters() {
 		// getIteration
@@ -39,6 +70,10 @@ public class ControleurMoisTest {
 		assertEquals(MoisEnum.Janvier, this.ctrlMois.getMois());
 	}
 
+	
+	/**
+	 * teste l'incrémentation 1 fois
+	 */
 	@Test
 	public void testIncrementer1() {
 		// incremente 1 fois
@@ -53,6 +88,10 @@ public class ControleurMoisTest {
 		assertEquals(MoisEnum.Fevrier, this.ctrlMois.getMois());
 	}
 	
+	
+	/**
+	 * teste l'incrémentation 11 fois (décembre)
+	 */
 	@Test
 	public void testIncrementer11() {
 		// incremente 11 fois
@@ -69,6 +108,10 @@ public class ControleurMoisTest {
 		assertEquals(MoisEnum.Decembre, this.ctrlMois.getMois());
 	}
 	
+	
+	/**
+	 * teste l'incrémentation 12 fois (janvier)
+	 */
 	@Test
 	public void testIncrementer12() {
 		// incremente 12 fois
@@ -84,7 +127,11 @@ public class ControleurMoisTest {
 		assertEquals(MoisEnum.Janvier, this.mois.getMois());
 		assertEquals(MoisEnum.Janvier, this.ctrlMois.getMois());
 	}
-	
+
+
+	/**
+	 * teste l'incrémentation 24 fois (janvier)
+	 */
 	@Test
 	public void testIncrementer24() {
 		// incremente 24 fois
@@ -101,6 +148,10 @@ public class ControleurMoisTest {
 		assertEquals(MoisEnum.Janvier, this.ctrlMois.getMois());
 	}
 	
+	
+	/**
+	 * teste de chaque mois
+	 */
 	@Test
 	public void testTousLesMois() {
 		// Janvier
@@ -153,8 +204,5 @@ public class ControleurMoisTest {
 		// Janvier
 		this.ctrlMois.incrementer();  // icrementer
 		assertEquals(MoisEnum.Janvier, this.mois.getMois());
-
-		
-	
 	}
 }

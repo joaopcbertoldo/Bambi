@@ -5,6 +5,7 @@ package main.simulation.ecosystemeBambiBase.entitesData;
  * Objet avec l'ensemble d'info non calculables d'une population.
  */
 public class DataPopulation {
+	
     /**
      * UP (unité de population)
      */
@@ -16,11 +17,13 @@ public class DataPopulation {
      */
     public double quantiteIndividusMoisProchain;
 
+    
     /**
      * Litre / UP / mois
      */
     public double besoinEauParIndividu;
 
+    
     /**
      * kg / UP / mois
      */
