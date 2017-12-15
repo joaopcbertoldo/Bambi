@@ -1,13 +1,13 @@
 package main.domain;
 
 /**
- * Enumï¿½ration des mois en franï¿½ais.
+ * Enumération des mois en français.
  * 
  * @author Joï¿½o Paulo
  *
  */
 public enum MoisEnum {
-	/** Valeurs en sï¿½quence. */
+	/** Valeurs en séquence. */
     Janvier,
     Fevrier,
     Mars,

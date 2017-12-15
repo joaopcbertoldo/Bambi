@@ -27,7 +27,7 @@ public final class EcosystemeBambi extends Ecosysteme {
     public EcosystemeBambi(ParametrageSimulation parametrageSimulation) throws Exception {
     	super(parametrageSimulation);
     	
-    	this.tableauxVariablesSimulation = new TableauxVariablesSimulation(5);
+    	this.tableauxVariablesSimulation = new TableauxVariablesSimulation(5, parametrageSimulation.mois0());
     	
     	super.resultatSimulation = tableauxVariablesSimulation;
     	
