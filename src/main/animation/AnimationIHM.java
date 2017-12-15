@@ -7,6 +7,7 @@ import javax.swing.event.*;
 
 import java.util.List;
 import java.util.ArrayList;
+import main.domain.MoisEnum;
 
 public class AnimationIHM extends JFrame implements ActionListener, ChangeListener, WindowListener{
     
@@ -26,6 +27,8 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
 	private JSlider slideMois;	
 	private JPanel barreMois;
 	private JLabel labMoisActuel;
+	private JLabel labNomMois;
+	private MoisEnum enumerationMois;
 	
 	private List<IhmUnTerritoire> ihmTerritoires;
 	
@@ -87,6 +90,10 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
 		labMoisActuel = new JLabel("Mois 1 de la simulation");
 		this.add(labMoisActuel);
 		labMoisActuel.setAlignmentX(CENTER_ALIGNMENT);
+	
+		labNomMois = new JLabel();
+		this.add(labNomMois);
+		labNomMois.setAlignmentX(CENTER_ALIGNMENT);
 		
 		suivant.addActionListener(this);
 		precedent.addActionListener(this);
@@ -114,8 +121,10 @@ public class AnimationIHM extends JFrame implements ActionListener, ChangeListen
 		slideVitesse.setValue(v);
 	}
 	
-	public void actualiserLabMois(int n) {
+	public void actualiserLabMois(int n, MoisEnum m) {
 		labMoisActuel.setText("Mois " + (n+1) + " de la simulation");
+		labNomMois.setText(m.toString());
+		
 	}
     
     public void actionPerformed(ActionEvent evt) {

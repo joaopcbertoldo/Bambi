@@ -58,6 +58,11 @@ public enum MoisEnum {
 		}
 	}
 	
+	public static MoisEnum getMois(MoisEnum m, int n) {
+		for(int i=0 ; i<n ; i++) m = m.next();
+		return m;
+	}
+	
 	
 	/**
 	 * Caster de string vers valeur de l'�numeration.
@@ -66,5 +71,5 @@ public enum MoisEnum {
 	 */
 	public static MoisEnum str2mois(String str) {
 		return MoisEnum.valueOf(str);
-	}
+    }
 }
