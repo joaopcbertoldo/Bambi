@@ -5,12 +5,14 @@ import java.util.concurrent.TimeUnit;
 
 import main.core.Controleur;
 import main.domain.ResultatSimulation;
+import main.domain.MoisEnum;
 
 
 public class AnimationControleur {
    
 	private int vitesse=1;
     private int moisActuel=0;
+    private MoisEnum moisEnum0;
     private int dureeSimulation;
     private AnimationIHM animationIHM;
     private ctrlThread ctrlT;
@@ -28,6 +30,7 @@ public class AnimationControleur {
     	dureeSimulation=resultats.NbdePas();    	
     	
     	System.out.println("duree de la simulation : " + dureeSimulation);
+    	moisEnum0 = resultats.mois0();
     	
     }
     
@@ -50,8 +53,7 @@ public class AnimationControleur {
     				maxVeg=veg;
     			}    			
     		}
-    	}
-    	
+    	}    	
     	animationIHM = new AnimationIHM(this, maxEau, maxVeg);
     	animationIHM.setSize(500,900);
     	animationIHM.setVisible(true);
@@ -74,7 +76,6 @@ public class AnimationControleur {
 
     public void setMois(final int mois) {
     	moisActuel=mois;
-    	animationIHM.actualiserSliderMois(moisActuel);
     	actualiserDonneesIHM();
     }
 
@@ -95,9 +96,7 @@ public class AnimationControleur {
     }
 
     public void moisPrecedent() {
-    	if(moisActuel!=0) moisActuel--;
-    	animationIHM.actualiserSliderMois(moisActuel);
-    	actualiserDonneesIHM();
+    	if(moisActuel!=0) setMois(moisActuel-1);
     }
     
     public int getDureeSimulation() {
@@ -112,7 +111,11 @@ public class AnimationControleur {
     				resultats.popAnimale(moisActuel, i), 
     				i);    		
     	}
-    	animationIHM.actualiserLabMois(moisActuel);
+    	
+    	MoisEnum moisEnum = MoisEnum.getMois(moisEnum0, moisActuel);
+    	System.out.println(moisEnum.toString());
+    	animationIHM.actualiserLabMois(moisActuel, moisEnum);
+    	animationIHM.actualiserSliderMois(moisActuel);
     	
     }
     
@@ -139,7 +142,6 @@ public class AnimationControleur {
         					e.printStackTrace();
         				}
         	    		
-        	    		actualiserDonneesIHM();
         	    		moisSuivant();
         	    		}// fin du while
         			try {
@@ -157,11 +159,5 @@ public class AnimationControleur {
     	AnimationControleur ac = new AnimationControleur(null);
     	ac.creerIHM();
     	
-    }
-    
-
-	
-    
-            
-
+    } 
 }

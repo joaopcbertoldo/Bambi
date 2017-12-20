@@ -1,13 +1,13 @@
 package main.domain;
 
 /**
- * Enumï¿½ration des mois en franï¿½ais.
+ * Enumération des mois en français.
  * 
  * @author Joï¿½o Paulo
  *
  */
 public enum MoisEnum {
-	/** Valeurs en sï¿½quence. */
+	/** Valeurs en séquence. */
     Janvier,
     Fevrier,
     Mars,
@@ -58,6 +58,11 @@ public enum MoisEnum {
 		}
 	}
 	
+	public static MoisEnum getMois(MoisEnum m, int n) {
+		for(int i=0 ; i<n ; i++) m = m.next();
+		return m;
+	}
+	
 	
 	/**
 	 * Caster de string vers valeur de l'ï¿½numeration.
@@ -66,5 +71,5 @@ public enum MoisEnum {
 	 */
 	public static MoisEnum str2mois(String str) {
 		return MoisEnum.valueOf(str);
-	}
+    }
 }

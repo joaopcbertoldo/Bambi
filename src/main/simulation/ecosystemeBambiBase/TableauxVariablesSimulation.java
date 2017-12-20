@@ -3,6 +3,7 @@ package main.simulation.ecosystemeBambiBase;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.domain.MoisEnum;
 import main.domain.ResultatSimulation;
 
 public class TableauxVariablesSimulation implements ResultatSimulation {
@@ -12,8 +13,10 @@ public class TableauxVariablesSimulation implements ResultatSimulation {
     public List<List<Double>> tableauStockEau;
 
     public List<List<Double>> tableauStockVeg;
+
+	private MoisEnum mois0;
     
-    public TableauxVariablesSimulation(int nbTerritoires) {
+    public TableauxVariablesSimulation(int nbTerritoires, MoisEnum mois0) {
     	this.tableauPopulationAnimale = new ArrayList<List<Integer>>();
     	this.tableauStockEau = new ArrayList<List<Double>>();
     	this.tableauStockVeg = new ArrayList<List<Double>>();
@@ -23,6 +26,8 @@ public class TableauxVariablesSimulation implements ResultatSimulation {
         	this.tableauStockEau.add(new ArrayList<Double>());
         	this.tableauStockVeg.add(new ArrayList<Double>());
     	}
+    	
+    	this.mois0 = mois0;
     }
 
     // gets
@@ -58,6 +63,11 @@ public class TableauxVariablesSimulation implements ResultatSimulation {
 	public int NbdePas() {
 		// un peu hotfix
 		return this.tableauPopulationAnimale.size();
+	}
+
+	@Override
+	public MoisEnum mois0() {
+		return this.mois0;
 	}
 
 }

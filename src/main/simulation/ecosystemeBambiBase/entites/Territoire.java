@@ -7,7 +7,7 @@ import main.simulation.ecosystemeBambiBase.entitesData.DataTerritoire;
 
 /**
  * 
- * @author João Paulo
+ * @author Joï¿½o Paulo
  */
 public class Territoire {
     /**
@@ -135,7 +135,7 @@ public class Territoire {
      */
     // Litre
     public double quantiteEauDePluie() {
-        return (this.pluviometrie() / 1000.0) * (this.surface() * 1000000.0) * 1000;
+        return this.pluviometrie() * (this.surface() * 1000 * 1000);
     }
 
     
@@ -189,11 +189,11 @@ public class Territoire {
     public double penurieEau() {
         //en %
         double res;
-        if (balanceEau() <= 0) {
+        if (balanceEau() >= 0) {
         	res = 0;
         }
         else {
-        	res =  1 - disponibiliteEau() / besoinEau();
+        	res =  100 * (1 - disponibiliteEau() / besoinEau());
         }
         return res;
     }
@@ -240,11 +240,11 @@ public class Territoire {
     // en %
     public double penurieVegetal() {
         double res;
-        if (balanceVegetal() <= 0) {
+        if (balanceVegetal() >= 0) {
         	res = 0;
         }
         else {
-        	res =  1 - disponibiliteVegetal() / besoinVegetal();
+        	res =  100 * (1 - disponibiliteVegetal() / besoinVegetal());
         }
         return res;
     }
@@ -258,7 +258,7 @@ public class Territoire {
     public double quantiteVegetalNonMange() {
         double res;
         if (balanceVegetal() <= 0) {
-        	res = 0;
+        	res = 0.0;
         }
         else {
         	res =  balanceVegetal();
