@@ -42,7 +42,7 @@ public class IhmUnTerritoire extends JPanel {
 
 	}
 	
-	//Méthode de dessin appelée à chaque actualisation des valeurs
+	//Mï¿½thode de dessin appelï¿½e ï¿½ chaque actualisation des valeurs
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
@@ -60,25 +60,25 @@ public class IhmUnTerritoire extends JPanel {
 		int longueurEau = (int) ((eau/maxEau)*longueurMax);
 		int longueurVeg = (int) ((veg/maxVeg)*longueurMax);
 		
-		//On dessine les jauges de végétaux
+		//On dessine les jauges de vï¿½gï¿½taux
 		g.setColor(Color.black);
 		g.fillRect(xVeg-epaisseur,yVeg-epaisseur,longueurMax+2*epaisseur,2*epaisseur + largeur);
 		g.setColor(Color.green);
-		g.fillRect(xVeg, yVeg,longueurEau, largeur);		
+		g.fillRect(xVeg, yVeg,longueurVeg, largeur);		
 		g.setColor(Color.black);
 		g.fillRect(xEau-epaisseur,yEau-epaisseur,longueurMax+2*epaisseur,2*epaisseur + largeur);
 		g.setColor(Color.blue);
-		g.fillRect(xEau, yEau,longueurVeg, largeur);
+		g.fillRect(xEau, yEau,longueurEau, largeur);
 		
-		//On dessine le texte qui indique les quantités
+		//On dessine le texte qui indique les quantitï¿½s
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 12)); 
 		g.drawString(String.valueOf(popAnimale), 60, 90);
 		g.setColor(Color.white);
 		
-		//On affiche dans les barres la quantité numérique correspondante
-		double eauArrondi = ((int) eau*100)/100;
-		double vegArrondi = ((int) veg*100)/100;
+		//On affiche dans les barres la quantitï¿½ numï¿½rique correspondante
+		double eauArrondi = Math.floor(eau);
+		double vegArrondi = Math.floor(veg);
 		g.drawString(String.valueOf(eauArrondi),xVeg + longueurMax-120, yEau+15);
 		g.drawString(String.valueOf(vegArrondi),xVeg + longueurMax-120, yVeg+15);
 		

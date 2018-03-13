@@ -290,7 +290,7 @@ public class Territoire {
      */
     public void recalculerCumulEau() {
         double balance = this.balanceEau();
-        double tauxPerte = this.dataTerritoire.tauxPerteEauEvaporation;
+        double tauxPerte = this.dataTerritoire.tauxPerteEauEvaporation/100;
         
         this.dataTerritoire.cumulEauMoisProchain = balance  <= 0 ? 0 : balance * tauxPerte;
     }

@@ -7,6 +7,8 @@ import main.domain.MoisEnum;
 import main.domain.ResultatSimulation;
 
 public class TableauxVariablesSimulation implements ResultatSimulation {
+
+	private int nbDePas;
 	
     public List<List<Integer>> tableauPopulationAnimale;
 
@@ -16,7 +18,9 @@ public class TableauxVariablesSimulation implements ResultatSimulation {
 
 	private MoisEnum mois0;
     
-    public TableauxVariablesSimulation(int nbTerritoires, MoisEnum mois0) {
+    public TableauxVariablesSimulation(int nbTerritoires, MoisEnum mois0, int nbDePas) {
+    	this.nbDePas = nbDePas;
+    	
     	this.tableauPopulationAnimale = new ArrayList<List<Integer>>();
     	this.tableauStockEau = new ArrayList<List<Double>>();
     	this.tableauStockVeg = new ArrayList<List<Double>>();
@@ -62,7 +66,7 @@ public class TableauxVariablesSimulation implements ResultatSimulation {
 	@Override
 	public int NbdePas() {
 		// un peu hotfix
-		return this.tableauPopulationAnimale.size();
+		return nbDePas;
 	}
 
 	@Override

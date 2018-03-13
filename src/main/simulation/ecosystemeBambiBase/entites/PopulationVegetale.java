@@ -4,9 +4,9 @@ import main.simulation.ecosystemeBambiBase.entitesData.*;
 
 /**
  * PopulationVegetale (sousclasse de Population).
- * Représente une population de végétal d'un territoire.
+ * Reprï¿½sente une population de vï¿½gï¿½tal d'un territoire.
  * 
- * @author João Paulo
+ * @author Joï¿½o Paulo
  */
 public class PopulationVegetale extends Population {
 	
@@ -14,7 +14,7 @@ public class PopulationVegetale extends Population {
 	 * Localisation Vegetale.
 	 * Accede la localisation de Population en fesant le cast vers Localisation Vegetale
 	 * 
-	 * @return Objet de localisation de Population casté en Localisation Vegetale.
+	 * @return Objet de localisation de Population castï¿½ en Localisation Vegetale.
 	 */
     protected LocalisationVegetale localisationVegetale() {
     	// cast
@@ -23,10 +23,10 @@ public class PopulationVegetale extends Population {
     
     
     /**
-	 * Data de population végétale.
+	 * Data de population vï¿½gï¿½tale.
 	 * Accede le data de Population en fesant le cast vers DataPopulationVegetale
 	 * 
-	 * @return Objet de data de Population casté en DataPopulationVegetale.
+	 * @return Objet de data de Population castï¿½ en DataPopulationVegetale.
 	 */
     protected DataPopulationVegetale dataPopulationVegetale() {
     	// cast
@@ -36,8 +36,8 @@ public class PopulationVegetale extends Population {
     
     /** 
      * Constructeur.
-     * @param dataPopulationVegetale Objet de data de population végétale.
-     * @param mois Objet de référence de mois/itération.
+     * @param dataPopulationVegetale Objet de data de population vï¿½gï¿½tale.
+     * @param mois Objet de rï¿½fï¿½rence de mois/itï¿½ration.
      */
     public PopulationVegetale(DataPopulationVegetale dataPopulationVegetale, Mois mois) {
     	// constructeur de Population
@@ -46,26 +46,26 @@ public class PopulationVegetale extends Population {
     
     
     /**
-     * Calcul le taux de croissance de la population végétale.
-     * En fait, le taux de croissance est constant, donc il est récupéré dans la data.
+     * Calcul le taux de croissance de la population vï¿½gï¿½tale.
+     * En fait, le taux de croissance est constant, donc il est rï¿½cupï¿½rï¿½ dans la data.
      * 
      * @return Taux de croissance en %.
      */
     public double tauxCroissance() {
-    	// récupère de la data
+    	// rï¿½cupï¿½re de la data
         return this.dataPopulationVegetale().tauxCroissanceVegetale;
     }
     
     
     /**
-     * Calcul du taux de perte par pénurie.
-     * Équation:
+     * Calcul du taux de perte par pï¿½nurie.
+     * ï¿½quation:
      * 		penEau * tauxMax
 	 * 
-	 * penEau : est la penurie en eau dans le territoire occupé
-	 * tauxMax : taux de perte par pénurie d'eau max.
+	 * penEau : est la penurie en eau dans le territoire occupï¿½
+	 * tauxMax : taux de perte par pï¿½nurie d'eau max.
 	 *  
-     * @return Taux de perte par pénurie en %.
+     * @return Taux de perte par pï¿½nurie en %.
      */
     public double tauxPerteParPenurie() {
     	// valeurs
@@ -78,17 +78,17 @@ public class PopulationVegetale extends Population {
     
     
     /**
-     * méthode qui surécrit la méthode abstraite de calcul de quantité d'individus pour l'avancement 
+     * mï¿½thode qui surï¿½crit la mï¿½thode abstraite de calcul de quantitï¿½ d'individus pour l'avancement 
      * d'un pas de la simulation.
      * 
-     * équation:
+     * ï¿½quation:
      * 		si balance d'eau > 0
      * 			(1 + tauxCroissance) * nonMange
      * 
      * 		si balance d'eau < 0
      * 			(1 - tauxPerte) * nonMange
      * 
-     * la valeur résultante est bornée entre le max et min (dans le data)
+     * la valeur rï¿½sultante est bornï¿½e entre le max et min (dans le data)
      */
     public void calculerNouvelleQuantiteIndividus() {
     	// valeurs de calcul
@@ -105,11 +105,11 @@ public class PopulationVegetale extends Population {
         double nouvellePopulation = balance > 0 ? (1 + tauxCroissance) * nonMange : (1 - tauxPerte) * nonMange;
         
         // min
-        if (nouvellePopulation < min)
+        if (nouvellePopulation < 1000*min)
         	nouvellePopulation = min;
         
         // max
-        if (nouvellePopulation > max)
+        if (nouvellePopulation > 1000*max)
         	nouvellePopulation = max;
         
         // sauvegarde

@@ -27,7 +27,7 @@ public final class EcosystemeBambi extends Ecosysteme {
     public EcosystemeBambi(ParametrageSimulation parametrageSimulation) throws Exception {
     	super(parametrageSimulation);
     	
-    	this.tableauxVariablesSimulation = new TableauxVariablesSimulation(5, parametrageSimulation.mois0());
+    	this.tableauxVariablesSimulation = new TableauxVariablesSimulation(5, parametrageSimulation.mois0(), parametrageSimulation.nombreDePas());
     	
     	super.resultatSimulation = tableauxVariablesSimulation;
     	
@@ -41,7 +41,7 @@ public final class EcosystemeBambi extends Ecosysteme {
     		dataveg.besoinEauParIndividu              = parametrageSimulation.besoinEauVegetal();
     		dataveg.besoinVegetalParIndividu          = 0;  // vegetal ne mange pas vegetal
     		dataveg.populationVegetaleMinimale        = parametrageSimulation.stockVegetauxMinimal();
-    		dataveg.quantiteIndividus                 = parametrageSimulation.stockVegetaux(i);
+    		dataveg.quantiteIndividus                 = 1000*parametrageSimulation.stockVegetaux(i);
     		dataveg.tauxCroissanceVegetale            = parametrageSimulation.tauxCroissanteVegetal();
     		dataveg.tauxPerteVegetaleParPenurieEauMax = parametrageSimulation.tauxPerteVegetalPenurieMax();
     		
@@ -86,6 +86,8 @@ public final class EcosystemeBambi extends Ecosysteme {
     	// Bambis
     	this.bambis = new PopulationAnimale(databambis, this.controleurMois);
     	this.bambis.setLocalisation(local);
+    	
+    	this.territoires.get(t0).recevoirPopulation(this.bambis);
     }
 
     public void PrendreUnePhotoDeLaSimulation() {
@@ -93,7 +95,7 @@ public final class EcosystemeBambi extends Ecosysteme {
     		Territoire territ = this.territoires.get(i);
     		
     		int population = 
-    				this.bambis.indexTerritoireOccuppe() == territ.index() ?
+    				this.bambis.indexTerritoireOccuppe() == territ.index() -1 ?
     				(int) this.bambis.quantiteIndividus() : 0;
 
     		double stockEau = territ.disponibiliteEau();

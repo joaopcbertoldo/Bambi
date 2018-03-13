@@ -19,25 +19,25 @@ import main.simulation.ecosystemeBambiBase.enums.*;
  * Classe de teste de Population Animale
  * 
  * IMPORTANT
- * La <<population animale>> dépend de la <<localisation animale>>, donc, pour ne pas tester
- * deux classes à la fois, on a crée une classe auxiliaire qui se comporte comme une 
+ * La <<population animale>> dï¿½pend de la <<localisation animale>>, donc, pour ne pas tester
+ * deux classes ï¿½ la fois, on a crï¿½e une classe auxiliaire qui se comporte comme une 
  * fausse localisation, dont on peut controler facilement les retours. Cf. la fin du fichier.
  * 
  * ORGANISATION
- * Chaque méthode de la classe de teste sert à tester une méthode de la classe <<population animale>>
- * ou une fonctionnalité que l'on obtient à partir de quelques appels de méthodes différentes.
+ * Chaque mï¿½thode de la classe de teste sert ï¿½ tester une mï¿½thode de la classe <<population animale>>
+ * ou une fonctionnalitï¿½ que l'on obtient ï¿½ partir de quelques appels de mï¿½thodes diffï¿½rentes.
  */
 public class PopulationAnimaleTest {
 	
 	/******************** ATTRIBUS AUXILIAIRES ********************/
 	
     /** 
-     * valeurs : attendue, réele, tolérance de différence
+     * valeurs : attendue, rï¿½ele, tolï¿½rance de diffï¿½rence
      */
     double expected, actual, delta = 0.001;
     
     /**
-     * état de migration attendu
+     * ï¿½tat de migration attendu
      */
     StatusMigrationEnum expectedMigration;
     
@@ -65,12 +65,12 @@ public class PopulationAnimaleTest {
 	private PopulationAnimale population;
 
 	
-	/******************** MÉTHODES AUXILIAIRES ********************/
+	/******************** Mï¿½THODES AUXILIAIRES ********************/
 	
 	/**
 	 *  setUp
-	 * Méthode auxiliaire pour initialiser un objet de population animale.
-	 * Cette méthode est appelée avant chaque teste.
+	 * Mï¿½thode auxiliaire pour initialiser un objet de population animale.
+	 * Cette mï¿½thode est appelï¿½e avant chaque teste.
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -123,15 +123,15 @@ public class PopulationAnimaleTest {
 	}
 	
 	/**
-	 * Méthode auxiliaire qui incrément le mois N fois.
+	 * Mï¿½thode auxiliaire qui incrï¿½ment le mois N fois.
 	 * 
-	 * @param N Nombre d'incrément
+	 * @param N Nombre d'incrï¿½ment
 	 */
 	private void incrementer(int N) {
 		// contage
 		for (int i = 0; i < N; i++)
 			
-			// appel de la méthode
+			// appel de la mï¿½thode
 			this.ctrl.incrementer();	
 	}
 
@@ -140,12 +140,12 @@ public class PopulationAnimaleTest {
 	
 	/**
 	 *  testPenurieCumulee
-	 * Cette méthode teste les calculs de penurie cumulée d'eau et Vegetale.
-	 * Ils sont ensemble car le calcul est exactement le même dans les 2.
+	 * Cette mï¿½thode teste les calculs de penurie cumulï¿½e d'eau et Vegetale.
+	 * Ils sont ensemble car le calcul est exactement le mï¿½me dans les 2.
 	 */
     @Test
     public void testPenurieCumulee() {
-        // la penurie cumulée est la somme des 6 derniers penurie (en %)
+        // la penurie cumulï¿½e est la somme des 6 derniers penurie (en %)
 
         /****** Situation 1 : historique nul. ******/
         // controle de conditions externes
@@ -210,13 +210,13 @@ public class PopulationAnimaleTest {
     
     /**
      * test Enregistrement Penurie
-	 * Cette méthode teste l'enregistrement des penuries d'eau et Vegetale dans les historiques.
-	 * Ils sont ensemble car le calcul est exactement le même dans les 2.
+	 * Cette mï¿½thode teste l'enregistrement des penuries d'eau et Vegetale dans les historiques.
+	 * Ils sont ensemble car le calcul est exactement le mï¿½me dans les 2.
 	 */
     @Test
     public void testEnregistrementPenurie() throws Exception {
-    	// à chaque calcul de nouvelle population, la penurie de la localisation actuelle 
-    	// doit être enregistrée dans l'historique
+    	// ï¿½ chaque calcul de nouvelle population, la penurie de la localisation actuelle 
+    	// doit ï¿½tre enregistrï¿½e dans l'historique
     	
     	/****** Situation 1 : historique nul. ******/
     	// le setUp initialise les historiques avec des listes nulles
@@ -278,11 +278,11 @@ public class PopulationAnimaleTest {
     
     /**
      * testTauxNaissance
-	 * Cette méthode teste les calculs de taux de naissance.
+	 * Cette mï¿½thode teste les calculs de taux de naissance.
 	 */
     @Test
     public void testTauxNaissance() {
-        // le taux de naissance doit suivre la suivante équation:
+        // le taux de naissance doit suivre la suivante ï¿½quation:
     	//     (.1/penEau * .1/penVeg) * TauxMAX 
     	
     	// penEau, penVeg NE SONT PAS en %
@@ -304,7 +304,7 @@ public class PopulationAnimaleTest {
         // expected = 100%
         expected = 100.0; 
 
-        // recupére la vraie valeur
+        // recupï¿½re la vraie valeur
         actual = this.population.tauxNaissance();
 
         // assert
@@ -326,7 +326,7 @@ public class PopulationAnimaleTest {
         // expected = 1%
         expected = 1.0; 
 
-        // recupére la vraie valeur
+        // recupï¿½re la vraie valeur
         actual = this.population.tauxNaissance();
 
         // assert
@@ -348,7 +348,7 @@ public class PopulationAnimaleTest {
         // expected = 100% (saturation en taux max)
         expected = 100.0; 
 
-        // recupère la vraie valeur
+        // recupï¿½re la vraie valeur
         actual = this.population.tauxNaissance();
 
         // assert
@@ -370,7 +370,7 @@ public class PopulationAnimaleTest {
         // expected = 25% 
         expected = 25.0; 
 
-        // recupère la vraie valeur
+        // recupï¿½re la vraie valeur
         actual = this.population.tauxNaissance();
 
         // assert
@@ -380,11 +380,11 @@ public class PopulationAnimaleTest {
     
     /**
      * test Taux Mortalite
-	 * Cette méthode teste les calculs de taux de mortalité.
+	 * Cette mï¿½thode teste les calculs de taux de mortalitï¿½.
 	 */
     @Test
     public void testTauxMortalite() {
-        // le taux de naissance doit suivre la suivante équation:
+        // le taux de naissance doit suivre la suivante ï¿½quation:
     	//     tauxPred + tauxPenMax * penAlim
     	
     	// il faut saturer a 100%
@@ -402,7 +402,7 @@ public class PopulationAnimaleTest {
         // expected = 50%
         expected = 50.0; 
 
-        // recupére la vraie valeur
+        // recupï¿½re la vraie valeur
         actual = this.population.tauxMortalite();
 
         // assert
@@ -421,7 +421,7 @@ public class PopulationAnimaleTest {
         // expected = 25%
         expected = 25.0; 
 
-        // recupére la vraie valeur
+        // recupï¿½re la vraie valeur
         actual = this.population.tauxMortalite();
 
         // assert
@@ -440,7 +440,7 @@ public class PopulationAnimaleTest {
         // expected = 75%
         expected = 75.0; 
 
-        // recupére la vraie valeur
+        // recupï¿½re la vraie valeur
         actual = this.population.tauxMortalite();
 
         // assert
@@ -459,7 +459,7 @@ public class PopulationAnimaleTest {
         // expected = 100%
         expected = 100.0; 
 
-        // recupére la vraie valeur
+        // recupï¿½re la vraie valeur
         actual = this.population.tauxMortalite();
 
         // assert
@@ -478,7 +478,7 @@ public class PopulationAnimaleTest {
         // expected = 100%
         expected = 100.0; 
 
-        // recupére la vraie valeur
+        // recupï¿½re la vraie valeur
         actual = this.population.tauxMortalite();
 
         // assert
@@ -496,7 +496,7 @@ public class PopulationAnimaleTest {
         // expected = 0%
         expected = 0.0; 
 
-        // recupére la vraie valeur
+        // recupï¿½re la vraie valeur
         actual = this.population.tauxMortalite();
 
         // assert
@@ -505,13 +505,13 @@ public class PopulationAnimaleTest {
     
     
     /**
-     * Ce teste va tester à la fois 2 choses : 
-     * 		1) le calcul de population en fonction des conditions du système
+     * Ce teste va tester ï¿½ la fois 2 choses : 
+     * 		1) le calcul de population en fonction des conditions du systï¿½me
      * 		2) l'affectation de population seulement avec l'appel la fonction correspondante
      * */
     @Test
     public void testCalculerNouvelleQuantiteIndividus() throws Exception {
-        // le calcul de population est selon l'équation:
+        // le calcul de population est selon l'ï¿½quation:
     	//     actuel * (1 + tauxNaissance - tauxMortalite)
     	
     	
@@ -519,11 +519,11 @@ public class PopulationAnimaleTest {
         // controle de conditions externes
     	
     	// population = 100 (cf setUp)
-    	// taux de naissance = MAX = 100% (historiques de pénurie nuls, cf setUp)
-    	// taux de mortalité = 0 (pas de prédateur, pénurie alimentaire null, cf setUp)
+    	// taux de naissance = MAX = 100% (historiques de pï¿½nurie nuls, cf setUp)
+    	// taux de mortalitï¿½ = 0 (pas de prï¿½dateur, pï¿½nurie alimentaire null, cf setUp)
     	setUp();
 
-        // recupére la vraie valeur
+        // recupï¿½re la vraie valeur
         population.calculerNouvelleQuantiteIndividus();
         
         // expected = 100 (avant l'affectation)
@@ -535,7 +535,7 @@ public class PopulationAnimaleTest {
         // affectation
         population.affecterQuantiteIndividus();
 
-        // expected = 200 (après l'affectation)
+        // expected = 200 (aprï¿½s l'affectation)
         expected = 200.0;
 
         // assert
@@ -552,10 +552,10 @@ public class PopulationAnimaleTest {
         data.historiquePenurieEau        = new ArrayList<>(Arrays.asList(100., 100., 100., 100., 100., 100.));
         data.historiquePenurieNourriture = new ArrayList<>(Arrays.asList(100., 100., 100., 100., 100., 100.));
         
-    	// taux de mortalité = 50%
+    	// taux de mortalitï¿½ = 50%
     	data.tauxMortalitePredateur = 50;
 
-        // recupére la vraie valeur
+        // recupï¿½re la vraie valeur
         population.calculerNouvelleQuantiteIndividus();
         
         // expected = 100 (avant l'affectation)
@@ -567,7 +567,7 @@ public class PopulationAnimaleTest {
         // affectation
         population.affecterQuantiteIndividus();
 
-        // expected = 50 (après l'affectation)
+        // expected = 50 (aprï¿½s l'affectation)
         expected = 50.0;
 
         // assert
@@ -584,9 +584,9 @@ public class PopulationAnimaleTest {
         data.historiquePenurieEau        = new ArrayList<>(Arrays.asList(100., 100., 100., 100., 100., 100.));
         data.historiquePenurieNourriture = new ArrayList<>(Arrays.asList(100., 100., 100., 100., 100., 100.));
         
-    	// taux de mortalité = 0% (cf setUp)
+    	// taux de mortalitï¿½ = 0% (cf setUp)
 
-        // recupére la vraie valeur
+        // recupï¿½re la vraie valeur
         population.calculerNouvelleQuantiteIndividus();
         
         // expected = 100 (avant l'affectation)
@@ -598,7 +598,7 @@ public class PopulationAnimaleTest {
         // affectation
         population.affecterQuantiteIndividus();
 
-        // expected = 100 (après l'affectation)
+        // expected = 100 (aprï¿½s l'affectation)
         expected = 100.0;
 
         // assert
@@ -612,10 +612,10 @@ public class PopulationAnimaleTest {
         setUp();
         
     	// taux de naissance = 100% (cf setUp)    	
-        // taux de mortalité = 50%
+        // taux de mortalitï¿½ = 50%
     	data.tauxMortalitePredateur = 50;
         
-    	// recupére la vraie valeur
+    	// recupï¿½re la vraie valeur
         population.calculerNouvelleQuantiteIndividus();
         
         // expected = 100 (avant l'affectation)
@@ -627,7 +627,7 @@ public class PopulationAnimaleTest {
         // affectation
         population.affecterQuantiteIndividus();
 
-        // expected = 150 (après l'affectation)
+        // expected = 150 (aprï¿½s l'affectation)
         expected = 150.0;
 
         // assert
@@ -638,24 +638,24 @@ public class PopulationAnimaleTest {
     /**
      * test Migrer
      * 
-     * Cette méthode teste si la décision de migration est correctement prise dans l'état <<Fixe>>.
+     * Cette mï¿½thode teste si la dï¿½cision de migration est correctement prise dans l'ï¿½tat <<Fixe>>.
      * */
     @Test
     public void testMigrerFixeResteFixe() throws Exception {
-    	// état initial : Fixe
-    	// changement à MigrantAuSud doit se faire s'il est plus tard d'ans l'année que Septembre
-    	// changement à MigrantAuNord doit se faire s'il y a de la pénurie
+    	// ï¿½tat initial : Fixe
+    	// changement ï¿½ MigrantAuSud doit se faire s'il est plus tard d'ans l'annï¿½e que Septembre
+    	// changement ï¿½ MigrantAuNord doit se faire s'il y a de la pï¿½nurie
     	
     	/****** Situation 1 : rester fixe. ******/
         // controle de conditions externes
     	
     	// initialisation
     	// mois = Janvier
-    	// pénurie = 0
+    	// pï¿½nurie = 0
     	// index de territoire = 0
     	setUp();
     	
-    	// état initial
+    	// ï¿½tat initial
     	data.statusMigration = StatusMigrationEnum.Fixe;
         
     	// migrer
@@ -677,11 +677,11 @@ public class PopulationAnimaleTest {
         // controle de conditions externes
     	
     	// initialisation
-    	// pénurie = 0
+    	// pï¿½nurie = 0
     	// index de territoire = 0
     	setUp();
     	
-    	// état initial
+    	// ï¿½tat initial
     	data.statusMigration = StatusMigrationEnum.Fixe;
 
     	// mois = Mars
@@ -706,21 +706,21 @@ public class PopulationAnimaleTest {
     /**
      * test Migrer Au Nord
      * 
-     * Cette méthode teste si la décision de migration au nord est correctement prise 
-     * et si l'objet de localisation est correctement appellé.
+     * Cette mï¿½thode teste si la dï¿½cision de migration au nord est correctement prise 
+     * et si l'objet de localisation est correctement appellï¿½.
      * */
     @Test
     public void testMigrerVersNord() throws Exception {
-    	/****** Situation 1 : migrer au nord à partir de fixe . ******/
+    	/****** Situation 1 : migrer au nord ï¿½ partir de fixe . ******/
         // controle de conditions externes
     	
     	// initialisation
     	setUp();
     	
-    	// ajout de pénurie --> ce qui force la migration vers le nord
+    	// ajout de pï¿½nurie --> ce qui force la migration vers le nord
     	fausseLocAni.penurieAlimentaire = 1;
     	
-    	// état initial
+    	// ï¿½tat initial
     	data.statusMigration = StatusMigrationEnum.Fixe;
         
     	// migrer
@@ -735,7 +735,7 @@ public class PopulationAnimaleTest {
         assertEquals(expectedIndex, fausseLocAni.index);
     	
         
-        /** vérification s`il va jusqu`au fond (5eme) **/
+        /** vï¿½rification s`il va jusqu`au fond (5eme) **/
         
         // migrer
     	population.migrer();
@@ -752,7 +752,7 @@ public class PopulationAnimaleTest {
         assertEquals(expectedIndex, fausseLocAni.index);
     	
         
-        /** vérification qu`il s`arrete au 5eme**/
+        /** vï¿½rification qu`il s`arrete au 5eme**/
 
         // migrer
     	population.migrer();
@@ -766,17 +766,17 @@ public class PopulationAnimaleTest {
         assertEquals(expectedIndex, fausseLocAni.index);
     	        
 
-    	/****** Situation 2 : migrer au nord à partir de fixe et renverser le sens en septembre. ******/
+    	/****** Situation 2 : migrer au nord ï¿½ partir de fixe et renverser le sens en septembre. ******/
         // controle de conditions externes
     	
     	// initialisation
         // mois = Janvier
     	setUp();
 
-    	// ajout de pénurie --> ce qui force la migration vers le nord
+    	// ajout de pï¿½nurie --> ce qui force la migration vers le nord
     	fausseLocAni.penurieAlimentaire = 1;
     	
-    	// état initial
+    	// ï¿½tat initial
     	data.statusMigration = StatusMigrationEnum.Fixe;
         
     	// migrer
@@ -821,7 +821,7 @@ public class PopulationAnimaleTest {
         assertEquals(expectedIndex, fausseLocAni.index);
         
         
-        /****** vérification qu'ils s'arretent******/ 
+        /****** vï¿½rification qu'ils s'arretent******/ 
     	// migrer
     	population.migrer();  // ils arrivent au 1er 
     	population.migrer();  // ils doivent s'arreter
@@ -839,8 +839,8 @@ public class PopulationAnimaleTest {
     /**
      * test Migrer Au Sud
      * 
-     * Cette méthode teste si la décision de migration au sud est correctement prise 
-     * et si l'objet de localisation est correctement appellé.
+     * Cette mï¿½thode teste si la dï¿½cision de migration au sud est correctement prise 
+     * et si l'objet de localisation est correctement appellï¿½.
      * */
     @Test
     public void testMigrerVersSud() throws Exception {
@@ -852,10 +852,10 @@ public class PopulationAnimaleTest {
     	// mois 0 = Janvier
     	setUp();
     	
-    	// index du territoire occupé
+    	// index du territoire occupï¿½
     	fausseLocAni.index = 5;
     	
-    	// état initial
+    	// ï¿½tat initial
     	data.statusMigration = StatusMigrationEnum.Fixe;
         
     	// migrer
@@ -870,7 +870,7 @@ public class PopulationAnimaleTest {
         assertEquals(expectedIndex, fausseLocAni.index);
         
         
-    	/****** Situation 2 : migrer au sud à partir de fixe (en partant du 5eme). ******/
+    	/****** Situation 2 : migrer au sud ï¿½ partir de fixe (en partant du 5eme). ******/
         // avancement jq'au mois de septembre
         incrementer(8);
         
@@ -886,7 +886,7 @@ public class PopulationAnimaleTest {
         assertEquals(expectedIndex, fausseLocAni.index);
         
         
-        /** vérification s`il va jusqu`au fond (1er) **/
+        /** vï¿½rification s`il va jusqu`au fond (1er) **/
         
         // migrer
     	population.migrer();  // 3
@@ -902,7 +902,7 @@ public class PopulationAnimaleTest {
         assertEquals(expectedIndex, fausseLocAni.index);
     	
         
-        /** vérification qu`il s`arrete au 1er**/
+        /** vï¿½rification qu`il s`arrete au 1er**/
 
         // migrer
     	population.migrer();
@@ -933,7 +933,7 @@ class FausseLocalisationAnimale extends LocalisationAnimale {
 	
 	// Constructeur
 	public FausseLocalisationAnimale() {
-		// ça ne sert à rien, cest juste pour respecter le super
+		// ï¿½a ne sert ï¿½ rien, cest juste pour respecter le super
 		super(new Territoire(new DataTerritoire()));
 	}
 	
@@ -978,7 +978,7 @@ class FausseLocalisationAnimale extends LocalisationAnimale {
     }
 
     /**
-     * incrément l'index
+     * incrï¿½ment l'index
      */
     @Override
     public void migrerAuNord(Population population) {
